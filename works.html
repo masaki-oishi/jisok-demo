@@ -7,10 +7,42 @@
   <meta name="description" content="JISOKの3Dレーザースキャンによるプラント計測の導入事例・実績紹介。化学プラント、石油精製施設、食品工場など多業種での成功事例をご覧ください。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Works Page Specific ===== */
+    /* ===== Works Page — Editorial Minimal ===== */
+
+    /* Page Hero Override */
+    .page-hero {
+      background: #f8f9fb;
+      padding: 160px 0 72px;
+      text-align: left;
+    }
+    .page-hero::before { display: none; }
+    .page-hero .breadcrumb {
+      color: var(--color-text-light);
+      margin-bottom: 20px;
+    }
+    .page-hero .breadcrumb a {
+      color: var(--color-text-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .page-hero .breadcrumb a:hover { color: var(--color-accent); }
+    .page-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .page-hero p {
+      color: var(--color-text-light);
+      font-size: 1.05rem;
+      max-width: none;
+      margin: 0;
+    }
 
     /* Video Section */
     .video-section { background: #fff; }
@@ -18,198 +50,142 @@
       max-width: 880px;
       margin: 0 auto;
       aspect-ratio: 16 / 9;
-      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 60%, #2a4a7f 100%);
-      border-radius: 16px;
+      background: #eef0f4;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .video-wrapper:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(26,54,93,0.2);
-    }
-    .video-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px),
-        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
     }
     .video-play-btn {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
       background: var(--color-accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 24px rgba(230,126,34,0.4);
-    }
-    .video-wrapper:hover .video-play-btn {
-      transform: scale(1.1);
-      box-shadow: 0 8px 32px rgba(230,126,34,0.5);
     }
     .video-label {
       position: absolute;
-      bottom: 24px;
+      bottom: 20px;
       left: 0;
       right: 0;
       text-align: center;
-      color: rgba(255,255,255,0.6);
+      color: var(--color-text-light);
       font-size: 0.85rem;
       font-weight: 500;
-      z-index: 1;
     }
 
-    /* Cases */
-    .cases-section { background: var(--color-bg); }
+    /* Cases Section */
+    .cases-section { background: #f8f9fb; }
     .cases-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
     }
     .case-card {
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(26,54,93,0.06);
       border: 1px solid var(--color-border);
+      border-radius: 12px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .case-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(26,54,93,0.12);
-      border-color: rgba(230,126,34,0.3);
+      display: flex;
+      flex-direction: column;
     }
     .case-visual {
-      background: linear-gradient(135deg, #0d1b2a, #1a365d);
+      aspect-ratio: 16 / 9;
+      background: #eef0f4;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
       position: relative;
-      overflow: hidden;
     }
-    .case-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(230,126,34,0.15) 0%, transparent 60%);
+    .case-visual svg {
+      width: 64px;
+      height: 64px;
+      color: #b0b8c9;
     }
     .case-number {
-      font-family: 'Outfit', sans-serif;
-      font-size: 4rem;
-      font-weight: 900;
-      color: rgba(255,255,255,0.08);
       position: absolute;
       top: 12px;
       left: 16px;
-    }
-    .case-visual svg {
-      width: 80px;
-      height: 80px;
-      opacity: 0.8;
-      position: relative;
-      z-index: 1;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-text-light);
+      letter-spacing: 0.08em;
     }
     .case-content {
-      padding: 36px 32px;
+      padding: 28px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .case-tag {
       display: inline-block;
-      background: rgba(230,126,34,0.1);
+      background: rgba(230,126,34,0.08);
       color: var(--color-accent);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 4px 14px;
+      padding: 4px 12px;
       border-radius: 100px;
       margin-bottom: 12px;
+      align-self: flex-start;
     }
     .case-content h3 {
-      font-size: 1.3rem;
-      font-weight: 900;
+      font-size: 1.1rem;
+      font-weight: 800;
       color: var(--color-primary);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
-    .case-flow {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 12px;
-      align-items: start;
-    }
-    .case-flow-item { text-align: center; }
+    .case-flow-item { margin-bottom: 14px; }
+    .case-flow-item:last-child { margin-bottom: 0; }
     .case-flow-label {
       font-size: 0.7rem;
       font-weight: 700;
       color: var(--color-accent);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .case-flow-text {
       font-size: 0.88rem;
       color: var(--color-text-light);
       line-height: 1.7;
     }
-    .case-flow-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 24px;
-      color: var(--color-accent);
-      font-size: 1rem;
-    }
 
     /* Numbers Section */
     .numbers-section {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 100%);
+      background: #0d1b2a;
       color: #fff;
-      position: relative;
-      overflow: hidden;
     }
-    .numbers-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(230,126,34,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.03) 0%, transparent 40%);
-    }
-    .numbers-section .container { position: relative; z-index: 1; }
+    .numbers-section .section-header .section-label { color: rgba(255,255,255,0.4); }
+    .numbers-section .section-header .section-title { color: #fff; }
+    .numbers-section .section-header .section-desc { color: rgba(255,255,255,0.55); }
     .numbers-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
       text-align: center;
     }
-    .number-item {
-      padding: 24px 16px;
-    }
-    .number-value {
+    .stat-num {
       font-family: 'Outfit', sans-serif;
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 900;
-      color: var(--color-accent);
+      color: #fff;
       line-height: 1;
       margin-bottom: 8px;
     }
-    .number-value span {
-      font-size: 1.1rem;
+    .stat-num span {
+      font-size: 1rem;
       font-weight: 700;
     }
-    .number-label {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
+    .stat-label {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0;
     }
 
     /* Testimonials */
@@ -217,105 +193,98 @@
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
+      gap: 28px;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .testimonial-card {
-      background: var(--color-bg);
-      border-radius: 16px;
-      padding: 36px 32px;
+      background: #f8f9fb;
+      border-radius: 12px;
+      padding: 32px 28px;
       border: 1px solid var(--color-border);
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
     }
     .testimonial-quote {
-      position: absolute;
-      top: 16px;
-      left: 24px;
       font-family: 'Outfit', serif;
-      font-size: 4rem;
+      font-size: 3.5rem;
       font-weight: 900;
       color: var(--color-accent);
-      opacity: 0.15;
+      opacity: 0.12;
       line-height: 1;
       pointer-events: none;
+      margin-bottom: -16px;
     }
     .testimonial-text {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--color-text-light);
       line-height: 1.9;
       margin-bottom: 24px;
-      padding-top: 20px;
-      position: relative;
     }
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
     .testimonial-avatar {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      background: var(--color-primary);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
     .testimonial-avatar svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
     }
     .testimonial-name {
       font-weight: 700;
       color: var(--color-primary);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
     .testimonial-role {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--color-text-light);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: #f8f9fb;
+      color: var(--color-primary);
+      text-align: center;
+    }
+    .cta-section::before { display: none; }
+    .cta-section h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: var(--color-text-light);
+      margin-bottom: 32px;
     }
 
     /* Responsive */
     @media (max-width: 900px) {
-      .case-card {
+      .cases-grid {
         grid-template-columns: 1fr;
-      }
-      .case-visual {
-        min-height: 140px;
-        padding: 24px;
-      }
-      .case-flow {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .case-flow-arrow {
-        transform: rotate(90deg);
-        padding-top: 0;
+        max-width: 520px;
+        margin: 0 auto;
       }
       .numbers-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
       }
-      .number-value {
-        font-size: 2.4rem;
-      }
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-      .video-play-btn {
-        width: 64px;
-        height: 64px;
-      }
+      .stat-num { font-size: 2.4rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .video-play-btn { width: 60px; height: 60px; }
     }
     @media (max-width: 480px) {
-      .numbers-grid {
-        grid-template-columns: 1fr;
-      }
+      .numbers-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -324,7 +293,7 @@
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
-      <a href="index.html" class="logo"><div class="logo-icon">Q</div>JISOK</a>
+      <a href="index.html" class="logo"><div class="logo-icon">Q</div><span>JISOK</span></a>
       <nav class="nav" id="nav">
         <a href="index.html">トップ</a>
         <a href="service.html">サービス</a>
@@ -358,7 +327,7 @@
       </div>
       <div class="video-wrapper fade-up">
         <div class="video-play-btn">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#fff"/>
           </svg>
         </div>
@@ -381,38 +350,29 @@
         <!-- Case 01 -->
         <div class="case-card fade-up">
           <div class="case-visual">
-            <span class="case-number">01</span>
+            <span class="case-number">Case 01</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="30" width="24" height="40" rx="2" stroke="#fff" stroke-width="2"/>
-              <rect x="46" y="20" width="24" height="50" rx="2" stroke="#fff" stroke-width="2"/>
-              <path d="M22 30V15a3 3 0 013-3h30a3 3 0 013 3v5" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="22" cy="50" r="6" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="58" cy="45" r="6" stroke="#e67e22" stroke-width="2"/>
-              <path d="M10 70h60" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <rect x="10" y="30" width="24" height="40" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="46" y="20" width="24" height="50" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M22 30V15a3 3 0 013-3h30a3 3 0 013 3v5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="22" cy="50" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="58" cy="45" r="6" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           </div>
           <div class="case-content">
             <span class="case-tag">化学プラント</span>
             <h3>大規模化学プラント改修</h3>
-            <div class="case-flow">
-              <div class="case-flow-item">
-                <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">老朽化した設備の図面が散逸。改修計画の立案に膨大な時間とコストが発生。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">解決</div>
-                <div class="case-flow-text">3Dレーザースキャンで現況を正確にキャプチャ。散逸した図面を3Dモデルとして復元。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">成果</div>
-                <div class="case-flow-text">工期30%短縮を達成。設計変更にも柔軟に対応可能に。</div>
-              </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">課題</div>
+              <div class="case-flow-text">老朽化した設備の図面が散逸。改修計画の立案に膨大な時間とコストが発生。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">解決</div>
+              <div class="case-flow-text">3Dレーザースキャンで現況を正確にキャプチャ。散逸した図面を3Dモデルとして復元。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">成果</div>
+              <div class="case-flow-text">工期30%短縮を達成。設計変更にも柔軟に対応可能に。</div>
             </div>
           </div>
         </div>
@@ -420,38 +380,29 @@
         <!-- Case 02 -->
         <div class="case-card fade-up">
           <div class="case-visual">
-            <span class="case-number">02</span>
+            <span class="case-number">Case 02</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 60h20v-20h20v-20h20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="10" cy="60" r="5" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="30" cy="40" r="5" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="50" cy="20" r="5" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="70" cy="20" r="5" stroke="#e67e22" stroke-width="2"/>
-              <path d="M15 70h50" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <path d="M10 60h20v-20h20v-20h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="60" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="30" cy="40" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="50" cy="20" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="70" cy="20" r="5" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           </div>
           <div class="case-content">
             <span class="case-tag">石油精製</span>
             <h3>石油精製施設の配管更新</h3>
-            <div class="case-flow">
-              <div class="case-flow-item">
-                <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">複雑な配管ルートの更新で、既存設備との干渉が大きな懸念事項に。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">解決</div>
-                <div class="case-flow-text">点群データから精密な3Dモデルを構築。事前に干渉チェックを徹底実施。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">成果</div>
-                <div class="case-flow-text">施工時の手戻りゼロを達成。安全性と効率の両立を実現。</div>
-              </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">課題</div>
+              <div class="case-flow-text">複雑な配管ルートの更新で、既存設備との干渉が大きな懸念事項に。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">解決</div>
+              <div class="case-flow-text">点群データから精密な3Dモデルを構築。事前に干渉チェックを徹底実施。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">成果</div>
+              <div class="case-flow-text">施工時の手戻りゼロを達成。安全性と効率の両立を実現。</div>
             </div>
           </div>
         </div>
@@ -459,37 +410,28 @@
         <!-- Case 03 -->
         <div class="case-card fade-up">
           <div class="case-visual">
-            <span class="case-number">03</span>
+            <span class="case-number">Case 03</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="15" y="25" width="50" height="35" rx="3" stroke="#fff" stroke-width="2"/>
-              <path d="M25 70h30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <path d="M40 60v10" stroke="#fff" stroke-width="2"/>
-              <path d="M25 42l8 8 16-16" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="60" cy="30" r="3" fill="rgba(230,126,34,0.5)"/>
+              <rect x="15" y="25" width="50" height="35" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M25 70h30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M40 60v10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M25 42l8 8 16-16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="case-content">
             <span class="case-tag">食品工場</span>
             <h3>食品工場の設備増設</h3>
-            <div class="case-flow">
-              <div class="case-flow-item">
-                <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">2D図面では関係者間の認識にズレが発生。合意形成に多大な時間を要していた。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">解決</div>
-                <div class="case-flow-text">3Dモデルで増設計画を可視化。誰でも直感的に設備配置を理解できる環境を構築。</div>
-              </div>
-              <div class="case-flow-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </div>
-              <div class="case-flow-item">
-                <div class="case-flow-label">成果</div>
-                <div class="case-flow-text">関係者全員が直感的に理解。合意形成の大幅な効率化に成功。</div>
-              </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">課題</div>
+              <div class="case-flow-text">2D図面では関係者間の認識にズレが発生。合意形成に多大な時間を要していた。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">解決</div>
+              <div class="case-flow-text">3Dモデルで増設計画を可視化。誰でも直感的に設備配置を理解できる環境を構築。</div>
+            </div>
+            <div class="case-flow-item">
+              <div class="case-flow-label">成果</div>
+              <div class="case-flow-text">関係者全員が直感的に理解。合意形成の大幅な効率化に成功。</div>
             </div>
           </div>
         </div>
@@ -502,26 +444,26 @@
   <section class="numbers-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-label" style="color: rgba(255,255,255,0.5);">By the Numbers</div>
-        <h2 class="section-title" style="color: #fff;">数字で見るJISOKの実績</h2>
-        <p class="section-desc" style="color: rgba(255,255,255,0.6);">着実に積み重ねてきた信頼と成果</p>
+        <div class="section-label">By the Numbers</div>
+        <h2 class="section-title">数字で見るJISOKの実績</h2>
+        <p class="section-desc">着実に積み重ねてきた信頼と成果</p>
       </div>
       <div class="numbers-grid fade-up">
-        <div class="number-item">
-          <div class="number-value">50,000<span>&#13217;+</span></div>
-          <div class="number-label">累計スキャン面積</div>
+        <div>
+          <div class="stat-num">50,000<span>&#13217;+</span></div>
+          <div class="stat-label">累計スキャン面積</div>
         </div>
-        <div class="number-item">
-          <div class="number-value">100<span>+</span></div>
-          <div class="number-label">プロジェクト数</div>
+        <div>
+          <div class="stat-num">100<span>+</span></div>
+          <div class="stat-label">プロジェクト数</div>
         </div>
-        <div class="number-item">
-          <div class="number-value">30<span>%</span></div>
-          <div class="number-label">平均工期短縮率</div>
+        <div>
+          <div class="stat-num">30<span>%</span></div>
+          <div class="stat-label">平均工期短縮率</div>
         </div>
-        <div class="number-item">
-          <div class="number-value">85<span>%</span></div>
-          <div class="number-label">リピート率</div>
+        <div>
+          <div class="stat-num">85<span>%</span></div>
+          <div class="stat-label">リピート率</div>
         </div>
       </div>
     </div>
@@ -576,7 +518,7 @@
       <p>まずはお気軽にご相談ください。貴社の課題に合わせた最適なプランをご提案します。</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
-        <a href="service.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">サービス詳細を見る</a>
+        <a href="service.html" class="btn btn-outline btn-lg">サービス詳細を見る</a>
       </div>
     </div>
   </section>

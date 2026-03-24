@@ -7,91 +7,73 @@
   <meta name="description" content="FARO Focus × JISOKのエンジニアリングで実現する、3Dレーザースキャンによるプラント計測・設計・BIM化サービス。非接触・高精度・短工期でプラントDXを推進します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* === Hero Point Cloud Particles === */
-    .hero-particles {
-      position: absolute;
-      top: 0; right: 0;
-      width: 55%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
+    /* === Hero — White Editorial === */
+    .hero {
+      background: #fff;
     }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0;
+    .hero::before {
+      display: none;
     }
-    .particle--cyan { background: var(--color-cyan); }
-    .particle--orange { background: var(--color-accent); }
-    .particle--white { background: rgba(255,255,255,0.5); }
-
-    @keyframes particleFloat {
-      0%   { opacity: 0; transform: translate(0, 0) scale(0.5); }
-      15%  { opacity: var(--p-opacity, 0.7); transform: translate(0, 0) scale(1); }
-      85%  { opacity: var(--p-opacity, 0.7); }
-      100% { opacity: 0; transform: translate(var(--drift-x, 8px), var(--drift-y, -25px)) scale(0.3); }
+    .hero::after {
+      border-color: rgba(10, 22, 40, 0.06);
+    }
+    .hero h1 {
+      color: var(--color-primary);
+    }
+    .hero p {
+      color: var(--color-text-light);
     }
 
-    /* === Hero Scan Line === */
-    .hero-scanline {
+    /* Geometric decoration — thin navy circles */
+    .hero-geo {
       position: absolute;
-      top: 0; right: 0;
-      width: 55%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .hero-scanline::before {
-      content: '';
-      position: absolute;
-      top: -100%; left: 35%;
-      width: 1px; height: 250%;
-      background: linear-gradient(to bottom, transparent 0%, var(--color-cyan) 40%, transparent 80%);
-      opacity: 0.12;
-      animation: scanSweep 7s ease-in-out infinite;
-    }
-    .hero-scanline::after {
-      content: '';
-      position: absolute;
-      top: -80%; left: 60%;
-      width: 1px; height: 220%;
-      background: linear-gradient(to bottom, transparent 0%, var(--color-accent) 50%, transparent 90%);
-      opacity: 0.06;
-      animation: scanSweep 9s ease-in-out 2s infinite;
-    }
-    @keyframes scanSweep {
-      0%, 100% { transform: translateY(-15%) rotate(12deg); }
-      50%      { transform: translateY(15%) rotate(12deg); }
-    }
-
-    /* === Hero Blueprint Crosshair (SVG decoration) === */
-    .hero-crosshair {
-      position: absolute;
-      right: 18%;
       top: 50%;
-      transform: translate(50%, -50%);
-      width: 260px; height: 260px;
-      z-index: 1;
+      right: -5%;
+      transform: translateY(-50%);
+      width: 520px;
+      height: 520px;
       pointer-events: none;
-      opacity: 0.08;
-      animation: crosshairRotate 30s linear infinite;
+      z-index: 0;
     }
-    @keyframes crosshairRotate {
-      from { transform: translate(50%, -50%) rotate(0deg); }
-      to   { transform: translate(50%, -50%) rotate(360deg); }
+    .hero-geo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1.5px solid rgba(10, 22, 40, 0.06);
+      border-radius: 50%;
+    }
+    .hero-geo::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 60%;
+      height: 60%;
+      border: 1px solid rgba(10, 22, 40, 0.04);
+      border-radius: 50%;
     }
 
-    /* === Stagger for Solutions 4-col === */
+    /* Thin decorative line */
+    .hero-line {
+      position: absolute;
+      top: 30%;
+      right: 15%;
+      width: 1px;
+      height: 40%;
+      background: rgba(10, 22, 40, 0.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* === Solutions 4-col === */
     .solutions-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
     .solutions-grid .card { text-align: center; }
     .solutions-grid .card .card-icon { margin: 0 auto 20px; }
 
-    /* === Stats cards === */
+    /* === Stat cards — navy numbers === */
     .stat-card {
       padding: 32px 20px;
       background: var(--color-bg-white);
@@ -106,21 +88,37 @@
       position: absolute;
       bottom: 0; left: 0;
       width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--color-cyan), var(--color-accent));
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
       opacity: 0;
       transition: opacity var(--transition);
     }
     .stat-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(10,22,40,0.08);
+      box-shadow: 0 12px 36px rgba(10, 22, 40, 0.08);
     }
     .stat-card:hover::after { opacity: 1; }
+    .stat-card .stat-num {
+      color: var(--color-primary);
+    }
 
-    /* === Mobile hide particles === */
+    /* === CTA — light grey editorial === */
+    .cta-section {
+      background: #f4f5f8;
+    }
+    .cta-section::before {
+      display: none;
+    }
+    .cta-section h2 {
+      color: var(--color-primary);
+    }
+    .cta-section p {
+      color: var(--color-text-light);
+    }
+
+    /* === Mobile hide geo === */
     @media (max-width: 900px) {
-      .hero-particles,
-      .hero-scanline,
-      .hero-crosshair { display: none; }
+      .hero-geo,
+      .hero-line { display: none; }
     }
   </style>
 </head>
@@ -150,13 +148,12 @@
   </header>
 
   <!-- ============================================
-       HERO
+       HERO — White Editorial
        ============================================ -->
   <section class="hero">
     <div class="container">
-      <div class="hero-content">
+      <div class="hero-content" style="max-width:600px;">
         <div class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           FARO Focus &times; JISOK Engineering
         </div>
         <h1>空間をデータ化し、<br><span>未来を設計する</span></h1>
@@ -165,33 +162,20 @@
         非接触・高精度・短工期で、デジタルツイン・トランスフォーメーションを。</p>
         <div class="hero-btns">
           <a href="service.html" class="btn btn-primary btn-lg">サービスを見る &rarr;</a>
-          <a href="company.html#contact" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">お問い合わせ</a>
+          <a href="company.html#contact" class="btn btn-outline btn-lg">お問い合わせ</a>
         </div>
       </div>
     </div>
 
-    <!-- Point Cloud Particle Field -->
-    <div class="hero-particles" id="heroParticles"></div>
-
-    <!-- Laser Scan Lines -->
-    <div class="hero-scanline"></div>
-
-    <!-- Blueprint Crosshair SVG -->
-    <svg class="hero-crosshair" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="90" stroke="#00d4ff" stroke-width="0.5"/>
-      <circle cx="100" cy="100" r="60" stroke="#00d4ff" stroke-width="0.3"/>
-      <circle cx="100" cy="100" r="30" stroke="#e67e22" stroke-width="0.5"/>
-      <line x1="100" y1="0" x2="100" y2="200" stroke="#00d4ff" stroke-width="0.3"/>
-      <line x1="0" y1="100" x2="200" y2="100" stroke="#00d4ff" stroke-width="0.3"/>
-      <line x1="29" y1="29" x2="171" y2="171" stroke="#00d4ff" stroke-width="0.15" stroke-dasharray="4 6"/>
-      <line x1="171" y1="29" x2="29" y2="171" stroke="#00d4ff" stroke-width="0.15" stroke-dasharray="4 6"/>
-    </svg>
+    <!-- Geometric decoration -->
+    <div class="hero-geo"></div>
+    <div class="hero-line"></div>
   </section>
 
   <!-- ============================================
        PROBLEMS
        ============================================ -->
-  <section style="background:#fff;">
+  <section style="background:#f8f9fb;">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Problems</div>
@@ -227,7 +211,7 @@
   <!-- ============================================
        SOLUTIONS
        ============================================ -->
-  <section>
+  <section style="background:#fff;">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Solutions</div>
@@ -270,7 +254,7 @@
   <!-- ============================================
        WORKFLOW
        ============================================ -->
-  <section style="background:#fff;">
+  <section style="background:#f8f9fb;">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Workflow</div>
@@ -314,7 +298,7 @@
   <!-- ============================================
        STATS / BY THE NUMBERS
        ============================================ -->
-  <section>
+  <section style="background:#fff;">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">By the Numbers</div>
@@ -350,7 +334,7 @@
       <p>プラントの3Dスキャン・BIM化について、御社の課題に合わせたご提案をいたします。</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
-        <a href="service.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">サービス詳細を見る</a>
+        <a href="service.html" class="btn btn-outline btn-lg">サービス詳細を見る</a>
       </div>
     </div>
   </section>
@@ -430,43 +414,6 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // --- Point Cloud Particle Generator ---
-    (function initParticles() {
-      const container = document.getElementById('heroParticles');
-      if (!container) return;
-
-      const PARTICLE_COUNT = 60;
-      const colors = ['cyan', 'cyan', 'cyan', 'orange', 'white'];
-      const frag = document.createDocumentFragment();
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const dot = document.createElement('div');
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const size = Math.random() * 3 + 1.5;          // 1.5px ~ 4.5px
-        const x = Math.random() * 100;                  // % from left
-        const y = Math.random() * 100;                  // % from top
-        const duration = Math.random() * 6 + 5;         // 5s ~ 11s
-        const delay = Math.random() * 8;                // stagger start
-        const driftX = (Math.random() - 0.5) * 30;      // px
-        const driftY = (Math.random() - 0.5) * 40;      // px
-        const opacity = Math.random() * 0.5 + 0.25;     // 0.25 ~ 0.75
-
-        dot.className = 'particle particle--' + color;
-        dot.style.cssText =
-          'width:' + size + 'px;' +
-          'height:' + size + 'px;' +
-          'left:' + x + '%;' +
-          'top:' + y + '%;' +
-          '--drift-x:' + driftX + 'px;' +
-          '--drift-y:' + driftY + 'px;' +
-          '--p-opacity:' + opacity + ';' +
-          'animation:particleFloat ' + duration + 's ' + delay + 's infinite;';
-
-        frag.appendChild(dot);
-      }
-      container.appendChild(frag);
-    })();
   </script>
 
 </body>

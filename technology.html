@@ -7,178 +7,139 @@
   <meta name="description" content="FARO Focus シリーズの3Dレーザースキャナーを活用した世界基準の計測テクノロジー。スペック詳細とデータパイプラインをご紹介します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Scanner Hero Specs ===== */
-    .scanner-hero {
-      background: var(--color-bg-white);
+    /* ===== Page Hero ===== */
+    .page-hero {
+      background: #f8f9fb;
+      padding: 140px 0 80px;
+      text-align: left;
     }
-    .scanner-hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+    .page-hero .breadcrumb {
+      font-size: 0.82rem;
+      color: var(--color-text-light);
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
     }
-    .scanner-hero-text h2 {
-      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+    .page-hero .breadcrumb a {
+      color: var(--color-text-light);
+      text-decoration: none;
+    }
+    .page-hero .breadcrumb a:hover {
+      color: var(--color-accent);
+    }
+    .page-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--color-primary);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .page-hero > .container > p {
+      font-size: 1.05rem;
+      color: var(--color-text-light);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* ===== FARO Hero Section ===== */
+    .faro-hero {
+      background: #fff;
+      padding: 100px 0;
+    }
+    .faro-hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .faro-hero-badge {
+      display: inline-block;
+      background: rgba(230,126,34,0.08);
+      border: 1px solid rgba(230,126,34,0.2);
+      color: var(--color-accent);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .faro-hero-inner h2 {
+      font-family: 'Outfit', sans-serif;
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 900;
       color: var(--color-primary);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
-    .scanner-hero-text .scanner-subtitle {
-      font-size: 0.95rem;
+    .faro-hero-inner > p {
+      font-size: 0.92rem;
       color: var(--color-text-light);
-      margin-bottom: 32px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 48px;
     }
-    .scanner-hero-text .scanner-badge {
-      display: inline-block;
-      background: var(--color-accent);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-    .scanner-stats {
+    .faro-specs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 32px;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    .scanner-stat {
+    .faro-spec {
       text-align: center;
-      padding: 24px 12px;
-      background: var(--color-bg);
-      border-radius: 16px;
-      transition: transform var(--transition);
+      padding: 32px 16px;
+      background: #f8f9fb;
+      border-radius: 12px;
     }
-    .scanner-stat:hover {
-      transform: translateY(-4px);
-    }
-    .scanner-stat-value {
-      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    .faro-spec-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 900;
-      color: var(--color-accent);
-      line-height: 1.1;
-    }
-    .scanner-stat-unit {
-      font-size: 0.85rem;
-      font-weight: 700;
       color: var(--color-primary);
-      margin-top: 4px;
+      line-height: 1.1;
+      margin-bottom: 4px;
     }
-    .scanner-stat-label {
+    .faro-spec-unit {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .faro-spec-label {
       font-size: 0.75rem;
       color: var(--color-text-light);
-      margin-top: 4px;
-    }
-
-    /* Scanner Visual (CSS/SVG) */
-    .scanner-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .scanner-device {
-      width: 280px;
-      height: 280px;
-      position: relative;
-    }
-    .scanner-body {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px;
-      height: 120px;
-      background: linear-gradient(180deg, #2a4a7f 0%, #1a365d 100%);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(26,54,93,0.3);
-    }
-    .scanner-body::before {
-      content: '';
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 36px;
-      background: radial-gradient(circle, #e67e22 30%, #d35400 100%);
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(230,126,34,0.5);
-    }
-    .scanner-body::after {
-      content: 'FARO';
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 2px;
-    }
-    .scanner-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px dashed rgba(230,126,34,0.3);
-      border-radius: 50%;
-      animation: scanPulse 3s ease-in-out infinite;
-    }
-    .scanner-ring:nth-child(2) { width: 160px; height: 160px; }
-    .scanner-ring:nth-child(3) { width: 220px; height: 220px; animation-delay: 0.5s; }
-    .scanner-ring:nth-child(4) { width: 280px; height: 280px; animation-delay: 1s; }
-    .scanner-beam {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 140px;
-      height: 2px;
-      background: linear-gradient(90deg, #e67e22 0%, transparent 100%);
-      transform-origin: left center;
-      animation: scanBeam 4s linear infinite;
-      opacity: 0.6;
-    }
-    @keyframes scanPulse {
-      0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); }
-    }
-    @keyframes scanBeam {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      margin-top: 6px;
     }
 
     /* ===== Lineup Section ===== */
-    .lineup-section { background: var(--color-bg); }
+    .lineup-section {
+      background: #f8f9fb;
+      padding: 100px 0;
+    }
     .lineup-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 24px;
       margin-bottom: 40px;
     }
     .lineup-card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(26,54,93,0.06);
       border: 1px solid var(--color-border);
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .lineup-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(26,54,93,0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(13,27,42,0.08);
     }
     .lineup-card-header {
       padding: 28px 24px 20px;
       color: #fff;
-      position: relative;
     }
     .lineup-card.is-premium-max .lineup-card-header {
       background: linear-gradient(135deg, #0d1b2a, #1a365d);
@@ -187,7 +148,7 @@
       background: linear-gradient(135deg, #1a365d, #2a4a7f);
     }
     .lineup-card.is-core .lineup-card-header {
-      background: linear-gradient(135deg, #e67e22, #f39c12);
+      background: linear-gradient(135deg, var(--color-accent), #f39c12);
     }
     .lineup-card-header .lineup-badge {
       display: inline-block;
@@ -199,18 +160,19 @@
       margin-bottom: 10px;
     }
     .lineup-card-header h3 {
-      font-size: 1.2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
       font-weight: 700;
     }
     .lineup-card-header .lineup-range {
-      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-      font-size: 2.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
       font-weight: 900;
       line-height: 1.2;
       margin-top: 8px;
     }
     .lineup-card-header .lineup-range span {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 400;
       opacity: 0.7;
     }
@@ -218,7 +180,7 @@
       padding: 24px;
     }
     .lineup-card-body p {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--color-text-light);
       line-height: 1.8;
       margin-bottom: 16px;
@@ -240,24 +202,23 @@
     .lineup-features li:last-child { border-bottom: none; }
     .lineup-features li::before {
       content: '';
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       background: var(--color-accent);
       border-radius: 50%;
       flex-shrink: 0;
     }
-
     .lineup-common {
       background: #fff;
-      border-radius: 16px;
-      padding: 28px 32px;
-      box-shadow: 0 4px 20px rgba(26,54,93,0.06);
+      border-radius: 12px;
+      padding: 24px 32px;
+      border: 1px solid var(--color-border);
       text-align: center;
-      max-width: 640px;
+      max-width: 480px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -265,14 +226,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--color-primary);
     }
     .lineup-common-icon {
       width: 36px;
       height: 36px;
-      background: var(--color-bg);
+      background: #f8f9fb;
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -289,35 +250,36 @@
     }
 
     /* ===== Specs Detail ===== */
-    .specs-section { background: var(--color-bg-white); }
+    .specs-section {
+      background: #fff;
+      padding: 100px 0;
+    }
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
       max-width: 1100px;
       margin: 0 auto;
     }
     .spec-card {
       text-align: center;
-      padding: 32px 20px;
-      background: var(--color-bg);
-      border-radius: 16px;
-      transition: transform var(--transition);
+      padding: 32px 16px;
+      background: #f8f9fb;
+      border-radius: 12px;
     }
-    .spec-card:hover { transform: translateY(-4px); }
     .spec-card-icon {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 16px;
     }
     .spec-card-icon svg {
-      width: 26px;
-      height: 26px;
+      width: 22px;
+      height: 22px;
       fill: none;
       stroke: #fff;
       stroke-width: 2;
@@ -325,20 +287,23 @@
       stroke-linejoin: round;
     }
     .spec-card-value {
-      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-      font-size: 1.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
       font-weight: 900;
       color: var(--color-accent);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .spec-card-label {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--color-text-light);
       line-height: 1.5;
     }
 
     /* ===== Pipeline ===== */
-    .pipeline-section { background: var(--color-bg); }
+    .pipeline-section {
+      background: #f8f9fb;
+      padding: 100px 0;
+    }
     .pipeline-flow {
       display: flex;
       justify-content: center;
@@ -348,15 +313,14 @@
     }
     .pipeline-step {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 28px 20px;
-      box-shadow: 0 4px 20px rgba(26,54,93,0.06);
+      border: 1px solid var(--color-border);
       text-align: center;
       width: 170px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
     }
     .pipeline-step-num {
       font-family: 'Outfit', sans-serif;
@@ -367,18 +331,18 @@
       letter-spacing: 1px;
     }
     .pipeline-step-icon {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 14px;
     }
     .pipeline-step-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       fill: none;
       stroke: #fff;
       stroke-width: 2;
@@ -386,17 +350,17 @@
       stroke-linejoin: round;
     }
     .pipeline-step-icon.is-accent {
-      background: linear-gradient(135deg, var(--color-accent), #f39c12);
+      background: var(--color-accent);
     }
     .pipeline-step h4 {
-      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-      font-size: 1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--color-primary);
       margin-bottom: 4px;
     }
     .pipeline-step .pipeline-tool {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--color-accent);
       font-weight: 600;
     }
@@ -407,30 +371,32 @@
       width: 40px;
     }
     .pipeline-arrow svg {
-      width: 26px;
-      height: 26px;
+      width: 22px;
+      height: 22px;
       fill: none;
       stroke: var(--color-accent);
-      stroke-width: 2.5;
+      stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
+      opacity: 0.5;
     }
 
     /* ===== Video ===== */
-    .video-section { background: var(--color-bg-white); }
+    .video-section {
+      background: #fff;
+      padding: 100px 0;
+    }
     .video-container {
       max-width: 800px;
       margin: 0 auto;
-      position: relative;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 8px 40px rgba(26,54,93,0.12);
-      background: var(--color-primary);
+      border: 1px solid var(--color-border);
     }
     .video-placeholder {
       position: relative;
       padding-bottom: 56.25%;
-      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 50%, #2a4a7f 100%);
+      background: #f0f2f5;
     }
     .video-placeholder-inner {
       position: absolute;
@@ -439,34 +405,32 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: var(--color-text-light);
     }
     .video-play-btn {
-      width: 80px;
-      height: 80px;
-      background: var(--color-accent);
+      width: 72px;
+      height: 72px;
+      background: var(--color-primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
       cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
-      box-shadow: 0 4px 20px rgba(230,126,34,0.4);
+      transition: transform 0.25s ease;
     }
     .video-play-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 30px rgba(230,126,34,0.6);
+      transform: scale(1.06);
     }
     .video-play-btn svg {
-      width: 30px;
-      height: 30px;
+      width: 26px;
+      height: 26px;
       fill: #fff;
-      margin-left: 4px;
+      margin-left: 3px;
     }
     .video-placeholder-inner p {
-      font-size: 0.9rem;
-      opacity: 0.7;
+      font-size: 0.85rem;
+      opacity: 0.6;
     }
     .video-container iframe {
       position: absolute;
@@ -474,27 +438,26 @@
       border: none;
     }
 
+    /* ===== CTA ===== */
+    .cta-section-tech {
+      background: #f8f9fb;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 960px) {
-      .scanner-hero-inner { grid-template-columns: 1fr; gap: 40px; }
-      .scanner-visual { order: -1; }
-      .scanner-device { width: 220px; height: 220px; }
-      .scanner-ring:nth-child(2) { width: 120px; height: 120px; }
-      .scanner-ring:nth-child(3) { width: 170px; height: 170px; }
-      .scanner-ring:nth-child(4) { width: 220px; height: 220px; }
-      .scanner-beam { width: 110px; }
+      .faro-specs { grid-template-columns: repeat(3, 1fr); gap: 16px; }
       .lineup-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; margin-bottom: 40px; }
+      .specs-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 768px) {
-      .scanner-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
       .specs-grid { grid-template-columns: repeat(2, 1fr); }
       .pipeline-flow { flex-direction: column; align-items: center; gap: 8px; }
       .pipeline-arrow { transform: rotate(90deg); width: auto; }
       .pipeline-step { width: 100%; max-width: 240px; }
     }
     @media (max-width: 480px) {
+      .faro-specs { grid-template-columns: 1fr; max-width: 240px; margin: 0 auto; }
       .specs-grid { grid-template-columns: 1fr; }
-      .scanner-stats { grid-template-columns: 1fr; }
       .lineup-common { flex-direction: column; }
     }
   </style>
@@ -504,7 +467,7 @@
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
-      <a href="index.html" class="logo"><div class="logo-icon">Q</div>JISOK</a>
+      <a href="index.html" class="logo"><div class="logo-icon">Q</div><span>JISOK</span></a>
       <nav class="nav" id="nav">
         <a href="index.html">トップ</a>
         <a href="service.html">サービス</a>
@@ -520,53 +483,42 @@
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">トップ</a> / 技術・設備</div>
+      <div class="breadcrumb"><a href="index.html">トップ</a> ＞ 技術・設備</div>
       <h1>Technology</h1>
       <p>世界基準の計測テクノロジー</p>
     </div>
   </section>
 
-  <!-- FARO Focus Series Hero -->
-  <section class="scanner-hero" style="padding:80px 0;">
+  <!-- ===== FARO Focus Specs ===== -->
+  <section class="faro-hero fade-up">
     <div class="container">
-      <div class="scanner-hero-inner">
-        <div class="scanner-hero-text">
-          <span class="scanner-badge">FARO Technologies</span>
-          <h2>FARO Focus Series</h2>
-          <p class="scanner-subtitle">世界が認めた高速・高精度3Dレーザースキャナー。過酷な現場環境でも確実に点群データを取得し、プラントのデジタルツインを実現します。</p>
-          <div class="scanner-stats">
-            <div class="scanner-stat fade-up">
-              <div class="scanner-stat-value">350m</div>
-              <div class="scanner-stat-unit">最大計測距離</div>
-              <div class="scanner-stat-label">Premium Max基準</div>
-            </div>
-            <div class="scanner-stat fade-up">
-              <div class="scanner-stat-value">976,000</div>
-              <div class="scanner-stat-unit">点/秒</div>
-              <div class="scanner-stat-label">最大スキャン速度</div>
-            </div>
-            <div class="scanner-stat fade-up">
-              <div class="scanner-stat-value">&plusmn;2.0mm</div>
-              <div class="scanner-stat-unit">計測精度</div>
-              <div class="scanner-stat-label">10mレンジ時</div>
-            </div>
+      <div class="faro-hero-inner">
+        <div class="faro-hero-badge">FARO Technologies</div>
+        <h2>FARO Focus Series</h2>
+        <p>世界が認めた高速・高精度3Dレーザースキャナー。過酷な現場環境でも確実に点群データを取得し、プラントのデジタルツインを実現します。</p>
+        <div class="faro-specs">
+          <div class="faro-spec">
+            <div class="faro-spec-value">350<span style="font-size:0.5em;font-weight:600;">m</span></div>
+            <div class="faro-spec-unit">最大計測距離</div>
+            <div class="faro-spec-label">Premium Max基準</div>
           </div>
-        </div>
-        <div class="scanner-visual fade-up">
-          <div class="scanner-device">
-            <div class="scanner-body"></div>
-            <div class="scanner-ring"></div>
-            <div class="scanner-ring"></div>
-            <div class="scanner-ring"></div>
-            <div class="scanner-beam"></div>
+          <div class="faro-spec">
+            <div class="faro-spec-value">976,000</div>
+            <div class="faro-spec-unit">点/秒</div>
+            <div class="faro-spec-label">最大スキャン速度</div>
+          </div>
+          <div class="faro-spec">
+            <div class="faro-spec-value">&plusmn;2.0<span style="font-size:0.5em;font-weight:600;">mm</span></div>
+            <div class="faro-spec-unit">計測精度</div>
+            <div class="faro-spec-label">10mレンジ時</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lineup -->
-  <section class="lineup-section" style="padding:80px 0;">
+  <!-- ===== Lineup ===== -->
+  <section class="lineup-section">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Lineup</div>
@@ -646,8 +598,8 @@
     </div>
   </section>
 
-  <!-- Specs Detail -->
-  <section class="specs-section" style="padding:80px 0;">
+  <!-- ===== Specs Detail ===== -->
+  <section class="specs-section">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Specifications</div>
@@ -694,8 +646,8 @@
     </div>
   </section>
 
-  <!-- Data Pipeline -->
-  <section class="pipeline-section" style="padding:80px 0;">
+  <!-- ===== Data Pipeline ===== -->
+  <section class="pipeline-section">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Data Pipeline</div>
@@ -769,8 +721,8 @@
     </div>
   </section>
 
-  <!-- Video -->
-  <section class="video-section" style="padding:80px 0;">
+  <!-- ===== Video ===== -->
+  <section class="video-section">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Movie</div>
@@ -790,7 +742,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ===== CTA ===== -->
   <section class="cta-section">
     <div class="container fade-up">
       <h2>最先端技術で、現場の課題を解決</h2>
@@ -811,7 +763,7 @@
             <div class="logo-icon">Q</div>
             JISOK
           </div>
-          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+          <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
         </div>
         <div>
           <h4>サービス</h4>
@@ -865,12 +817,9 @@
     // Fade-up animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 

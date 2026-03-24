@@ -1,7 +1,7 @@
 /* ============================================
    JISOK - Corporate Website Stylesheet
    株式会社JISOK デモサイト共通CSS
-   Industrial Precision × Engineering Elegance
+   Modern Editorial × Industrial Minimal
    ============================================ */
 
 /* --- Google Fonts Import --- */
@@ -11,19 +11,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Colors — Blueprint Palette */
-  --color-primary: #0a1628;
-  --color-primary-mid: #162d50;
-  --color-primary-light: #1e3a5f;
+  /* Colors — Clean Editorial Palette */
+  --color-primary: #0d1b2a;
+  --color-primary-mid: #1b3a5c;
+  --color-primary-light: #2c5282;
   --color-accent: #e67e22;
   --color-accent-hover: #d35400;
-  --color-accent-glow: rgba(230, 126, 34, 0.15);
-  --color-bg: #f0f2f7;
-  --color-bg-white: #ffffff;
+  --color-accent-glow: rgba(230, 126, 34, 0.1);
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f8f9fb;
   --color-text: #1a1a2e;
-  --color-text-light: #5a6178;
-  --color-border: #dfe3ed;
-  --color-cyan: #00d4ff;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
 
   /* Fonts */
   --font-heading: 'Outfit', sans-serif;
@@ -68,16 +67,17 @@ ul, ol { list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--header-height);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid transparent;
   z-index: 1000;
-  transition: box-shadow var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .header.scrolled {
-  box-shadow: 0 2px 24px rgba(10, 22, 40, 0.1);
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 1px 12px rgba(13, 27, 42, 0.04);
 }
 
 .header .container {
@@ -122,7 +122,7 @@ ul, ol { list-style: none; }
 }
 
 .nav a {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-text-light);
   transition: color var(--transition);
@@ -152,6 +152,24 @@ ul, ol { list-style: none; }
 .nav a.active {
   color: var(--color-primary);
   font-weight: 700;
+}
+
+/* Header Button */
+.btn-header {
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 6px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition);
+}
+
+.btn-header:hover {
+  background: var(--color-accent-hover);
 }
 
 /* Hamburger */
@@ -213,7 +231,7 @@ ul, ol { list-style: none; }
 .btn-primary:hover {
   background: var(--color-accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--color-accent-glow), 0 4px 12px rgba(230, 126, 34, 0.25);
+  box-shadow: 0 6px 20px var(--color-accent-glow), 0 4px 12px rgba(230, 126, 34, 0.2);
 }
 
 .btn-outline {
@@ -226,18 +244,13 @@ ul, ol { list-style: none; }
   background: var(--color-primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(10, 22, 40, 0.2);
+  box-shadow: 0 4px 16px rgba(13, 27, 42, 0.15);
 }
 
 .btn-lg {
   padding: 14px 36px;
   font-size: 1rem;
   border-radius: 8px;
-}
-
-.btn-header {
-  padding: 8px 20px;
-  font-size: 0.8rem;
 }
 
 .btn-white {
@@ -247,57 +260,43 @@ ul, ol { list-style: none; }
 
 .btn-white:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================
-   HERO — Top Page (Full Screen)
-   Blueprint Grid + Particle Aesthetic
+   HERO — Top Page (White Editorial)
    ============================================ */
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   padding-top: var(--header-height);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #060e1a 0%, var(--color-primary) 30%, var(--color-primary-mid) 60%, var(--color-primary-light) 100%);
+  background: var(--color-bg);
 }
 
-/* Blueprint grid pattern */
+/* Subtle geometric decoration */
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 75% 45%, rgba(230, 126, 34, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.06) 0%, transparent 35%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 60px,
-      rgba(0, 212, 255, 0.03) 60px,
-      rgba(0, 212, 255, 0.03) 61px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 60px,
-      rgba(0, 212, 255, 0.03) 60px,
-      rgba(0, 212, 255, 0.03) 61px
-    );
+  top: 15%;
+  right: 8%;
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(13, 27, 42, 0.06);
+  border-radius: 50%;
   pointer-events: none;
 }
 
-/* Large decorative circle — engineering / scanner motif */
 .hero::after {
   content: '';
   position: absolute;
-  top: -30%;
-  right: -15%;
-  width: 800px;
-  height: 800px;
-  border: 1px solid rgba(230, 126, 34, 0.08);
+  top: 30%;
+  right: 18%;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(13, 27, 42, 0.04);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -316,8 +315,8 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 8px;
   padding: 6px 18px;
-  background: rgba(230, 126, 34, 0.12);
-  border: 1px solid rgba(230, 126, 34, 0.25);
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(230, 126, 34, 0.2);
   border-radius: 100px;
   color: var(--color-accent);
   font-family: var(--font-heading);
@@ -329,12 +328,12 @@ ul, ol { list-style: none; }
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  color: #fff;
-  line-height: 1.25;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: var(--color-primary);
+  line-height: 1.2;
   font-weight: 900;
   margin-bottom: 24px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .hero h1 span {
@@ -343,7 +342,7 @@ ul, ol { list-style: none; }
 
 .hero p {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-light);
   line-height: 1.9;
   margin-bottom: 40px;
 }
@@ -355,36 +354,13 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================
-   PAGE HERO — Sub Pages
+   PAGE HERO — Sub Pages (Editorial Left-Aligned)
    ============================================ */
 .page-hero {
-  padding: 160px 0 80px;
-  background: linear-gradient(160deg, #060e1a 0%, var(--color-primary) 50%, var(--color-primary-mid) 100%);
-  text-align: center;
+  padding: 140px 0 60px;
+  background: var(--color-bg-subtle);
+  text-align: left;
   position: relative;
-  overflow: hidden;
-}
-
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 40px,
-      rgba(0, 212, 255, 0.02) 40px,
-      rgba(0, 212, 255, 0.02) 41px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 40px,
-      rgba(0, 212, 255, 0.02) 40px,
-      rgba(0, 212, 255, 0.02) 41px
-    );
-  pointer-events: none;
 }
 
 .page-hero .container {
@@ -393,13 +369,13 @@ ul, ol { list-style: none; }
 }
 
 .page-hero .breadcrumb {
-  margin-bottom: 24px;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
 }
 
 .page-hero .breadcrumb a {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--color-text-light);
   transition: color var(--transition);
 }
 
@@ -410,17 +386,16 @@ ul, ol { list-style: none; }
 .page-hero h1 {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
-  color: #fff;
+  color: var(--color-primary);
   font-weight: 900;
   margin-bottom: 16px;
   letter-spacing: -0.01em;
 }
 
 .page-hero p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-text-light);
   font-size: 1.05rem;
   max-width: 600px;
-  margin: 0 auto;
 }
 
 /* ============================================
@@ -438,16 +413,12 @@ section {
 .section-label {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   margin-bottom: 12px;
-}
-
-.section-label.cyan {
-  color: var(--color-cyan);
 }
 
 .section-title {
@@ -477,7 +448,7 @@ section {
 }
 
 .card {
-  background: var(--color-bg-white);
+  background: #fff;
   border-radius: 12px;
   padding: 36px 28px;
   border: 1px solid var(--color-border);
@@ -486,16 +457,16 @@ section {
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(10, 22, 40, 0.1);
-  border-color: rgba(230, 126, 34, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(13, 27, 42, 0.06);
+  border-color: rgba(230, 126, 34, 0.3);
 }
 
 .card-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -503,8 +474,8 @@ section {
 }
 
 .card-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   color: #fff;
 }
 
@@ -512,13 +483,9 @@ section {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
 }
 
-.card-icon.cyan {
-  background: linear-gradient(135deg, #0099cc 0%, var(--color-cyan) 100%);
-}
-
 .card h3 {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 12px;
@@ -551,8 +518,8 @@ section {
 }
 
 .step-num {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   background: var(--color-primary);
   color: #fff;
   border-radius: 50%;
@@ -560,32 +527,26 @@ section {
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 900;
   margin: 0 auto 16px;
   position: relative;
   z-index: 1;
-  transition: all var(--transition);
 }
 
 .step-num.accent {
   background: var(--color-accent);
 }
 
-.step-num.cyan {
-  background: var(--color-cyan);
-  color: var(--color-primary);
-}
-
 /* Connector line between steps */
 .step::after {
   content: '';
   position: absolute;
-  top: 28px;
-  left: calc(50% + 28px);
-  width: calc(100% - 56px);
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-border), rgba(230, 126, 34, 0.2));
+  top: 24px;
+  left: calc(50% + 24px);
+  width: calc(100% - 48px);
+  height: 0;
+  border-top: 1px dashed var(--color-border);
 }
 
 .step:last-child::after {
@@ -604,16 +565,16 @@ section {
 
 .step h4 {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 6px;
 }
 
 .step p {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--color-text-light);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ============================================
@@ -621,29 +582,29 @@ section {
    ============================================ */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   text-align: center;
 }
 
 .stat-num {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 900;
-  color: var(--color-accent);
+  color: var(--color-primary);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .stat-unit {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--color-text-light);
   font-weight: 500;
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-light);
   margin-top: 6px;
 }
@@ -652,35 +613,9 @@ section {
    CTA SECTION
    ============================================ */
 .cta-section {
-  background:
-    linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-mid) 50%, var(--color-primary-light) 100%);
+  background: var(--color-bg-subtle);
   text-align: center;
-  color: #fff;
   position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(230, 126, 34, 0.08) 0%, transparent 60%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 50px,
-      rgba(0, 212, 255, 0.02) 50px,
-      rgba(0, 212, 255, 0.02) 51px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 50px,
-      rgba(0, 212, 255, 0.02) 50px,
-      rgba(0, 212, 255, 0.02) 51px
-    );
-  pointer-events: none;
 }
 
 .cta-section .container {
@@ -692,11 +627,12 @@ section {
   font-family: var(--font-heading);
   font-size: clamp(1.3rem, 3vw, 2rem);
   font-weight: 900;
+  color: var(--color-primary);
   margin-bottom: 16px;
 }
 
 .cta-section p {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-text-light);
   margin-bottom: 32px;
   font-size: 1rem;
 }
@@ -710,7 +646,7 @@ section {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.06);
+  border: 1px solid var(--color-border);
 }
 
 .compare-table thead th {
@@ -718,17 +654,17 @@ section {
   font-family: var(--font-heading);
   font-size: 0.9rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
 }
 
 .compare-table thead th:first-child {
-  background: var(--color-bg);
+  background: var(--color-bg-subtle);
   color: var(--color-text-light);
 }
 
 .compare-table thead th:nth-child(2) {
-  background: #2a2d35;
-  color: rgba(255, 255, 255, 0.85);
+  background: var(--color-bg-subtle);
+  color: var(--color-text);
 }
 
 .compare-table thead th:last-child {
@@ -740,18 +676,16 @@ section {
   padding: 14px 20px;
   font-size: 0.85rem;
   border-bottom: 1px solid var(--color-border);
-  text-align: center;
 }
 
 .compare-table td:first-child {
   font-weight: 700;
   color: var(--color-primary);
-  background: var(--color-bg);
   text-align: left;
 }
 
 .compare-table td:last-child {
-  background: rgba(10, 22, 40, 0.02);
+  background: rgba(13, 27, 42, 0.015);
 }
 
 .compare-table .highlight {
@@ -819,7 +753,7 @@ section {
 }
 
 .form-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a6178' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 40px;
@@ -841,8 +775,8 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), var(--color-accent-glow), rgba(0, 212, 255, 0.15), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(230, 126, 34, 0.25), rgba(230, 126, 34, 0.4), rgba(230, 126, 34, 0.25), transparent);
 }
 
 .footer-grid {
@@ -930,8 +864,8 @@ section {
    ============================================ */
 .fade-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .fade-up.visible {
@@ -954,9 +888,9 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--color-bg-white);
+  background: #fff;
   padding: 12px 16px;
-  box-shadow: 0 -4px 24px rgba(10, 22, 40, 0.12);
+  box-shadow: 0 -4px 24px rgba(13, 27, 42, 0.08);
   z-index: 999;
   gap: 8px;
 }
@@ -973,7 +907,6 @@ section {
    UTILITY CLASSES
    ============================================ */
 .text-accent { color: var(--color-accent); }
-.text-cyan { color: var(--color-cyan); }
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .mt-0 { margin-top: 0; }
@@ -1102,7 +1035,7 @@ section {
 
   /* Page Hero */
   .page-hero {
-    padding: 120px 0 60px;
+    padding: 120px 0 50px;
   }
 }
 
@@ -1143,7 +1076,7 @@ section {
   }
 
   .page-hero {
-    padding: 100px 0 48px;
+    padding: 100px 0 40px;
   }
 
   .page-hero h1 {
