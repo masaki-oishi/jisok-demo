@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>会社概要・お問い合わせ | 株式会社JISOK</title>
+  <meta name="description" content="株式会社JISOKの会社概要・代表メッセージ・アクセス・お問い合わせ。3Dレーザースキャン計測によるプラントDXを推進します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Company Page Styles ===== */
+    /* ===== Company Page Specific ===== */
 
-    /* Hero */
+    /* Page Hero */
     .page-hero {
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 60%, #1a365d 100%);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, var(--color-primary) 100%);
       color: #fff;
-      padding: 120px 0 80px;
+      padding: 140px 0 80px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -27,12 +28,26 @@
       background:
         radial-gradient(circle at 20% 50%, rgba(230,126,34,0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .page-hero .breadcrumb {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .page-hero .breadcrumb a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
     .page-hero h1 {
-      font-size: 2.5rem;
+      font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+      font-size: 3rem;
       font-weight: 900;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       position: relative;
+      letter-spacing: 0.02em;
     }
     .page-hero p {
       font-size: 1.1rem;
@@ -40,63 +55,40 @@
       position: relative;
     }
 
-    /* Section common */
-    .section {
-      padding: 80px 0;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 900;
-      color: #1a365d;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 48px;
-      font-size: 0.95rem;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Company Info Table */
-    .company-table-wrap {
+    /* Company Info - dl style */
+    .company-dl-wrap {
       max-width: 800px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--color-bg-white);
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(26,54,93,0.08);
       overflow: hidden;
     }
-    .company-table {
-      width: 100%;
-      border-collapse: collapse;
+    .company-dl {
+      display: grid;
     }
-    .company-table th,
-    .company-table td {
-      padding: 20px 28px;
-      text-align: left;
-      font-size: 0.95rem;
-      border-bottom: 1px solid #eee;
+    .company-dl-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid var(--color-border);
     }
-    .company-table th {
-      width: 180px;
-      background: #f7f8fc;
-      color: #1a365d;
-      font-weight: 700;
-      vertical-align: top;
+    .company-dl-row:nth-child(even) {
+      background: var(--color-bg);
     }
-    .company-table td {
-      color: #333;
-      line-height: 1.8;
-    }
-    .company-table tr:last-child th,
-    .company-table tr:last-child td {
+    .company-dl-row:last-child {
       border-bottom: none;
+    }
+    .company-dl-row dt {
+      padding: 20px 28px;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: flex;
+      align-items: flex-start;
+    }
+    .company-dl-row dd {
+      padding: 20px 28px;
+      color: var(--color-text);
+      line-height: 1.9;
     }
     .placeholder-text {
       color: #aaa;
@@ -105,40 +97,60 @@
 
     /* Message Section */
     .message-section {
-      background: #f7f8fc;
+      background: var(--color-bg);
     }
     .message-card {
       max-width: 800px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--color-bg-white);
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(26,54,93,0.08);
       padding: 48px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 36px;
+      align-items: start;
       position: relative;
     }
     .message-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(to bottom, #e67e22, #1a365d);
+      background: linear-gradient(to bottom, var(--color-accent), var(--color-primary));
       border-radius: 4px 0 0 4px;
     }
+    .message-avatar {
+      width: 100px;
+      height: 100px;
+      background: var(--color-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--color-border);
+    }
+    .message-avatar svg {
+      width: 48px;
+      height: 48px;
+      color: #aab;
+    }
+    .message-body {}
     .message-label {
       font-size: 0.8rem;
       font-weight: 700;
-      color: #e67e22;
+      color: var(--color-accent);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
-    .message-card h3 {
-      font-size: 1.5rem;
+    .message-body h3 {
+      font-size: 1.4rem;
       font-weight: 900;
-      color: #1a365d;
-      margin-bottom: 20px;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
     .message-text {
       color: #444;
@@ -146,13 +158,42 @@
       font-size: 0.95rem;
     }
     .message-author {
-      margin-top: 24px;
+      margin-top: 20px;
       text-align: right;
-      color: #1a365d;
+      color: var(--color-primary);
       font-weight: 700;
+      font-size: 0.95rem;
     }
 
-    /* Access Section */
+    /* SNS Section */
+    .sns-section {
+      text-align: center;
+    }
+    .sns-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .sns-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1877f2;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 16px rgba(24,119,242,0.3);
+    }
+    .sns-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(24,119,242,0.4);
+    }
+
+    /* Access */
     .map-placeholder {
       max-width: 800px;
       margin: 0 auto;
@@ -177,12 +218,12 @@
 
     /* Contact Form */
     .contact-section {
-      background: #f7f8fc;
+      background: var(--color-bg);
     }
     .contact-form-wrap {
       max-width: 700px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--color-bg-white);
       border-radius: 16px;
       box-shadow: 0 4px 24px rgba(26,54,93,0.08);
       padding: 48px;
@@ -194,12 +235,12 @@
       display: block;
       font-size: 0.9rem;
       font-weight: 700;
-      color: #1a365d;
+      color: var(--color-primary);
       margin-bottom: 8px;
     }
     .form-group label .required {
       display: inline-block;
-      background: #e67e22;
+      background: var(--color-accent);
       color: #fff;
       font-size: 0.7rem;
       padding: 2px 8px;
@@ -212,20 +253,20 @@
     .form-group textarea {
       width: 100%;
       padding: 14px 16px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid var(--color-border);
       border-radius: 8px;
       font-size: 0.95rem;
       font-family: 'Noto Sans JP', sans-serif;
-      color: #1a1a2e;
-      background: #f7f8fc;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      color: var(--color-text);
+      background: var(--color-bg);
+      transition: border-color var(--transition), box-shadow var(--transition);
       box-sizing: border-box;
     }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: #1a365d;
+      border-color: var(--color-primary);
       box-shadow: 0 0 0 3px rgba(26,54,93,0.1);
       background: #fff;
     }
@@ -242,24 +283,6 @@
       text-align: center;
       margin-top: 32px;
     }
-    .submit-btn {
-      display: inline-block;
-      background: #e67e22;
-      color: #fff;
-      padding: 16px 64px;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      font-family: 'Noto Sans JP', sans-serif;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 16px rgba(230,126,34,0.3);
-    }
-    .submit-btn:hover {
-      background: #cf6d17;
-      transform: translateY(-2px);
-    }
     .form-note {
       text-align: center;
       margin-top: 16px;
@@ -269,41 +292,39 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .page-hero {
-        padding: 100px 0 60px;
+      .page-hero { padding: 110px 0 60px; }
+      .page-hero h1 { font-size: 2rem; }
+      .company-dl-row {
+        grid-template-columns: 140px 1fr;
       }
-      .page-hero h1 {
-        font-size: 1.8rem;
-      }
-      .company-table th {
-        width: 120px;
-        padding: 14px 16px;
-      }
-      .company-table td {
+      .company-dl-row dt,
+      .company-dl-row dd {
         padding: 14px 16px;
       }
       .message-card {
+        grid-template-columns: 1fr;
         padding: 32px 24px;
+        text-align: center;
       }
-      .contact-form-wrap {
-        padding: 32px 24px;
+      .message-avatar {
+        margin: 0 auto;
       }
+      .message-body { text-align: left; }
+      .contact-form-wrap { padding: 32px 24px; }
       .form-row {
         grid-template-columns: 1fr;
         gap: 0;
       }
     }
     @media (max-width: 480px) {
-      .company-table th,
-      .company-table td {
-        display: block;
-        width: 100%;
+      .company-dl-row {
+        grid-template-columns: 1fr;
       }
-      .company-table th {
+      .company-dl-row dt {
         border-bottom: none;
-        padding-bottom: 4px;
+        padding-bottom: 0;
       }
-      .company-table td {
+      .company-dl-row dd {
         padding-top: 4px;
       }
     }
@@ -312,101 +333,128 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">JISOK</a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="index.html">トップ</a></li>
-          <li><a href="service.html">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="works.html">実績</a></li>
-          <li><a href="company.html" class="active">会社概要</a></li>
-        </ul>
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-icon">Q</div>JISOK</a>
+      <nav class="nav" id="nav">
+        <a href="index.html">トップ</a>
+        <a href="service.html">サービス</a>
+        <a href="technology.html">技術・設備</a>
+        <a href="works.html">実績</a>
+        <a href="company.html" class="active">会社概要</a>
+        <a href="company.html#contact" class="btn btn-primary btn-header">お問い合わせ</a>
       </nav>
-      <a href="#contact" class="header-cta">お問い合わせ</a>
-      <button class="hamburger" aria-label="メニュー">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
     </div>
   </header>
 
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
-      <h1>会社概要</h1>
+      <div class="breadcrumb"><a href="index.html">トップ</a> / 会社概要</div>
+      <h1>Company</h1>
       <p>株式会社JISOKについて</p>
     </div>
   </section>
 
   <!-- Company Info -->
-  <section class="section">
+  <section class="section fade-up">
     <div class="container">
-      <h2 class="section-title">Company Profile</h2>
-      <p class="section-subtitle">会社情報</p>
-      <div class="company-table-wrap">
-        <table class="company-table">
-          <tr>
-            <th>会社名</th>
-            <td>株式会社JISOK</td>
-          </tr>
-          <tr>
-            <th>代表者</th>
-            <td><span class="placeholder-text">（ヒアリングで確認予定）</span></td>
-          </tr>
-          <tr>
-            <th>所在地</th>
-            <td><span class="placeholder-text">（ヒアリングで確認予定）</span></td>
-          </tr>
-          <tr>
-            <th>設立</th>
-            <td><span class="placeholder-text">（ヒアリングで確認予定）</span></td>
-          </tr>
-          <tr>
-            <th>事業内容</th>
-            <td>
+      <div class="section-header">
+        <div class="section-label">Company Profile</div>
+        <h2 class="section-title">会社情報</h2>
+      </div>
+      <div class="company-dl-wrap">
+        <dl class="company-dl">
+          <div class="company-dl-row">
+            <dt>会社名</dt>
+            <dd>株式会社JISOK</dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>代表者</dt>
+            <dd><span class="placeholder-text">（ヒアリングで確認予定）</span></dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>所在地</dt>
+            <dd><span class="placeholder-text">（ヒアリングで確認予定）</span></dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>設立</dt>
+            <dd><span class="placeholder-text">（ヒアリングで確認予定）</span></dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>事業内容</dt>
+            <dd>
               3Dレーザースキャン計測<br>
               プラント設計・BIM化<br>
               干渉チェック・施工支援<br>
               デジタルツインコンサルティング
-            </td>
-          </tr>
-          <tr>
-            <th>取扱機器</th>
-            <td>FARO Focus Series</td>
-          </tr>
-          <tr>
-            <th>パートナー</th>
-            <td>FARO Technologies</td>
-          </tr>
-        </table>
+            </dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>取扱機器</dt>
+            <dd>FARO Focus Series</dd>
+          </div>
+          <div class="company-dl-row">
+            <dt>パートナー</dt>
+            <dd>FARO Technologies</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- CEO Message -->
-  <section class="section message-section">
+  <section class="section message-section fade-up">
     <div class="container">
-      <h2 class="section-title">代表メッセージ</h2>
-      <p class="section-subtitle">Message from CEO</p>
+      <div class="section-header">
+        <div class="section-label">Message</div>
+        <h2 class="section-title">代表メッセージ</h2>
+      </div>
       <div class="message-card">
-        <div class="message-label">Representative Message</div>
-        <h3>プラントDXで、日本のものづくりを次のステージへ</h3>
-        <p class="message-text">
-          日本の産業インフラを支えるプラント・工場は、高度経済成長期に建設されたものが多く、老朽化への対応が急務となっています。しかし、当時の図面は散逸し、現況を正確に把握することすら困難なケースが少なくありません。<br><br>
-          私たちJISOKは、3Dレーザースキャン技術を核に、この課題に真正面から取り組んでいます。「現場の今」を高精度に3Dデータ化し、設計・施工・維持管理のすべてのフェーズでDXを推進する。それが私たちの使命です。<br><br>
-          テクノロジーの力で、安全で効率的な産業基盤を次の世代へ。JISOKは、お客様と共に歩み続けます。
-        </p>
-        <p class="message-author">株式会社JISOK 代表取締役</p>
+        <div class="message-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="message-body">
+          <div class="message-label">Representative Message</div>
+          <h3>プラントDXで、日本のものづくりを次のステージへ</h3>
+          <p class="message-text">
+            プラントの現場を、テクノロジーの力でもっと安全に、もっと効率的に。それが私たちJISOKの原点です。<br><br>
+            日本の産業インフラを支えるプラント・工場の多くは、高度経済成長期に建設され、老朽化への対応が急務となっています。当時の図面は散逸し、現況を正確に把握することすら困難なケースが少なくありません。私たちは3Dレーザースキャン技術を核に、この課題に真正面から取り組んでいます。<br><br>
+            「現場の今」を高精度に3Dデータ化し、設計・施工・維持管理のすべてのフェーズでDXを推進する。テクノロジーの力で安全で効率的な産業基盤を次の世代へ。JISOKはお客様と共に歩み続けます。
+          </p>
+          <p class="message-author">株式会社JISOK 代表取締役</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SNS -->
+  <section class="section sns-section fade-up">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Social</div>
+        <h2 class="section-title">SNS</h2>
+      </div>
+      <div class="sns-links">
+        <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Access -->
-  <section class="section">
+  <section class="section fade-up">
     <div class="container">
-      <h2 class="section-title">アクセス</h2>
-      <p class="section-subtitle">Access</p>
+      <div class="section-header">
+        <div class="section-label">Access</div>
+        <h2 class="section-title">アクセス</h2>
+      </div>
       <div class="map-placeholder">
         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 4C16.28 4 10 10.28 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.72-6.28-14-14-14z" stroke="#1a365d" stroke-width="2.5"/>
@@ -419,16 +467,19 @@
   </section>
 
   <!-- Contact Form -->
-  <section class="section contact-section" id="contact">
+  <section class="section contact-section fade-up" id="contact">
     <div class="container">
-      <h2 class="section-title">お問い合わせ</h2>
-      <p class="section-subtitle">ご質問・ご相談はお気軽にお問い合わせください</p>
+      <div class="section-header">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">お問い合わせ</h2>
+        <p class="section-desc">ご質問・ご相談はお気軽にお問い合わせください</p>
+      </div>
       <div class="contact-form-wrap">
         <form action="#" method="post">
           <div class="form-row">
             <div class="form-group">
-              <label for="company">会社名 <span class="required">必須</span></label>
-              <input type="text" id="company" name="company" placeholder="例: 株式会社サンプル" required>
+              <label for="company-name">会社名</label>
+              <input type="text" id="company-name" name="company-name" placeholder="例: 株式会社サンプル">
             </div>
             <div class="form-group">
               <label for="name">お名前 <span class="required">必須</span></label>
@@ -446,8 +497,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="category">お問い合わせ種別 <span class="required">必須</span></label>
-            <select id="category" name="category" required>
+            <label for="category">お問い合わせ種別</label>
+            <select id="category" name="category">
               <option value="" disabled selected>選択してください</option>
               <option value="3d-scan">3Dスキャンについて</option>
               <option value="bim">BIM化について</option>
@@ -456,11 +507,11 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="message">メッセージ <span class="required">必須</span></label>
-            <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+            <label for="message">メッセージ</label>
+            <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください"></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="submit-btn">送信する</button>
+            <button type="submit" class="btn btn-primary btn-lg">送信する</button>
           </div>
           <p class="form-note">※ このフォームはデモ用です。実際の送信は行われません。</p>
         </form>
@@ -470,39 +521,75 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">JISOK</div>
-        <p class="footer-desc">3Dレーザースキャン計測で、プラント・工場のDXを推進します。</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">Q</div>
+            JISOK
+          </div>
+          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+        </div>
+        <div>
+          <h4>サービス</h4>
+          <div class="footer-links">
+            <a href="service.html">サービス紹介</a>
+            <a href="technology.html">技術・設備</a>
+            <a href="works.html">導入事例</a>
+          </div>
+        </div>
+        <div>
+          <h4>会社情報</h4>
+          <div class="footer-links">
+            <a href="company.html">会社概要</a>
+            <a href="company.html#contact">お問い合わせ</a>
+          </div>
+        </div>
+        <div>
+          <h4>SNS</h4>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-nav">
-        <h4>ページ</h4>
-        <ul>
-          <li><a href="index.html">トップ</a></li>
-          <li><a href="service.html">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="works.html">実績</a></li>
-          <li><a href="company.html">会社概要</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+        <span>FARO Focus is a registered trademark of FARO Technologies, Inc.</span>
       </div>
-      <div class="footer-nav">
-        <h4>サービス</h4>
-        <ul>
-          <li><a href="service.html">3Dレーザースキャン</a></li>
-          <li><a href="service.html">BIM/CIMモデリング</a></li>
-          <li><a href="service.html">干渉チェック</a></li>
-          <li><a href="service.html">デジタルツイン</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>お問い合わせ</h4>
-        <a href="#contact" class="footer-cta-btn">お問い合わせフォーム</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- SP Fixed CTA -->
+  <div class="sp-fixed-cta">
+    <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+    <a href="tel:" class="btn btn-outline">電話する</a>
+  </div>
+
+  <script>
+    // Hamburger
+    function toggleNav() {
+      document.getElementById('nav').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-up animation (IntersectionObserver)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

@@ -3,67 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>導入事例・実績 | 株式会社JISOK</title>
+  <title>実績・導入事例 | 株式会社JISOK</title>
+  <meta name="description" content="JISOKの3Dレーザースキャンによるプラント計測の導入事例・実績紹介。化学プラント、石油精製施設、食品工場など多業種での成功事例をご覧ください。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Works Page Styles ===== */
+    /* ===== Works Page Specific ===== */
 
-    /* Hero */
-    .page-hero {
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 60%, #1a365d 100%);
-      color: #fff;
-      padding: 120px 0 80px;
-      text-align: center;
+    /* Video Section */
+    .video-section { background: #fff; }
+    .video-wrapper {
+      max-width: 880px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 60%, #2a4a7f 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .page-hero::before {
+    .video-wrapper:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(26,54,93,0.2);
+    }
+    .video-wrapper::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background:
-        radial-gradient(circle at 20% 50%, rgba(230,126,34,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 40%);
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
     }
-    .page-hero h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 16px;
+    .video-play-btn {
+      width: 80px;
+      height: 80px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 24px rgba(230,126,34,0.4);
     }
-    .page-hero p {
-      font-size: 1.1rem;
-      opacity: 0.85;
-      position: relative;
+    .video-wrapper:hover .video-play-btn {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(230,126,34,0.5);
+    }
+    .video-label {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 1;
     }
 
-    /* Section common */
-    .section {
-      padding: 80px 0;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 900;
-      color: #1a365d;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 48px;
-      font-size: 0.95rem;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Case Cards */
+    /* Cases */
+    .cases-section { background: var(--color-bg); }
     .cases-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -72,93 +79,113 @@
     .case-card {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(26,54,93,0.08);
+      box-shadow: 0 4px 24px rgba(26,54,93,0.06);
+      border: 1px solid var(--color-border);
       overflow: hidden;
       display: grid;
-      grid-template-columns: 200px 1fr;
-      transition: transform 0.3s, box-shadow 0.3s;
+      grid-template-columns: 220px 1fr;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .case-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(26,54,93,0.15);
+      box-shadow: 0 12px 40px rgba(26,54,93,0.12);
+      border-color: rgba(230,126,34,0.3);
     }
     .case-visual {
-      background: linear-gradient(135deg, #1a365d, #2c5282);
+      background: linear-gradient(135deg, #0d1b2a, #1a365d);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 32px;
       position: relative;
+      overflow: hidden;
+    }
+    .case-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(230,126,34,0.15) 0%, transparent 60%);
     }
     .case-number {
-      font-size: 3.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 4rem;
       font-weight: 900;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.08);
       position: absolute;
-      top: 16px;
-      left: 20px;
+      top: 12px;
+      left: 16px;
     }
     .case-visual svg {
       width: 80px;
       height: 80px;
-      opacity: 0.7;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
     }
     .case-content {
-      padding: 32px;
+      padding: 36px 32px;
     }
     .case-tag {
       display: inline-block;
-      background: rgba(230,126,34,0.12);
-      color: #e67e22;
-      font-size: 0.8rem;
+      background: rgba(230,126,34,0.1);
+      color: var(--color-accent);
+      font-size: 0.78rem;
       font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
+      padding: 4px 14px;
+      border-radius: 100px;
       margin-bottom: 12px;
     }
     .case-content h3 {
       font-size: 1.3rem;
-      font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 20px;
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-bottom: 24px;
     }
     .case-flow {
       display: grid;
       grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 8px;
+      gap: 12px;
       align-items: start;
     }
-    .case-flow-item {
-      text-align: center;
-    }
+    .case-flow-item { text-align: center; }
     .case-flow-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      color: #e67e22;
+      color: var(--color-accent);
       text-transform: uppercase;
-      margin-bottom: 6px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
     }
     .case-flow-text {
-      font-size: 0.9rem;
-      color: #444;
-      line-height: 1.6;
+      font-size: 0.88rem;
+      color: var(--color-text-light);
+      line-height: 1.7;
     }
     .case-flow-arrow {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 20px;
-      color: #e67e22;
-      font-size: 1.2rem;
+      padding-top: 24px;
+      color: var(--color-accent);
+      font-size: 1rem;
     }
 
     /* Numbers Section */
     .numbers-section {
-      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 100%);
       color: #fff;
-      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
     }
+    .numbers-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(230,126,34,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.03) 0%, transparent 40%);
+    }
+    .numbers-section .container { position: relative; z-index: 1; }
     .numbers-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -166,65 +193,74 @@
       text-align: center;
     }
     .number-item {
-      padding: 24px;
+      padding: 24px 16px;
     }
     .number-value {
-      font-size: 3rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.2rem;
       font-weight: 900;
-      color: #e67e22;
+      color: var(--color-accent);
       line-height: 1;
       margin-bottom: 8px;
     }
     .number-value span {
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 700;
     }
     .number-label {
       font-size: 0.9rem;
-      opacity: 0.85;
+      color: rgba(255,255,255,0.75);
     }
 
     /* Testimonials */
+    .testimonials-section { background: #fff; }
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
     }
     .testimonial-card {
-      background: #fff;
+      background: var(--color-bg);
       border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 4px 24px rgba(26,54,93,0.08);
+      padding: 36px 32px;
+      border: 1px solid var(--color-border);
       position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .testimonial-card::before {
-      content: '\201C';
-      font-size: 4rem;
-      color: #e67e22;
-      opacity: 0.3;
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .testimonial-quote {
       position: absolute;
-      top: 8px;
-      left: 20px;
-      font-family: Georgia, serif;
+      top: 16px;
+      left: 24px;
+      font-family: 'Outfit', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--color-accent);
+      opacity: 0.15;
       line-height: 1;
+      pointer-events: none;
     }
     .testimonial-text {
       font-size: 0.95rem;
-      color: #444;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      padding-top: 24px;
+      color: var(--color-text-light);
+      line-height: 1.9;
+      margin-bottom: 24px;
+      padding-top: 20px;
+      position: relative;
     }
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
     .testimonial-avatar {
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #1a365d, #2c5282);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -236,62 +272,22 @@
     }
     .testimonial-name {
       font-weight: 700;
-      color: #1a365d;
+      color: var(--color-primary);
       font-size: 0.9rem;
     }
     .testimonial-role {
       font-size: 0.8rem;
-      color: #888;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      background: #f7f8fc;
-      padding: 80px 0;
-      text-align: center;
-    }
-    .cta-section h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      color: #1a365d;
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      color: #666;
-      margin-bottom: 32px;
-      font-size: 1rem;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: #e67e22;
-      color: #fff;
-      padding: 16px 48px;
-      border-radius: 50px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 16px rgba(230,126,34,0.3);
-    }
-    .cta-btn:hover {
-      background: #cf6d17;
-      transform: translateY(-2px);
+      color: var(--color-text-light);
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .page-hero {
-        padding: 100px 0 60px;
-      }
-      .page-hero h1 {
-        font-size: 1.8rem;
-      }
+    @media (max-width: 900px) {
       .case-card {
         grid-template-columns: 1fr;
       }
       .case-visual {
+        min-height: 140px;
         padding: 24px;
-        min-height: 120px;
       }
       .case-flow {
         grid-template-columns: 1fr;
@@ -306,9 +302,18 @@
         gap: 24px;
       }
       .number-value {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
       }
       .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .video-play-btn {
+        width: 64px;
+        height: 64px;
+      }
+    }
+    @media (max-width: 480px) {
+      .numbers-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -317,43 +322,64 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">JISOK</a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="index.html">トップ</a></li>
-          <li><a href="service.html">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="works.html" class="active">実績</a></li>
-          <li><a href="company.html">会社概要</a></li>
-        </ul>
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-icon">Q</div>JISOK</a>
+      <nav class="nav" id="nav">
+        <a href="index.html">トップ</a>
+        <a href="service.html">サービス</a>
+        <a href="technology.html">技術・設備</a>
+        <a href="works.html" class="active">実績</a>
+        <a href="company.html">会社概要</a>
+        <a href="company.html#contact" class="btn btn-primary btn-header">お問い合わせ</a>
       </nav>
-      <a href="company.html#contact" class="header-cta">お問い合わせ</a>
-      <button class="hamburger" aria-label="メニュー">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
     </div>
   </header>
 
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
-      <h1>導入事例・実績</h1>
-      <p>3Dスキャン技術で実現した、プラントDXの成功事例をご紹介します</p>
+      <div class="breadcrumb">
+        <a href="index.html">トップ</a> / 実績
+      </div>
+      <h1>Works</h1>
+      <p>3Dスキャンの現場を、見て感じる</p>
+    </div>
+  </section>
+
+  <!-- YouTube Video Section -->
+  <section class="video-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Movie</div>
+        <h2 class="section-title">JISOKの現場を動画で体感</h2>
+        <p class="section-desc">3Dレーザースキャン計測の実際の作業風景と、その成果をご覧ください。</p>
+      </div>
+      <div class="video-wrapper fade-up">
+        <div class="video-play-btn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="video-label">3Dレーザースキャン計測 作業紹介ムービー</div>
+      </div>
     </div>
   </section>
 
   <!-- Case Studies -->
-  <section class="section" style="background: #f7f8fc;">
+  <section class="cases-section">
     <div class="container">
-      <h2 class="section-title">Case Studies</h2>
-      <p class="section-subtitle">お客様の課題を3Dスキャン技術で解決してきた実績</p>
+      <div class="section-header fade-up">
+        <div class="section-label">Case Studies</div>
+        <h2 class="section-title">お客様の課題を、3Dスキャンで解決</h2>
+        <p class="section-desc">業種を問わず、計測・設計・施工の現場で確かな成果を出し続けています。</p>
+      </div>
 
       <div class="cases-grid">
 
         <!-- Case 01 -->
-        <div class="case-card">
+        <div class="case-card fade-up">
           <div class="case-visual">
             <span class="case-number">01</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -362,6 +388,7 @@
               <path d="M22 30V15a3 3 0 013-3h30a3 3 0 013 3v5" stroke="#e67e22" stroke-width="2"/>
               <circle cx="22" cy="50" r="6" stroke="#e67e22" stroke-width="2"/>
               <circle cx="58" cy="45" r="6" stroke="#e67e22" stroke-width="2"/>
+              <path d="M10 70h60" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
             </svg>
           </div>
           <div class="case-content">
@@ -370,14 +397,18 @@
             <div class="case-flow">
               <div class="case-flow-item">
                 <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">老朽化した設備の図面が散逸。改修計画の立案に時間とコストがかかっていた。</div>
+                <div class="case-flow-text">老朽化した設備の図面が散逸。改修計画の立案に膨大な時間とコストが発生。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">解決</div>
-                <div class="case-flow-text">3Dレーザースキャンで現況を正確に取得。散逸した図面を3Dモデルとして復元。</div>
+                <div class="case-flow-text">3Dレーザースキャンで現況を正確にキャプチャ。散逸した図面を3Dモデルとして復元。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">成果</div>
                 <div class="case-flow-text">工期30%短縮を達成。設計変更にも柔軟に対応可能に。</div>
@@ -387,16 +418,16 @@
         </div>
 
         <!-- Case 02 -->
-        <div class="case-card">
+        <div class="case-card fade-up">
           <div class="case-visual">
             <span class="case-number">02</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 60h20v-20h20v-20h20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="10" cy="60" r="4" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="30" cy="40" r="4" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="50" cy="20" r="4" stroke="#e67e22" stroke-width="2"/>
-              <circle cx="70" cy="20" r="4" stroke="#e67e22" stroke-width="2"/>
-              <path d="M15 70h50" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <circle cx="10" cy="60" r="5" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="30" cy="40" r="5" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="50" cy="20" r="5" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="70" cy="20" r="5" stroke="#e67e22" stroke-width="2"/>
+              <path d="M15 70h50" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
             </svg>
           </div>
           <div class="case-content">
@@ -405,14 +436,18 @@
             <div class="case-flow">
               <div class="case-flow-item">
                 <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">複雑な配管ルートの更新で、既存設備との干渉が懸念されていた。</div>
+                <div class="case-flow-text">複雑な配管ルートの更新で、既存設備との干渉が大きな懸念事項に。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">解決</div>
-                <div class="case-flow-text">点群データによる精密な3Dモデルを構築。事前に干渉チェックを徹底実施。</div>
+                <div class="case-flow-text">点群データから精密な3Dモデルを構築。事前に干渉チェックを徹底実施。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">成果</div>
                 <div class="case-flow-text">施工時の手戻りゼロを達成。安全性と効率の両立を実現。</div>
@@ -422,14 +457,15 @@
         </div>
 
         <!-- Case 03 -->
-        <div class="case-card">
+        <div class="case-card fade-up">
           <div class="case-visual">
             <span class="case-number">03</span>
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="15" y="25" width="50" height="35" rx="3" stroke="#fff" stroke-width="2"/>
               <path d="M25 70h30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
               <path d="M40 60v10" stroke="#fff" stroke-width="2"/>
-              <path d="M25 40l8 8 16-16" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 42l8 8 16-16" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="60" cy="30" r="3" fill="rgba(230,126,34,0.5)"/>
             </svg>
           </div>
           <div class="case-content">
@@ -438,17 +474,21 @@
             <div class="case-flow">
               <div class="case-flow-item">
                 <div class="case-flow-label">課題</div>
-                <div class="case-flow-text">2D図面だけでは関係者間の認識にズレが発生。合意形成に時間がかかっていた。</div>
+                <div class="case-flow-text">2D図面では関係者間の認識にズレが発生。合意形成に多大な時間を要していた。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">解決</div>
                 <div class="case-flow-text">3Dモデルで増設計画を可視化。誰でも直感的に設備配置を理解できる環境を構築。</div>
               </div>
-              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </div>
               <div class="case-flow-item">
                 <div class="case-flow-label">成果</div>
-                <div class="case-flow-text">関係者全員の理解が一致。合意形成の大幅な効率化に成功。</div>
+                <div class="case-flow-text">関係者全員が直感的に理解。合意形成の大幅な効率化に成功。</div>
               </div>
             </div>
           </div>
@@ -461,9 +501,12 @@
   <!-- Numbers -->
   <section class="numbers-section">
     <div class="container">
-      <h2 class="section-title" style="color: #fff;">数字で見るJISOKの実績</h2>
-      <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">着実に積み重ねてきた信頼と成果</p>
-      <div class="numbers-grid">
+      <div class="section-header fade-up">
+        <div class="section-label" style="color: rgba(255,255,255,0.5);">By the Numbers</div>
+        <h2 class="section-title" style="color: #fff;">数字で見るJISOKの実績</h2>
+        <p class="section-desc" style="color: rgba(255,255,255,0.6);">着実に積み重ねてきた信頼と成果</p>
+      </div>
+      <div class="numbers-grid fade-up">
         <div class="number-item">
           <div class="number-value">50,000<span>&#13217;+</span></div>
           <div class="number-label">累計スキャン面積</div>
@@ -485,13 +528,17 @@
   </section>
 
   <!-- Testimonials -->
-  <section class="section">
+  <section class="testimonials-section">
     <div class="container">
-      <h2 class="section-title">お客様の声</h2>
-      <p class="section-subtitle">JISOKのサービスをご利用いただいたお客様からの評価</p>
-      <div class="testimonials-grid">
+      <div class="section-header fade-up">
+        <div class="section-label">Testimonials</div>
+        <h2 class="section-title">お客様の声</h2>
+        <p class="section-desc">JISOKのサービスをご利用いただいたお客様からの評価</p>
+      </div>
+      <div class="testimonials-grid fade-up">
 
         <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
           <p class="testimonial-text">老朽化した図面しかなく改修計画に不安がありましたが、JISOKさんの3Dスキャンで現況が正確に把握できました。おかげで設計のやり直しがなくなり、スケジュール通りにプロジェクトを完了できました。</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">
@@ -505,6 +552,7 @@
         </div>
 
         <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
           <p class="testimonial-text">3Dモデルのおかげで、現場担当者から経営層まで全員が同じビジョンを共有できました。従来は何度も会議を重ねていた合意形成が、一度のプレゼンで完了。DXの効果を実感しています。</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">
@@ -523,48 +571,87 @@
 
   <!-- CTA -->
   <section class="cta-section">
-    <div class="container">
+    <div class="container fade-up">
       <h2>3Dスキャンの導入をご検討ですか？</h2>
       <p>まずはお気軽にご相談ください。貴社の課題に合わせた最適なプランをご提案します。</p>
-      <a href="company.html#contact" class="cta-btn">お問い合わせはこちら</a>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
+        <a href="service.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">サービス詳細を見る</a>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">JISOK</div>
-        <p class="footer-desc">3Dレーザースキャン計測で、プラント・工場のDXを推進します。</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">Q</div>
+            JISOK
+          </div>
+          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+        </div>
+        <div>
+          <h4>サービス</h4>
+          <div class="footer-links">
+            <a href="service.html">サービス紹介</a>
+            <a href="technology.html">技術・設備</a>
+            <a href="works.html">導入事例</a>
+          </div>
+        </div>
+        <div>
+          <h4>会社情報</h4>
+          <div class="footer-links">
+            <a href="company.html">会社概要</a>
+            <a href="company.html#contact">お問い合わせ</a>
+          </div>
+        </div>
+        <div>
+          <h4>SNS</h4>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-nav">
-        <h4>ページ</h4>
-        <ul>
-          <li><a href="index.html">トップ</a></li>
-          <li><a href="service.html">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="works.html">実績</a></li>
-          <li><a href="company.html">会社概要</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+        <span>FARO Focus is a registered trademark of FARO Technologies, Inc.</span>
       </div>
-      <div class="footer-nav">
-        <h4>サービス</h4>
-        <ul>
-          <li><a href="service.html">3Dレーザースキャン</a></li>
-          <li><a href="service.html">BIM/CIMモデリング</a></li>
-          <li><a href="service.html">干渉チェック</a></li>
-          <li><a href="service.html">デジタルツイン</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>お問い合わせ</h4>
-        <a href="company.html#contact" class="footer-cta-btn">お問い合わせフォーム</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- SP Fixed CTA -->
+  <div class="sp-fixed-cta">
+    <a href="company.html#contact" class="btn btn-primary">お問い合わせ</a>
+    <a href="tel:" class="btn btn-outline">電話する</a>
+  </div>
+
+  <script>
+    // Hamburger
+    function toggleNav() {
+      document.getElementById('nav').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-up animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

@@ -4,510 +4,595 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>サービス紹介 | 株式会社JISOK</title>
+  <meta name="description" content="JISOKの3Dレーザースキャンサービス。Survey・Process・Design・Execute・Operateの5ステップで、プラントのデジタルツイン化をトータルサポートします。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Page Hero ===== */
-    .page-hero {
-      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
-      color: #fff;
-      text-align: center;
-      padding: 100px 20px 80px;
-      position: relative;
-      overflow: hidden;
+    /* ===== Service Step Sections ===== */
+    .service-step {
+      padding: 100px 0;
     }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(230,126,34,.15) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(255,255,255,.05) 0%, transparent 40%);
-      animation: heroFloat 20s ease-in-out infinite;
-    }
-    @keyframes heroFloat {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-2%, -1%); }
-    }
-    .page-hero h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 16px;
-    }
-    .page-hero p {
-      font-size: 1.1rem;
-      opacity: .85;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== Services Section ===== */
-    .services-section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .services-section .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 60px;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 32px;
-    }
-    .service-card {
+    .service-step:nth-child(odd) {
       background: #fff;
-      border-radius: 16px;
-      padding: 40px 32px;
-      box-shadow: 0 4px 24px rgba(26,54,93,.08);
-      border: 1px solid rgba(26,54,93,.06);
-      transition: transform .3s ease, box-shadow .3s ease;
-      position: relative;
-      overflow: hidden;
     }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(26,54,93,.14);
+    .service-step-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, #e67e22, #1a365d);
-      border-radius: 4px 0 0 4px;
+    .service-step:nth-child(even) .service-step-grid {
+      direction: rtl;
     }
-    .service-icon {
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+    .service-step:nth-child(even) .service-step-grid > * {
+      direction: ltr;
+    }
+    .service-step-visual {
+      aspect-ratio: 4 / 3;
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
     }
-    .service-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .service-step:nth-child(1) .service-step-visual {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 60%, #2a4a7f 100%);
     }
-    .service-card h3 {
-      font-size: 1.3rem;
+    .service-step:nth-child(2) .service-step-visual {
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 60%, #3b5c94 100%);
+    }
+    .service-step:nth-child(3) .service-step-visual {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a365d 100%);
+    }
+    .service-step:nth-child(4) .service-step-visual {
+      background: linear-gradient(135deg, #2a4a7f 0%, #1a365d 60%, #0d1b2a 100%);
+    }
+    .service-step:nth-child(5) .service-step-visual {
+      background: linear-gradient(135deg, #1a365d 0%, #0d1b2a 100%);
+    }
+    .service-step-visual svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.9;
+    }
+    .service-step-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px),
+        repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px);
+    }
+    .service-step-visual::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(230,126,34,0.15);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(230,126,34,0.1);
+      border: 1px solid rgba(230,126,34,0.25);
+      border-radius: 100px;
+      color: var(--color-accent);
+      font-size: 0.8rem;
       font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
     }
-    .service-card p {
-      color: #555;
+    .service-step-text h3 {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .service-step-text > p {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
       line-height: 1.8;
-      font-size: .95rem;
+      margin-bottom: 24px;
     }
-    .service-tag {
-      display: inline-block;
-      background: rgba(230,126,34,.1);
-      color: #e67e22;
-      font-size: .8rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-top: 16px;
+
+    .merit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .merit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .merit-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px;
     }
 
     /* ===== Flow Section ===== */
     .flow-section {
       background: #fff;
-      padding: 80px 20px;
+      padding: 100px 0;
     }
-    .flow-section .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 60px;
-    }
-    .flow-container {
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
       max-width: 1000px;
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-      position: relative;
     }
-    .flow-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 150px;
-      position: relative;
+    .flow-item {
       text-align: center;
+      position: relative;
     }
-    .flow-number {
+    .flow-item::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: -12px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid var(--color-accent);
+      border-right: 2px solid var(--color-accent);
+      transform: rotate(45deg);
+    }
+    .flow-item:last-child::after {
+      display: none;
+    }
+    .flow-num {
       width: 56px;
       height: 56px;
-      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
+      font-size: 1.1rem;
+      font-weight: 900;
+      margin: 0 auto 12px;
+      font-family: 'Outfit', sans-serif;
     }
-    .flow-step.active .flow-number {
-      background: linear-gradient(135deg, #e67e22, #f39c12);
+    .flow-item:nth-child(even) .flow-num {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
     }
     .flow-label {
-      font-size: .9rem;
-      font-weight: 500;
-      color: #1a1a2e;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 4px;
     }
-    .flow-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      padding-top: 0;
-      margin-top: 14px;
-    }
-    .flow-arrow svg {
-      width: 24px;
-      height: 24px;
-      fill: none;
-      stroke: #e67e22;
-      stroke-width: 2.5;
+    .flow-sub {
+      font-size: 0.75rem;
+      color: var(--color-text-light);
     }
 
     /* ===== ROI Section ===== */
     .roi-section {
-      padding: 80px 20px;
-      max-width: 1000px;
+      padding: 100px 0;
+    }
+    .table-wrapper {
+      max-width: 900px;
       margin: 0 auto;
-    }
-    .roi-section .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1a365d;
-      margin-bottom: 20px;
-    }
-    .roi-section .section-sub {
-      text-align: center;
-      color: #666;
-      margin-bottom: 40px;
-      font-size: .95rem;
-    }
-    .roi-table-wrapper {
       overflow-x: auto;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(26,54,93,.08);
-    }
-    .roi-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      min-width: 600px;
-    }
-    .roi-table thead th {
-      background: #1a365d;
-      color: #fff;
-      padding: 18px 24px;
-      font-size: .95rem;
-      font-weight: 700;
-      text-align: left;
-    }
-    .roi-table thead th:first-child {
-      border-radius: 16px 0 0 0;
-    }
-    .roi-table thead th:last-child {
-      border-radius: 0 16px 0 0;
-      background: linear-gradient(135deg, #e67e22, #f39c12);
-    }
-    .roi-table tbody td {
-      padding: 16px 24px;
-      border-bottom: 1px solid #eee;
-      font-size: .9rem;
-      color: #333;
-    }
-    .roi-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-    .roi-table tbody tr:hover {
-      background: rgba(230,126,34,.04);
-    }
-    .roi-table .highlight {
-      color: #e67e22;
-      font-weight: 700;
-    }
-    .roi-table .dim {
-      color: #999;
-    }
-
-    /* ===== CTA Section ===== */
-    .cta-section {
-      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
-      padding: 80px 20px;
-      text-align: center;
-      color: #fff;
-    }
-    .cta-section h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      opacity: .85;
-      margin-bottom: 32px;
-      font-size: 1rem;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: #e67e22;
-      color: #fff;
-      padding: 16px 48px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background .3s ease, transform .2s ease;
-    }
-    .cta-btn:hover {
-      background: #d35400;
-      transform: translateY(-2px);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
 
     /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      .page-hero h1 { font-size: 2rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .flow-container { flex-direction: column; align-items: center; gap: 8px; }
-      .flow-arrow { transform: rotate(90deg); width: auto; margin-top: 0; }
-      .flow-step { width: 100%; max-width: 200px; }
-      .roi-section { padding: 60px 16px; }
+    @media (max-width: 900px) {
+      .service-step { padding: 64px 0; }
+      .service-step-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .service-step:nth-child(even) .service-step-grid {
+        direction: ltr;
+      }
+      .flow-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .flow-item:nth-child(3)::after {
+        display: none;
+      }
+    }
+    @media (max-width: 480px) {
+      .flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .flow-item:nth-child(2)::after,
+      .flow-item:nth-child(4)::after {
+        display: none;
+      }
+      .flow-item:nth-child(3)::after {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-mark">JISOK</span>
-        <span class="logo-sub">3D Plant Engineering</span>
-      </a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="service.html" class="active">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="contact.html" class="nav-cta">お問い合わせ</a></li>
-        </ul>
-        <button class="hamburger" aria-label="メニュー" onclick="this.classList.toggle('open');document.querySelector('.nav-list').classList.toggle('open');">
-          <span></span><span></span><span></span>
-        </button>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-icon">Q</div>JISOK</a>
+      <nav class="nav" id="nav">
+        <a href="index.html">トップ</a>
+        <a href="service.html" class="active">サービス</a>
+        <a href="technology.html">技術・設備</a>
+        <a href="works.html">実績</a>
+        <a href="company.html">会社概要</a>
+        <a href="company.html#contact" class="btn btn-primary btn-header">お問い合わせ</a>
       </nav>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
     </div>
   </header>
 
-  <!-- ===== Page Hero ===== -->
+  <!-- Page Hero -->
   <section class="page-hero">
-    <h1>JISOKのサービス</h1>
-    <p>3Dレーザースキャンを起点に、プラントの設計・施工・維持管理をトータルサポート</p>
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">トップ</a> ＞ サービス紹介</div>
+      <h1 style="font-family:'Outfit',sans-serif;letter-spacing:0.04em;">Service</h1>
+      <p>3Dレーザースキャンを起点に、プラントの計測・設計・施工・維持管理をトータルサポート</p>
+    </div>
   </section>
 
-  <!-- ===== Service List ===== -->
-  <section class="services-section">
-    <h2 class="section-title">サービス一覧</h2>
-    <div class="services-grid">
+  <!-- ===== Service Step Sections ===== -->
 
-      <!-- 3Dレーザースキャン -->
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+  <!-- STEP 01: Survey -->
+  <section class="service-step fade-up">
+    <div class="container">
+      <div class="service-step-grid">
+        <div class="service-step-visual">
+          <svg viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="40" cy="40" r="6"/>
+            <circle cx="40" cy="40" r="18" stroke-dasharray="4 4"/>
+            <circle cx="40" cy="40" r="30" stroke-dasharray="2 6"/>
+            <line x1="40" y1="4" x2="40" y2="16"/>
+            <line x1="40" y1="64" x2="40" y2="76"/>
+            <line x1="4" y1="40" x2="16" y2="40"/>
+            <line x1="64" y1="40" x2="76" y2="40"/>
+            <line x1="14" y1="14" x2="22" y2="22" stroke="rgba(230,126,34,0.7)"/>
+            <line x1="58" y1="58" x2="66" y2="66" stroke="rgba(230,126,34,0.7)"/>
+          </svg>
         </div>
-        <h3>3Dレーザースキャン</h3>
-        <p>FARO Focusシリーズによる高精度点群データ取得。非接触・足場不要で安全かつ効率的に現場を3Dデータ化します。1エリア約1時間で完了。</p>
-        <span class="service-tag">非接触・高精度</span>
-      </div>
-
-      <!-- Scan-to-BIM -->
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M2 20V8l10-6 10 6v12"/><path d="M6 20V10"/><path d="M18 20V10"/><path d="M2 8l10 6 10-6"/><path d="M12 14v6"/></svg>
+        <div class="service-step-text">
+          <div class="step-badge">STEP 01 &#8212; Survey</div>
+          <h3>3Dレーザースキャン計測</h3>
+          <p>FARO Focus レーザースキャナーによる高精度点群データの取得。非接触・足場不要で安全かつ効率的に現場を3Dデータ化します。1エリア（10x5x7m）あたり約1時間で完了し、最大97.6万点/秒の高密度キャプチャを実現します。</p>
+          <ul class="merit-list">
+            <li>非接触計測で足場仮設が不要、安全性を大幅に向上</li>
+            <li>10m地点で±2mmの超高精度を担保</li>
+            <li>従来の手作業計測と比較し、現場作業時間を最大80%短縮</li>
+            <li>IP54準拠で粉塵・水滴環境下でも安定稼働</li>
+          </ul>
         </div>
-        <h3>Scan-to-BIM</h3>
-        <p>取得した点群データからAutodesk ReCap、Plant 3D、Revitを活用して精密な3Dモデルを作成。既存設備のデジタル化を実現します。</p>
-        <span class="service-tag">BIM/CIMモデル化</span>
       </div>
+    </div>
+  </section>
 
-      <!-- 干渉チェック -->
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4"/><path d="M15 3h4a2 2 0 012 2v4"/><path d="M9 21H5a2 2 0 01-2-2v-4"/><path d="M15 21h4a2 2 0 002-2v-4"/><circle cx="12" cy="12" r="4"/><path d="M12 8v8M8 12h8"/></svg>
+  <!-- STEP 02: Process -->
+  <section class="service-step fade-up">
+    <div class="container">
+      <div class="service-step-grid">
+        <div class="service-step-visual">
+          <svg viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="20" width="56" height="40" rx="4"/>
+            <circle cx="28" cy="36" r="2" fill="rgba(230,126,34,0.8)" stroke="none"/>
+            <circle cx="36" cy="42" r="1.5" fill="rgba(230,126,34,0.6)" stroke="none"/>
+            <circle cx="44" cy="34" r="2.5" fill="rgba(230,126,34,0.9)" stroke="none"/>
+            <circle cx="52" cy="44" r="1.5" fill="rgba(230,126,34,0.5)" stroke="none"/>
+            <circle cx="32" cy="48" r="1" fill="rgba(255,255,255,0.4)" stroke="none"/>
+            <circle cx="48" cy="30" r="1" fill="rgba(255,255,255,0.4)" stroke="none"/>
+            <circle cx="56" cy="38" r="2" fill="rgba(230,126,34,0.7)" stroke="none"/>
+            <circle cx="24" cy="44" r="1.5" fill="rgba(255,255,255,0.3)" stroke="none"/>
+            <path d="M20 56l8-10 8 6 8-12 8 4 8-8" stroke="rgba(230,126,34,0.6)" stroke-width="1"/>
+          </svg>
         </div>
-        <h3>干渉チェック・施工検証</h3>
-        <p>Navisworksによる仮想空間での干渉チェック。施工前にデジタル上で検証することで、手戻りを大幅に削減します。</p>
-        <span class="service-tag">手戻り削減</span>
-      </div>
-
-      <!-- 維持管理支援 -->
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="service-step-text">
+          <div class="step-badge">STEP 02 &#8212; Process</div>
+          <h3>点群データ処理・構造化</h3>
+          <p>Autodesk ReCap を用いてスキャンデータをレジストレーション（合成）し、ノイズ除去・座標統合を行います。膨大な点群を意味のある3Dオブジェクトとして構造化し、後工程のモデリングに最適なデータを生成します。</p>
+          <ul class="merit-list">
+            <li>複数スキャンデータの自動レジストレーションで高効率処理</li>
+            <li>ノイズ除去・フィルタリングによるクリーンなデータ生成</li>
+            <li>座標系統合で複数フロアや広域プラントにも対応</li>
+            <li>各種CAD・BIMソフトへの連携フォーマットに対応</li>
+          </ul>
         </div>
-        <h3>維持管理支援</h3>
-        <p>デジタルツインデータを活用した効率的な維持管理。LDAR Compliance対応により法令遵守をサポートします。</p>
-        <span class="service-tag">デジタルツイン</span>
       </div>
+    </div>
+  </section>
 
-      <!-- コンサルティング -->
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+  <!-- STEP 03: Design -->
+  <section class="service-step fade-up">
+    <div class="container">
+      <div class="service-step-grid">
+        <div class="service-step-visual">
+          <svg viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="16" y="24" width="48" height="36" rx="2" stroke-dasharray="0"/>
+            <line x1="16" y1="36" x2="64" y2="36" stroke="rgba(255,255,255,0.3)"/>
+            <line x1="40" y1="24" x2="40" y2="60" stroke="rgba(255,255,255,0.3)"/>
+            <path d="M24 52l12-16 8 8 12-20" stroke="rgba(230,126,34,0.8)" stroke-width="2"/>
+            <rect x="20" y="28" width="16" height="6" rx="1" stroke="rgba(230,126,34,0.5)"/>
+            <circle cx="52" cy="48" r="6" stroke="rgba(230,126,34,0.6)"/>
+            <path d="M10 16l6 8M64 16l6 8" stroke="rgba(255,255,255,0.4)"/>
+          </svg>
         </div>
-        <h3>コンサルティング</h3>
-        <p>プラントDXの導入支援から最適なスキャン計画の立案まで。お客様の課題に合わせた包括的なソリューションを提供します。</p>
-        <span class="service-tag">DX支援</span>
+        <div class="service-step-text">
+          <div class="step-badge">STEP 03 &#8212; Design</div>
+          <h3>3Dモデリング・BIM化</h3>
+          <p>AutoCAD Plant 3D / Revit を活用し、点群データから精密な3Dモデルを構築。配管・機器・構造物をBIM/CIMモデルとして再現し、P&IDとの統合やアイソメ図の自動生成も行います。</p>
+          <ul class="merit-list">
+            <li>既存プラントの正確なデジタルツイン（3D複製）を構築</li>
+            <li>P&IDと3Dモデルの自動連携で設計精度を向上</li>
+            <li>配管アイソメ図・平面図の自動生成で図面作成工数を削減</li>
+            <li>改修・増設計画のシミュレーション基盤として活用可能</li>
+          </ul>
+        </div>
       </div>
+    </div>
+  </section>
 
+  <!-- STEP 04: Execute -->
+  <section class="service-step fade-up">
+    <div class="container">
+      <div class="service-step-grid">
+        <div class="service-step-visual">
+          <svg viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="14" y="14" width="24" height="24" rx="2" stroke="rgba(230,126,34,0.7)"/>
+            <rect x="42" y="42" width="24" height="24" rx="2" stroke="rgba(230,126,34,0.7)"/>
+            <rect x="26" y="26" width="28" height="28" rx="2"/>
+            <path d="M40 26v28M26 40h28" stroke="rgba(255,255,255,0.3)"/>
+            <circle cx="40" cy="40" r="4" stroke="rgba(230,126,34,0.9)" stroke-width="2"/>
+            <path d="M36 36l8 8M44 36l-8 8" stroke="rgba(230,126,34,0.6)"/>
+          </svg>
+        </div>
+        <div class="service-step-text">
+          <div class="step-badge">STEP 04 &#8212; Execute</div>
+          <h3>干渉チェック・施工検証</h3>
+          <p>Navisworks による仮想空間での干渉チェック。新設配管・機器と既存設備の干渉をデジタル上で事前検証し、施工段階での手戻りを未然に防止します。4Dシミュレーションで施工手順の最適化も可能です。</p>
+          <ul class="merit-list">
+            <li>施工前にデジタル上で干渉箇所を網羅的に検出</li>
+            <li>現場合わせによる手戻り工事を大幅に削減</li>
+            <li>4Dタイムラインで施工手順の可視化・最適化</li>
+            <li>関係者間のウォークスルーで合意形成をスムーズに</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 05: Operate -->
+  <section class="service-step fade-up">
+    <div class="container">
+      <div class="service-step-grid">
+        <div class="service-step-visual">
+          <svg viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M40 10v60" stroke="rgba(255,255,255,0.2)"/>
+            <path d="M10 40h60" stroke="rgba(255,255,255,0.2)"/>
+            <rect x="18" y="18" width="44" height="44" rx="22" stroke-dasharray="4 3"/>
+            <circle cx="40" cy="40" r="8"/>
+            <circle cx="40" cy="40" r="3" fill="rgba(230,126,34,0.8)" stroke="none"/>
+            <path d="M40 32v-8M48 40h8M40 48v8M32 40h-8" stroke="rgba(230,126,34,0.6)"/>
+            <circle cx="26" cy="26" r="2" fill="rgba(230,126,34,0.4)" stroke="none"/>
+            <circle cx="54" cy="26" r="2" fill="rgba(230,126,34,0.4)" stroke="none"/>
+            <circle cx="54" cy="54" r="2" fill="rgba(230,126,34,0.4)" stroke="none"/>
+            <circle cx="26" cy="54" r="2" fill="rgba(230,126,34,0.4)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="service-step-text">
+          <div class="step-badge">STEP 05 &#8212; Operate</div>
+          <h3>維持管理・デジタルツイン</h3>
+          <p>構築したデジタルツインデータを維持管理フェーズで活用。LDAR（Leak Detection and Repair）Compliance対応により、法令遵守と効率的な設備保全を同時に実現します。</p>
+          <ul class="merit-list">
+            <li>デジタルツインによる設備台帳のビジュアル管理</li>
+            <li>LDAR Compliance対応で漏洩検知・補修を体系化</li>
+            <li>定期点検のデジタル化で記録管理を効率化</li>
+            <li>経年変化のトラッキングで予防保全計画を支援</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== Flow Section ===== -->
   <section class="flow-section">
-    <h2 class="section-title">導入フロー</h2>
-    <div class="flow-container">
-
-      <div class="flow-step">
-        <div class="flow-number">1</div>
-        <div class="flow-label">ヒアリング</div>
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Flow</div>
+        <h2 class="section-title">導入フロー</h2>
+        <p class="section-desc">お問い合わせから納品まで、6つのステップでプロジェクトを推進します。</p>
       </div>
-      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-
-      <div class="flow-step">
-        <div class="flow-number">2</div>
-        <div class="flow-label">現場調査</div>
+      <div class="flow-grid fade-up">
+        <div class="flow-item">
+          <div class="flow-num">01</div>
+          <div class="flow-label">ヒアリング</div>
+          <div class="flow-sub">課題・ご要望の把握</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">02</div>
+          <div class="flow-label">現場調査</div>
+          <div class="flow-sub">対象範囲の確認</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">03</div>
+          <div class="flow-label">スキャン</div>
+          <div class="flow-sub">3Dレーザー計測</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">04</div>
+          <div class="flow-label">データ処理</div>
+          <div class="flow-sub">点群の合成・構造化</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">05</div>
+          <div class="flow-label">モデリング</div>
+          <div class="flow-sub">3D/BIMモデル作成</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-num">06</div>
+          <div class="flow-label">納品</div>
+          <div class="flow-sub">データ引き渡し・研修</div>
+        </div>
       </div>
-      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-
-      <div class="flow-step">
-        <div class="flow-number">3</div>
-        <div class="flow-label">スキャン</div>
-      </div>
-      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-
-      <div class="flow-step active">
-        <div class="flow-number">4</div>
-        <div class="flow-label">データ処理</div>
-      </div>
-      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-
-      <div class="flow-step">
-        <div class="flow-number">5</div>
-        <div class="flow-label">納品</div>
-      </div>
-      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-
-      <div class="flow-step">
-        <div class="flow-number">6</div>
-        <div class="flow-label">アフター<br>サポート</div>
-      </div>
-
     </div>
   </section>
 
   <!-- ===== ROI Comparison ===== -->
   <section class="roi-section">
-    <h2 class="section-title">ROI比較</h2>
-    <p class="section-sub">従来手法とJISOK 3Dスキャンの導入効果を比較</p>
-    <div class="roi-table-wrapper">
-      <table class="roi-table">
-        <thead>
-          <tr>
-            <th>比較項目</th>
-            <th>従来手法</th>
-            <th>JISOK 3Dスキャン</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>安全性</td>
-            <td class="dim">足場設置・高所作業が必要<br>作業員のリスクあり</td>
-            <td class="highlight">非接触計測で足場不要<br>安全性を大幅に向上</td>
-          </tr>
-          <tr>
-            <td>計測時間</td>
-            <td class="dim">数日〜数週間</td>
-            <td class="highlight">1エリア約1時間<br>工期を最大80%短縮</td>
-          </tr>
-          <tr>
-            <td>精度</td>
-            <td class="dim">手作業による計測誤差<br>数cm単位のばらつき</td>
-            <td class="highlight">&plusmn;2mmの高精度<br>97万点/秒の高密度データ</td>
-          </tr>
-          <tr>
-            <td>可視性</td>
-            <td class="dim">2D図面ベース<br>空間把握が困難</td>
-            <td class="highlight">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
-          </tr>
-          <tr>
-            <td>手戻り</td>
-            <td class="dim">施工後に干渉が発覚<br>高コストな手戻り</td>
-            <td class="highlight">事前の干渉チェックで<br>手戻りを大幅削減</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Comparison</div>
+        <h2 class="section-title">ROI比較：従来手法 vs JISOK 3Dスキャン</h2>
+        <p class="section-desc">導入による効果を5つの観点で比較します。</p>
+      </div>
+      <div class="table-wrapper fade-up">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>比較項目</th>
+              <th>従来手法</th>
+              <th>JISOK 3Dスキャン</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>安全性</td>
+              <td>足場設置・高所作業が必要<br>作業員の落下リスクあり</td>
+              <td class="highlight">非接触計測で足場不要<br>安全性を大幅に向上</td>
+            </tr>
+            <tr>
+              <td>計測時間</td>
+              <td>数日〜数週間</td>
+              <td class="highlight">1エリア約1時間<br>工期を最大80%短縮</td>
+            </tr>
+            <tr>
+              <td>精度</td>
+              <td>手作業による計測誤差<br>数cm単位のばらつき</td>
+              <td class="highlight">&plusmn;2mmの高精度<br>97万点/秒の高密度データ</td>
+            </tr>
+            <tr>
+              <td>可視性</td>
+              <td>2D図面ベース<br>空間把握が困難</td>
+              <td class="highlight">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
+            </tr>
+            <tr>
+              <td>手戻り</td>
+              <td>施工後に干渉が発覚<br>高コストな修正工事</td>
+              <td class="highlight">事前の干渉チェックで<br>手戻りを大幅削減</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
   <section class="cta-section">
-    <h2>プラントの3D化、はじめませんか？</h2>
-    <p>まずはお気軽にご相談ください。最適なソリューションをご提案いたします。</p>
-    <a href="contact.html" class="cta-btn">お問い合わせはこちら</a>
+    <div class="container fade-up">
+      <h2>プラントの3D化、はじめませんか？</h2>
+      <p>まずはお気軽にご相談ください。現場の課題に合わせた最適なソリューションをご提案いたします。</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
+        <a href="technology.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">技術・設備を見る</a>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="logo-mark">JISOK</span>
-        <p class="footer-desc">3Dレーザースキャンを活用したプラントエンジニアリング</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">Q</div>
+            JISOK
+          </div>
+          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+        </div>
+        <div>
+          <h4>サービス</h4>
+          <div class="footer-links">
+            <a href="service.html">サービス紹介</a>
+            <a href="technology.html">技術・設備</a>
+            <a href="works.html">導入事例</a>
+          </div>
+        </div>
+        <div>
+          <h4>会社情報</h4>
+          <div class="footer-links">
+            <a href="company.html">会社概要</a>
+            <a href="company.html#contact">お問い合わせ</a>
+          </div>
+        </div>
+        <div>
+          <h4>SNS</h4>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <ul>
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="service.html">サービス</a></li>
-          <li><a href="technology.html">技術・設備</a></li>
-          <li><a href="contact.html">お問い合わせ</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+        <span>FARO Focus is a registered trademark of FARO Technologies, Inc.</span>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- SP Fixed CTA -->
+  <div class="sp-fixed-cta">
+    <a href="company.html#contact" class="btn btn-primary">お問い合わせ</a>
+    <a href="tel:" class="btn btn-outline">電話する</a>
+  </div>
+
+  <script>
+    // Hamburger
+    function toggleNav() {
+      document.getElementById('nav').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-up animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

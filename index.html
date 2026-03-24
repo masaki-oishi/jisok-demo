@@ -7,17 +7,133 @@
   <meta name="description" content="FARO Focus × JISOKのエンジニアリングで実現する、3Dレーザースキャンによるプラント計測・設計・BIM化サービス。非接触・高精度・短工期でプラントDXを推進します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* === Hero Point Cloud Particles === */
+    .hero-particles {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .particle--cyan { background: var(--color-cyan); }
+    .particle--orange { background: var(--color-accent); }
+    .particle--white { background: rgba(255,255,255,0.5); }
+
+    @keyframes particleFloat {
+      0%   { opacity: 0; transform: translate(0, 0) scale(0.5); }
+      15%  { opacity: var(--p-opacity, 0.7); transform: translate(0, 0) scale(1); }
+      85%  { opacity: var(--p-opacity, 0.7); }
+      100% { opacity: 0; transform: translate(var(--drift-x, 8px), var(--drift-y, -25px)) scale(0.3); }
+    }
+
+    /* === Hero Scan Line === */
+    .hero-scanline {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-scanline::before {
+      content: '';
+      position: absolute;
+      top: -100%; left: 35%;
+      width: 1px; height: 250%;
+      background: linear-gradient(to bottom, transparent 0%, var(--color-cyan) 40%, transparent 80%);
+      opacity: 0.12;
+      animation: scanSweep 7s ease-in-out infinite;
+    }
+    .hero-scanline::after {
+      content: '';
+      position: absolute;
+      top: -80%; left: 60%;
+      width: 1px; height: 220%;
+      background: linear-gradient(to bottom, transparent 0%, var(--color-accent) 50%, transparent 90%);
+      opacity: 0.06;
+      animation: scanSweep 9s ease-in-out 2s infinite;
+    }
+    @keyframes scanSweep {
+      0%, 100% { transform: translateY(-15%) rotate(12deg); }
+      50%      { transform: translateY(15%) rotate(12deg); }
+    }
+
+    /* === Hero Blueprint Crosshair (SVG decoration) === */
+    .hero-crosshair {
+      position: absolute;
+      right: 18%;
+      top: 50%;
+      transform: translate(50%, -50%);
+      width: 260px; height: 260px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.08;
+      animation: crosshairRotate 30s linear infinite;
+    }
+    @keyframes crosshairRotate {
+      from { transform: translate(50%, -50%) rotate(0deg); }
+      to   { transform: translate(50%, -50%) rotate(360deg); }
+    }
+
+    /* === Stagger for Solutions 4-col === */
+    .solutions-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .solutions-grid .card { text-align: center; }
+    .solutions-grid .card .card-icon { margin: 0 auto 20px; }
+
+    /* === Stats cards === */
+    .stat-card {
+      padding: 32px 20px;
+      background: var(--color-bg-white);
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-accent));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(10,22,40,0.08);
+    }
+    .stat-card:hover::after { opacity: 1; }
+
+    /* === Mobile hide particles === */
+    @media (max-width: 900px) {
+      .hero-particles,
+      .hero-scanline,
+      .hero-crosshair { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- ============================================
+       HEADER
+       ============================================ -->
   <header class="header" id="header">
     <div class="container">
       <a href="index.html" class="logo">
         <div class="logo-icon">Q</div>
-        JISOK
+        <span>JISOK</span>
       </a>
       <nav class="nav" id="nav">
         <a href="index.html" class="active">トップ</a>
@@ -33,27 +149,48 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ============================================
+       HERO
+       ============================================ -->
   <section class="hero">
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          FARO Focus × JISOK Engineering
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          FARO Focus &times; JISOK Engineering
         </div>
         <h1>空間をデータ化し、<br><span>未来を設計する</span></h1>
         <p>FARO Focus レーザースキャナーと JISOKの設計力で実現する<br>
         3Dスキャンによる次世代のプラント更新・改修プロセス。<br>
         非接触・高精度・短工期で、デジタルツイン・トランスフォーメーションを。</p>
         <div class="hero-btns">
-          <a href="service.html" class="btn btn-primary btn-lg">サービスを見る →</a>
+          <a href="service.html" class="btn btn-primary btn-lg">サービスを見る &rarr;</a>
           <a href="company.html#contact" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">お問い合わせ</a>
         </div>
       </div>
     </div>
+
+    <!-- Point Cloud Particle Field -->
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <!-- Laser Scan Lines -->
+    <div class="hero-scanline"></div>
+
+    <!-- Blueprint Crosshair SVG -->
+    <svg class="hero-crosshair" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="#00d4ff" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="60" stroke="#00d4ff" stroke-width="0.3"/>
+      <circle cx="100" cy="100" r="30" stroke="#e67e22" stroke-width="0.5"/>
+      <line x1="100" y1="0" x2="100" y2="200" stroke="#00d4ff" stroke-width="0.3"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#00d4ff" stroke-width="0.3"/>
+      <line x1="29" y1="29" x2="171" y2="171" stroke="#00d4ff" stroke-width="0.15" stroke-dasharray="4 6"/>
+      <line x1="171" y1="29" x2="29" y2="171" stroke="#00d4ff" stroke-width="0.15" stroke-dasharray="4 6"/>
+    </svg>
   </section>
 
-  <!-- Problems -->
+  <!-- ============================================
+       PROBLEMS
+       ============================================ -->
   <section style="background:#fff;">
     <div class="container">
       <div class="section-header fade-up">
@@ -62,21 +199,21 @@
         <p class="section-desc">図面がない。足場が組めない。手戻りを無くしたい。<br>このプラント特有の課題を、デジタルツイン・テクノロジーで根本から解決します。</p>
       </div>
       <div class="card-grid">
-        <div class="card fade-up">
+        <div class="card fade-up" data-delay="1">
           <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="4" y1="12" x2="20" y2="12" stroke="#e67e22" stroke-width="3"/></svg>
           </div>
           <h3>正確な図面の喪失と老朽化</h3>
           <p>稼働から年月が経ち、度重なる改修で「現況と図面が全く一致しない」。更新計画の度に膨大な確認作業と図面復元コストが発生しています。</p>
         </div>
-        <div class="card fade-up">
+        <div class="card fade-up" data-delay="2">
           <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <h3>アナログ計測の限界と危険性</h3>
           <p>高所や複雑に入り組んだ配管廻りの人員計測には足場仮設が必須。多大な時間とコストに加え、重大な安全面でのリスクを伴います。</p>
         </div>
-        <div class="card fade-up">
+        <div class="card fade-up" data-delay="3">
           <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
@@ -87,38 +224,40 @@
     </div>
   </section>
 
-  <!-- Solutions -->
+  <!-- ============================================
+       SOLUTIONS
+       ============================================ -->
   <section>
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Solutions</div>
-        <h2 class="section-title">JISOK × FARO Focus が選ばれる理由</h2>
-        <p class="section-desc">ハードウェアの「性能」× 専門家の「実装力」= デジタルツイン・トランスフォーメーション</p>
+        <h2 class="section-title">JISOK &times; FARO Focus が選ばれる理由</h2>
+        <p class="section-desc">ハードウェアの「性能」&times; 専門家の「実装力」= デジタルツイン・トランスフォーメーション</p>
       </div>
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-        <div class="card fade-up" style="text-align:center;">
-          <div class="card-icon" style="margin:0 auto 20px;">
+      <div class="card-grid solutions-grid">
+        <div class="card fade-up" data-delay="1">
+          <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><path d="M9 12l2 2 4-4"/></svg>
           </div>
           <h3>安全性</h3>
           <p>非接触計測。足場不要で地上から安全にスキャン可能（見通し15m以内）。</p>
         </div>
-        <div class="card fade-up" style="text-align:center;">
-          <div class="card-icon" style="margin:0 auto 20px;background:linear-gradient(135deg,var(--color-accent),var(--color-accent-hover));">
+        <div class="card fade-up" data-delay="2">
+          <div class="card-icon accent">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <h3>スピード</h3>
-          <p>1エリア（10×5×7m）あたり約1時間で完了。現場作業時間を劇的に短縮。</p>
+          <p>1エリア（10&times;5&times;7m）あたり約1時間で完了。現場作業時間を劇的に短縮。</p>
         </div>
-        <div class="card fade-up" style="text-align:center;">
-          <div class="card-icon" style="margin:0 auto 20px;">
+        <div class="card fade-up" data-delay="3">
+          <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           </div>
           <h3>精度</h3>
-          <p>最大97.6万点/秒のキャプチャ。10m地点で±2mmの超高精度を担保。</p>
+          <p>最大97.6万点/秒のキャプチャ。10m地点で&plusmn;2mmの超高精度を担保。</p>
         </div>
-        <div class="card fade-up" style="text-align:center;">
-          <div class="card-icon" style="margin:0 auto 20px;background:linear-gradient(135deg,var(--color-accent),var(--color-accent-hover));">
+        <div class="card fade-up" data-delay="4">
+          <div class="card-icon accent">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           <h3>可視性</h3>
@@ -128,7 +267,9 @@
     </div>
   </section>
 
-  <!-- Workflow -->
+  <!-- ============================================
+       WORKFLOW
+       ============================================ -->
   <section style="background:#fff;">
     <div class="container">
       <div class="section-header fade-up">
@@ -152,7 +293,7 @@
           <div class="step-tool">Plant 3D / Revit</div>
           <div class="step-num accent">03</div>
           <h4>Design</h4>
-          <p>基本・詳細設計<br>P&IDと3Dモデルの統合</p>
+          <p>基本・詳細設計<br>P&amp;IDと3Dモデルの統合</p>
         </div>
         <div class="step">
           <div class="step-tool">Navisworks / JISOK</div>
@@ -170,7 +311,9 @@
     </div>
   </section>
 
-  <!-- Stats -->
+  <!-- ============================================
+       STATS / BY THE NUMBERS
+       ============================================ -->
   <section>
     <div class="container">
       <div class="section-header fade-up">
@@ -178,19 +321,19 @@
         <h2 class="section-title">数字で見るJISOKの技術力</h2>
       </div>
       <div class="stats fade-up">
-        <div>
+        <div class="stat-card">
           <div class="stat-num">350<span class="stat-unit">m</span></div>
           <div class="stat-label">最大計測距離</div>
         </div>
-        <div>
+        <div class="stat-card">
           <div class="stat-num">976,000<span class="stat-unit">点/秒</span></div>
           <div class="stat-label">最大測定速度</div>
         </div>
-        <div>
-          <div class="stat-num">±2<span class="stat-unit">mm</span></div>
+        <div class="stat-card">
+          <div class="stat-num">&plusmn;2<span class="stat-unit">mm</span></div>
           <div class="stat-label">10m地点での精度</div>
         </div>
-        <div>
+        <div class="stat-card">
           <div class="stat-num">IP54</div>
           <div class="stat-label">防塵・防水性能</div>
         </div>
@@ -198,7 +341,9 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ============================================
+       CTA
+       ============================================ -->
   <section class="cta-section">
     <div class="container fade-up">
       <h2>まずはお気軽にご相談ください</h2>
@@ -210,7 +355,9 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -219,7 +366,7 @@
             <div class="logo-icon">Q</div>
             JISOK
           </div>
-          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+          <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
         </div>
         <div>
           <h4>サービス</h4>
@@ -258,19 +405,22 @@
     <a href="tel:" class="btn btn-outline">電話する</a>
   </div>
 
+  <!-- ============================================
+       SCRIPTS
+       ============================================ -->
   <script>
-    // Hamburger
+    // --- Hamburger Toggle ---
     function toggleNav() {
       document.getElementById('nav').classList.toggle('open');
       document.getElementById('hamburger').classList.toggle('active');
     }
 
-    // Header scroll
+    // --- Header Scroll Shadow ---
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Fade-up animation
+    // --- Fade-up IntersectionObserver ---
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -280,6 +430,43 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // --- Point Cloud Particle Generator ---
+    (function initParticles() {
+      const container = document.getElementById('heroParticles');
+      if (!container) return;
+
+      const PARTICLE_COUNT = 60;
+      const colors = ['cyan', 'cyan', 'cyan', 'orange', 'white'];
+      const frag = document.createDocumentFragment();
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const dot = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 3 + 1.5;          // 1.5px ~ 4.5px
+        const x = Math.random() * 100;                  // % from left
+        const y = Math.random() * 100;                  // % from top
+        const duration = Math.random() * 6 + 5;         // 5s ~ 11s
+        const delay = Math.random() * 8;                // stagger start
+        const driftX = (Math.random() - 0.5) * 30;      // px
+        const driftY = (Math.random() - 0.5) * 40;      // px
+        const opacity = Math.random() * 0.5 + 0.25;     // 0.25 ~ 0.75
+
+        dot.className = 'particle particle--' + color;
+        dot.style.cssText =
+          'width:' + size + 'px;' +
+          'height:' + size + 'px;' +
+          'left:' + x + '%;' +
+          'top:' + y + '%;' +
+          '--drift-x:' + driftX + 'px;' +
+          '--drift-y:' + driftY + 'px;' +
+          '--p-opacity:' + opacity + ';' +
+          'animation:particleFloat ' + duration + 's ' + delay + 's infinite;';
+
+        frag.appendChild(dot);
+      }
+      container.appendChild(frag);
+    })();
   </script>
 
 </body>
