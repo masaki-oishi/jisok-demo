@@ -10,178 +10,242 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Page Hero ===== */
+    /* ===== Cinematic Corporate — Technology Page ===== */
+
+    /* --- Page Hero (Dark) --- */
     .page-hero {
-      background: #f8f9fb;
-      padding: 140px 0 80px;
-      text-align: left;
+      position: relative;
+      min-height: 52vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 0 72px;
+      background: var(--color-primary);
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/precision-05.jpg') center/cover no-repeat;
+      opacity: 0.2;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,27,42,0.6) 0%, rgba(13,27,42,0.95) 100%);
+    }
+    .page-hero .container {
+      position: relative;
+      z-index: 2;
+      padding-top: calc(var(--header-height) + 48px);
     }
     .page-hero .breadcrumb {
-      font-size: 0.82rem;
-      color: var(--color-text-light);
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
     }
     .page-hero .breadcrumb a {
-      color: var(--color-text-light);
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
+      transition: color 0.3s;
     }
-    .page-hero .breadcrumb a:hover {
-      color: var(--color-accent);
-    }
+    .page-hero .breadcrumb a:hover { color: var(--color-accent); }
     .page-hero h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: clamp(3.5rem, 8vw, 6rem);
       font-weight: 900;
-      color: var(--color-primary);
+      color: #fff;
       letter-spacing: 0.04em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .page-hero > .container > p {
-      font-size: 1.05rem;
-      color: var(--color-text-light);
-      max-width: 520px;
-      line-height: 1.8;
-    }
-
-    /* ===== FARO Hero Section ===== */
-    .faro-hero {
-      background: #fff;
-      padding: 100px 0;
-    }
-    .faro-hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .faro-hero-badge {
-      display: inline-block;
-      background: rgba(230,126,34,0.08);
-      border: 1px solid rgba(230,126,34,0.2);
-      color: var(--color-accent);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 16px;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
+      line-height: 1.05;
       margin-bottom: 20px;
     }
-    .faro-hero-inner h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 900;
-      color: var(--color-primary);
-      margin-bottom: 12px;
+    .page-hero h1 span {
+      display: block;
+      font-size: 0.18em;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 8px;
     }
-    .faro-hero-inner > p {
-      font-size: 0.92rem;
-      color: var(--color-text-light);
-      line-height: 1.8;
-      max-width: 600px;
-      margin: 0 auto 48px;
+    .page-hero > .container > p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 540px;
+      line-height: 1.9;
     }
-    .faro-specs {
+
+    /* --- Cinematic Section Base --- */
+    .cin-section {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cin-section.is-dark {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .cin-section.is-light {
+      background: #fff;
+      color: var(--color-text);
+    }
+    .cin-section .section-label {
+      color: var(--color-accent);
+    }
+    .is-dark .section-title { color: #fff; }
+    .is-dark .section-desc { color: rgba(255,255,255,0.6); }
+
+    /* --- FARO Focus Intro (Light) --- */
+    .faro-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      max-width: 720px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
     }
-    .faro-spec {
-      text-align: center;
-      padding: 32px 16px;
-      background: #f8f9fb;
-      border-radius: 12px;
+    .faro-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
-    .faro-spec-value {
+    .faro-stat {
+      border-left: 3px solid var(--color-accent);
+      padding-left: 24px;
+    }
+    .faro-stat-value {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 900;
       color: var(--color-primary);
       line-height: 1.1;
-      margin-bottom: 4px;
     }
-    .faro-spec-unit {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
+    .faro-stat-value small {
+      font-size: 0.35em;
       font-weight: 600;
-      color: var(--color-primary);
+      vertical-align: middle;
     }
-    .faro-spec-label {
-      font-size: 0.75rem;
+    .faro-stat-label {
+      font-size: 0.82rem;
       color: var(--color-text-light);
-      margin-top: 6px;
+      margin-top: 4px;
+    }
+    .faro-image {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .faro-image img {
+      width: 100%;
+      display: block;
+    }
+    .faro-intro-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+    .faro-intro-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+    .faro-intro-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+    }
+    .faro-intro-desc {
+      font-size: 0.92rem;
+      color: var(--color-text-light);
+      line-height: 2;
+      margin-bottom: 40px;
+      max-width: 460px;
     }
 
-    /* ===== Lineup Section ===== */
-    .lineup-section {
-      background: #f8f9fb;
-      padding: 100px 0;
+    /* --- Lineup Section (Dark) --- */
+    .lineup-hero-image {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+    .lineup-hero-image img {
+      width: 100%;
+      display: block;
     }
     .lineup-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      margin-bottom: 40px;
     }
     .lineup-card {
-      background: #fff;
-      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--color-border);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .lineup-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(13,27,42,0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
     }
     .lineup-card-header {
       padding: 28px 24px 20px;
       color: #fff;
     }
     .lineup-card.is-premium-max .lineup-card-header {
-      background: linear-gradient(135deg, #0d1b2a, #1a365d);
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .lineup-card.is-premium .lineup-card-header {
-      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .lineup-card.is-core .lineup-card-header {
-      background: linear-gradient(135deg, var(--color-accent), #f39c12);
+      background: linear-gradient(135deg, rgba(230,126,34,0.2), rgba(230,126,34,0.06));
+      border-bottom: 1px solid rgba(230,126,34,0.15);
     }
-    .lineup-card-header .lineup-badge {
+    .lineup-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.2);
-      font-size: 0.7rem;
+      background: rgba(255,255,255,0.12);
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 3px 12px;
+      padding: 3px 14px;
       border-radius: 20px;
       margin-bottom: 10px;
+      color: rgba(255,255,255,0.8);
     }
     .lineup-card-header h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
     }
-    .lineup-card-header .lineup-range {
+    .lineup-range {
       font-family: 'Outfit', sans-serif;
       font-size: 2.2rem;
       font-weight: 900;
       line-height: 1.2;
       margin-top: 8px;
     }
-    .lineup-card-header .lineup-range span {
-      font-size: 0.8rem;
+    .lineup-range span {
+      font-size: 0.75rem;
       font-weight: 400;
-      opacity: 0.7;
+      opacity: 0.6;
     }
     .lineup-card-body {
       padding: 24px;
     }
     .lineup-card-body p {
       font-size: 0.86rem;
-      color: var(--color-text-light);
+      color: rgba(255,255,255,0.6);
       line-height: 1.8;
       margin-bottom: 16px;
     }
@@ -192,9 +256,9 @@
     }
     .lineup-features li {
       padding: 8px 0;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       font-size: 0.84rem;
-      color: var(--color-text);
+      color: rgba(255,255,255,0.75);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -208,76 +272,46 @@
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .lineup-common {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px 32px;
-      border: 1px solid var(--color-border);
-      text-align: center;
-      max-width: 480px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .lineup-common-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--color-primary);
-    }
-    .lineup-common-icon {
-      width: 36px;
-      height: 36px;
-      background: #f8f9fb;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lineup-common-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: var(--color-accent);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
 
-    /* ===== Specs Detail ===== */
-    .specs-section {
-      background: #fff;
-      padding: 100px 0;
-    }
+    /* --- Specs Detail (Light) --- */
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .specs-image {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .specs-image img {
+      width: 100%;
+      display: block;
+    }
+    .specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .spec-item {
+      display: flex;
+      align-items: center;
       gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--color-border);
     }
-    .spec-card {
-      text-align: center;
-      padding: 32px 16px;
-      background: #f8f9fb;
-      border-radius: 12px;
-    }
-    .spec-card-icon {
-      width: 48px;
-      height: 48px;
+    .spec-item:last-child { border-bottom: none; }
+    .spec-item-icon {
+      width: 52px;
+      height: 52px;
       background: var(--color-primary);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 16px;
+      flex-shrink: 0;
     }
-    .spec-card-icon svg {
+    .spec-item-icon svg {
       width: 22px;
       height: 22px;
       fill: none;
@@ -286,59 +320,73 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .spec-card-value {
+    .spec-item-body {}
+    .spec-item-value {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 900;
       color: var(--color-accent);
-      margin-bottom: 6px;
+      margin-bottom: 2px;
     }
-    .spec-card-label {
-      font-size: 0.78rem;
+    .spec-item-label {
+      font-size: 0.8rem;
       color: var(--color-text-light);
       line-height: 1.5;
     }
 
-    /* ===== Pipeline ===== */
-    .pipeline-section {
-      background: #f8f9fb;
-      padding: 100px 0;
+    /* --- Pipeline (Dark) --- */
+    .pipeline-image {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+    .pipeline-image img {
+      width: 100%;
+      display: block;
     }
     .pipeline-flow {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      gap: 0;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
     }
     .pipeline-step {
-      background: #fff;
-      border-radius: 12px;
-      padding: 28px 20px;
-      border: 1px solid var(--color-border);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px 16px;
       text-align: center;
-      width: 170px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      position: relative;
     }
+    .pipeline-step::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid var(--color-accent);
+      border-right: 2px solid var(--color-accent);
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .pipeline-step:last-child::after { display: none; }
     .pipeline-step-num {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       color: var(--color-accent);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
     }
     .pipeline-step-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--color-primary);
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      margin: 0 auto 14px;
     }
     .pipeline-step-icon svg {
       width: 22px;
@@ -350,53 +398,36 @@
       stroke-linejoin: round;
     }
     .pipeline-step-icon.is-accent {
-      background: var(--color-accent);
+      background: rgba(230,126,34,0.15);
+    }
+    .pipeline-step-icon.is-accent svg {
+      stroke: var(--color-accent);
     }
     .pipeline-step h4 {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
-      color: var(--color-primary);
+      color: #fff;
       margin-bottom: 4px;
     }
     .pipeline-step .pipeline-tool {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--color-accent);
       font-weight: 600;
     }
-    .pipeline-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-    }
-    .pipeline-arrow svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: var(--color-accent);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.5;
-    }
 
-    /* ===== Video ===== */
-    .video-section {
-      background: #fff;
-      padding: 100px 0;
-    }
+    /* --- Video (Light) --- */
     .video-container {
-      max-width: 800px;
+      max-width: 880px;
       margin: 0 auto;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--color-border);
+      box-shadow: 0 8px 40px rgba(13,27,42,0.08);
     }
     .video-placeholder {
       position: relative;
       padding-bottom: 56.25%;
-      background: #f0f2f5;
+      background: #0d1b2a;
     }
     .video-placeholder-inner {
       position: absolute;
@@ -405,60 +436,101 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: var(--color-text-light);
     }
     .video-play-btn {
-      width: 72px;
-      height: 72px;
-      background: var(--color-primary);
+      width: 80px;
+      height: 80px;
+      background: var(--color-accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
       cursor: pointer;
-      transition: transform 0.25s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .video-play-btn:hover {
-      transform: scale(1.06);
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(230,126,34,0.3);
     }
     .video-play-btn svg {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       fill: #fff;
-      margin-left: 3px;
+      margin-left: 4px;
     }
     .video-placeholder-inner p {
-      font-size: 0.85rem;
-      opacity: 0.6;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
     }
-    .video-container iframe {
+
+    /* --- CTA Section (Dark) --- */
+    .cta-section {
+      background: linear-gradient(135deg, #0a1628, #162d50);
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      border: none;
+      top: -50%;
+      left: -20%;
+      width: 140%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(230,126,34,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section .container { position: relative; z-index: 2; }
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
     }
 
-    /* ===== CTA ===== */
-    .cta-section-tech {
-      background: #f8f9fb;
-    }
-
-    /* ===== Responsive ===== */
+    /* --- Responsive --- */
     @media (max-width: 960px) {
-      .faro-specs { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-      .lineup-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; margin-bottom: 40px; }
-      .specs-grid { grid-template-columns: repeat(3, 1fr); }
+      .cin-section { padding: 80px 0; }
+      .faro-grid,
+      .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .lineup-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .pipeline-flow {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .pipeline-step:nth-child(3)::after { display: none; }
     }
     @media (max-width: 768px) {
-      .specs-grid { grid-template-columns: repeat(2, 1fr); }
-      .pipeline-flow { flex-direction: column; align-items: center; gap: 8px; }
-      .pipeline-arrow { transform: rotate(90deg); width: auto; }
-      .pipeline-step { width: 100%; max-width: 240px; }
+      .pipeline-flow {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .pipeline-step::after { display: none; }
     }
     @media (max-width: 480px) {
-      .faro-specs { grid-template-columns: 1fr; max-width: 240px; margin: 0 auto; }
-      .specs-grid { grid-template-columns: 1fr; }
-      .lineup-common { flex-direction: column; }
+      .page-hero { min-height: 44vh; padding-bottom: 48px; }
+      .pipeline-flow {
+        grid-template-columns: 1fr;
+        max-width: 260px;
+        margin: 0 auto;
+      }
     }
   </style>
 </head>
@@ -480,53 +552,57 @@
     </div>
   </header>
 
-  <!-- Page Hero -->
+  <!-- ===== Page Hero (Dark) ===== -->
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">トップ</a> ＞ 技術・設備</div>
-      <h1>Technology</h1>
-      <p>JISOKが使っている計測機材とソフトウェアをご紹介します。</p>
+      <div class="breadcrumb"><a href="index.html">トップ</a> ／ 技術・設備</div>
+      <h1><span>Equipment &amp; Workflow</span>Technology</h1>
+      <p>JISOKが使っている計測機材とソフトウェア、そしてスキャンから納品までの技術フローをご紹介します。</p>
     </div>
   </section>
 
-  <!-- ===== FARO Focus Specs ===== -->
-  <section class="faro-hero fade-up">
+  <!-- ===== 2. FARO Focus 紹介 (Light) ===== -->
+  <section class="cin-section is-light fade-up">
     <div class="container">
-      <div class="faro-hero-inner">
-        <div class="faro-hero-badge">FARO Technologies</div>
-        <h2>FARO Focus Series</h2>
-        <p>世界中のプラント現場で使われている高速・高精度の3Dレーザースキャナーです。過酷な環境でも安定して点群データを取得でき、プラントのデジタルツイン構築に欠かせない機材です。</p>
-        <div class="faro-specs">
-          <div class="faro-spec">
-            <div class="faro-spec-value">350<span style="font-size:0.5em;font-weight:600;">m</span></div>
-            <div class="faro-spec-unit">最大計測距離</div>
-            <div class="faro-spec-label">Premium Max基準</div>
+      <div class="faro-grid">
+        <div>
+          <div class="faro-intro-label">FARO Technologies</div>
+          <h2 class="faro-intro-title">FARO Focus Series</h2>
+          <p class="faro-intro-desc">世界中のプラント現場で使われている高速・高精度の3Dレーザースキャナー。過酷な環境でも安定して点群データを取得でき、デジタルツイン構築に欠かせない機材です。</p>
+          <div class="faro-stats">
+            <div class="faro-stat">
+              <div class="faro-stat-value">350<small>m</small></div>
+              <div class="faro-stat-label">最大計測距離（Premium Max基準）</div>
+            </div>
+            <div class="faro-stat">
+              <div class="faro-stat-value">976,000</div>
+              <div class="faro-stat-label">点/秒 — 最大スキャン速度</div>
+            </div>
+            <div class="faro-stat">
+              <div class="faro-stat-value">&plusmn;2<small>mm</small></div>
+              <div class="faro-stat-label">計測精度（10mレンジ時）</div>
+            </div>
           </div>
-          <div class="faro-spec">
-            <div class="faro-spec-value">976,000</div>
-            <div class="faro-spec-unit">点/秒</div>
-            <div class="faro-spec-label">最大スキャン速度</div>
-          </div>
-          <div class="faro-spec">
-            <div class="faro-spec-value">&plusmn;2.0<span style="font-size:0.5em;font-weight:600;">mm</span></div>
-            <div class="faro-spec-unit">計測精度</div>
-            <div class="faro-spec-label">10mレンジ時</div>
-          </div>
+        </div>
+        <div class="faro-image">
+          <img src="images/precision-05.jpg" alt="FARO Focus レーザースキャナー" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Lineup ===== -->
-  <section class="lineup-section">
+  <!-- ===== 3. 機種比較 (Dark) ===== -->
+  <section class="cin-section is-dark fade-up">
     <div class="container">
-      <div class="section-header fade-up">
+      <div class="lineup-hero-image">
+        <img src="images/blueprint-05.jpg" alt="FARO Focus 機種ラインナップ" loading="lazy">
+      </div>
+      <div class="section-header fade-up" style="text-align:center; margin-bottom:48px;">
         <div class="section-label">Lineup</div>
         <h2 class="section-title">機種ラインナップ</h2>
         <p class="section-desc">用途・規模に応じて最適なスキャナーを選定します</p>
       </div>
       <div class="lineup-grid">
-
         <!-- Premium Max -->
         <div class="lineup-card is-premium-max fade-up">
           <div class="lineup-card-header">
@@ -543,7 +619,6 @@
             </ul>
           </div>
         </div>
-
         <!-- Premium -->
         <div class="lineup-card is-premium fade-up">
           <div class="lineup-card-header">
@@ -560,7 +635,6 @@
             </ul>
           </div>
         </div>
-
         <!-- Core -->
         <div class="lineup-card is-core fade-up">
           <div class="lineup-card-header">
@@ -577,85 +651,85 @@
             </ul>
           </div>
         </div>
-
-      </div>
-
-      <!-- Common -->
-      <div class="lineup-common fade-up">
-        <div class="lineup-common-item">
-          <div class="lineup-common-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h12"/></svg>
-          </div>
-          512GB SSD
-        </div>
-        <div class="lineup-common-item">
-          <div class="lineup-common-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          FARO Stream 対応
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Specs Detail ===== -->
-  <section class="specs-section">
+  <!-- ===== 4. スペック詳細 (Light) ===== -->
+  <section class="cin-section is-light fade-up">
     <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-label">Specifications</div>
-        <h2 class="section-title">スペック詳細</h2>
-        <p class="section-desc">過酷な現場環境にも対応する堅牢な設計と高い計測性能</p>
-      </div>
       <div class="specs-grid">
-        <div class="spec-card fade-up">
-          <div class="spec-card-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
-          </div>
-          <div class="spec-card-value">1550nm</div>
-          <div class="spec-card-label">レーザー波長<br>クラス1（人体に安全）</div>
+        <div class="specs-image">
+          <img src="images/blueprint-04.jpg" alt="FARO Focus S-350 スペック詳細" loading="lazy">
         </div>
-        <div class="spec-card fade-up">
-          <div class="spec-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div>
+          <div class="faro-intro-label">Specifications</div>
+          <h2 class="faro-intro-title">スペック詳細</h2>
+          <p class="faro-intro-desc" style="margin-bottom:8px;">過酷な現場環境にも対応する堅牢な設計と高い計測性能</p>
+          <div class="specs-list">
+            <div class="spec-item">
+              <div class="spec-item-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+              </div>
+              <div class="spec-item-body">
+                <div class="spec-item-value">1550nm</div>
+                <div class="spec-item-label">レーザー波長 — クラス1（人体に安全）</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="spec-item-body">
+                <div class="spec-item-value">IP54</div>
+                <div class="spec-item-label">防塵・防水等級 — 屋外現場でも安心</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div class="spec-item-body">
+                <div class="spec-item-value">165MP</div>
+                <div class="spec-item-label">HDRカメラ解像度 — 高精細テクスチャ取得</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M10 20H4v-6"/><path d="M4 20l10-10"/></svg>
+              </div>
+              <div class="spec-item-body">
+                <div class="spec-item-value">-20~55&#176;C</div>
+                <div class="spec-item-label">動作温度範囲 — 極端な環境下にも対応</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+              </div>
+              <div class="spec-item-body">
+                <div class="spec-item-value">On-Site</div>
+                <div class="spec-item-label">オンサイト補正機能 — 現場で即座にデータ検証</div>
+              </div>
+            </div>
           </div>
-          <div class="spec-card-value">IP54</div>
-          <div class="spec-card-label">防塵・防水等級<br>屋外現場でも安心</div>
-        </div>
-        <div class="spec-card fade-up">
-          <div class="spec-card-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <div class="spec-card-value">165MP</div>
-          <div class="spec-card-label">HDRカメラ解像度<br>高精細テクスチャ取得</div>
-        </div>
-        <div class="spec-card fade-up">
-          <div class="spec-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M10 20H4v-6"/><path d="M4 20l10-10"/></svg>
-          </div>
-          <div class="spec-card-value">-20~55&#176;C</div>
-          <div class="spec-card-label">動作温度範囲<br>極端な環境下にも対応</div>
-        </div>
-        <div class="spec-card fade-up">
-          <div class="spec-card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-          </div>
-          <div class="spec-card-value">On-Site</div>
-          <div class="spec-card-label">オンサイト補正機能<br>現場で即座にデータ検証</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Data Pipeline ===== -->
-  <section class="pipeline-section">
+  <!-- ===== 5. データパイプライン (Dark) ===== -->
+  <section class="cin-section is-dark fade-up">
     <div class="container">
-      <div class="section-header fade-up">
+      <div class="pipeline-image">
+        <img src="images/blueprint-03.jpg" alt="データパイプライン" loading="lazy">
+      </div>
+      <div class="section-header fade-up" style="text-align:center; margin-bottom:48px;">
         <div class="section-label">Data Pipeline</div>
         <h2 class="section-title">スキャンから納品までの技術フロー</h2>
         <p class="section-desc">現場計測から運用まで、一気通貫のワークフロー</p>
       </div>
       <div class="pipeline-flow">
-
         <div class="pipeline-step fade-up">
           <span class="pipeline-step-num">STEP 01</span>
           <div class="pipeline-step-icon">
@@ -664,11 +738,6 @@
           <h4>Survey</h4>
           <span class="pipeline-tool">FARO Focus</span>
         </div>
-
-        <div class="pipeline-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-
         <div class="pipeline-step fade-up">
           <span class="pipeline-step-num">STEP 02</span>
           <div class="pipeline-step-icon">
@@ -677,11 +746,6 @@
           <h4>Process</h4>
           <span class="pipeline-tool">ReCap</span>
         </div>
-
-        <div class="pipeline-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-
         <div class="pipeline-step fade-up">
           <span class="pipeline-step-num">STEP 03</span>
           <div class="pipeline-step-icon">
@@ -690,11 +754,6 @@
           <h4>Design</h4>
           <span class="pipeline-tool">Plant 3D</span>
         </div>
-
-        <div class="pipeline-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-
         <div class="pipeline-step fade-up">
           <span class="pipeline-step-num">STEP 04</span>
           <div class="pipeline-step-icon">
@@ -703,11 +762,6 @@
           <h4>Execute</h4>
           <span class="pipeline-tool">Navisworks</span>
         </div>
-
-        <div class="pipeline-arrow">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-
         <div class="pipeline-step fade-up">
           <span class="pipeline-step-num">STEP 05</span>
           <div class="pipeline-step-icon is-accent">
@@ -716,18 +770,17 @@
           <h4>Operate</h4>
           <span class="pipeline-tool">LDAR</span>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===== Video ===== -->
-  <section class="video-section">
+  <!-- ===== 6. YouTube動画 (Light) ===== -->
+  <section class="cin-section is-light fade-up">
     <div class="container">
-      <div class="section-header fade-up">
+      <div class="section-header fade-up" style="text-align:center; margin-bottom:48px;">
         <div class="section-label">Movie</div>
-        <h2 class="section-title">動画で見るJISOKの技術</h2>
-        <p class="section-desc">3Dレーザースキャンの実際の作業風景をご覧ください</p>
+        <h2 class="section-title" style="color:var(--color-primary);">動画で見るJISOKの技術</h2>
+        <p class="section-desc" style="color:var(--color-text-light);">3Dレーザースキャンの実際の作業風景をご覧ください</p>
       </div>
       <div class="video-container fade-up">
         <div class="video-placeholder">
@@ -742,7 +795,7 @@
     </div>
   </section>
 
-  <!-- ===== CTA ===== -->
+  <!-- ===== CTA (Dark) ===== -->
   <section class="cta-section">
     <div class="container fade-up">
       <h2>機材や技術について、お気軽にご質問ください</h2>
@@ -814,12 +867,14 @@
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Fade-up animation
+    // Fade-up animation (IntersectionObserver)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 

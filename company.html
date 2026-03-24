@@ -10,59 +10,87 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Company Page — Editorial Minimal ===== */
+    /* ===== Company Page — Cinematic Corporate (TYO Statement Style) ===== */
 
-    /* Page Hero Override */
+    /* ---------- Page Hero (DARK) ---------- */
     .page-hero {
-      background: #f8f9fb;
-      padding: 160px 0 72px;
+      position: relative;
+      background: #0a0a0a;
+      padding: 200px 0 120px;
       text-align: left;
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
     }
-    .page-hero::before { display: none; }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/precision-01.jpg') center/cover no-repeat;
+      opacity: 0.1;
+      z-index: 0;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+      z-index: 1;
+    }
+    .page-hero .container { position: relative; z-index: 2; }
     .page-hero .breadcrumb {
-      color: var(--color-text-light);
-      margin-bottom: 20px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
     .page-hero .breadcrumb a {
-      color: var(--color-text-light);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color var(--transition);
     }
     .page-hero .breadcrumb a:hover { color: var(--color-accent); }
     .page-hero h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(3.6rem, 8vw, 7rem);
       font-weight: 900;
-      color: var(--color-primary);
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+      line-height: 1;
     }
     .page-hero p {
-      color: var(--color-text-light);
+      color: rgba(255,255,255,0.55);
       font-size: 1.05rem;
-      max-width: none;
+      max-width: 600px;
       margin: 0;
+      line-height: 1.9;
     }
 
-    /* Company Info Section */
-    .company-section { background: #fff; }
+    /* ---------- Company Info (LIGHT) ---------- */
+    .company-section {
+      background: #fff;
+      padding: 120px 0;
+    }
     .company-dl {
-      max-width: 840px;
+      max-width: 880px;
       margin: 0 auto;
+      border-radius: 4px;
+      overflow: hidden;
     }
     .company-dl-row {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      border-bottom: 1px solid var(--color-border);
+      grid-template-columns: 220px 1fr;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-    .company-dl-row:nth-child(even) {
-      background: #f8f9fb;
-    }
-    .company-dl-row:last-child {
-      border-bottom: none;
-    }
+    .company-dl-row:nth-child(odd) { background: #fff; }
+    .company-dl-row:nth-child(even) { background: #f5f5f5; }
+    .company-dl-row:last-child { border-bottom: none; }
     .company-dl-row dt {
-      padding: 20px 28px;
+      padding: 22px 32px;
       font-weight: 700;
       color: var(--color-primary);
       font-size: 0.9rem;
@@ -70,76 +98,102 @@
       align-items: flex-start;
     }
     .company-dl-row dd {
-      padding: 20px 28px;
+      padding: 22px 32px;
       color: var(--color-text);
       line-height: 1.9;
       font-size: 0.95rem;
     }
 
-    /* Message Section */
-    .message-section { background: #f8f9fb; }
+    /* ---------- CEO Message (DARK) ---------- */
+    .message-section {
+      background: #0a0a0a;
+      padding: 120px 0;
+    }
+    .message-section .section-header .section-label { color: rgba(255,255,255,0.3); }
+    .message-section .section-header .section-title { color: #fff; }
     .message-card {
-      max-width: 840px;
+      max-width: 880px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 32px;
+      grid-template-columns: 100px 1fr;
+      gap: 40px;
       align-items: start;
     }
     .message-avatar {
-      width: 80px;
-      height: 80px;
-      background: #eef0f4;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.08);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.1);
     }
     .message-avatar svg {
-      width: 36px;
-      height: 36px;
-      color: #b0b8c9;
+      width: 44px;
+      height: 44px;
+      color: rgba(255,255,255,0.35);
     }
     .message-body {}
     .message-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--color-accent);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
     .message-body h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      color: var(--color-primary);
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 24px;
       line-height: 1.5;
     }
     .message-text {
-      color: var(--color-text-light);
-      line-height: 2;
+      color: rgba(255,255,255,0.6);
+      line-height: 2.2;
       font-size: 0.95rem;
     }
     .message-author {
-      margin-top: 24px;
+      margin-top: 32px;
       text-align: right;
-      color: var(--color-primary);
+      color: rgba(255,255,255,0.7);
       font-weight: 700;
       font-size: 0.92rem;
     }
 
-    /* SNS Section */
+    /* ---------- Visual Break (Full-Bleed) ---------- */
+    .visual-break {
+      position: relative;
+      overflow: hidden;
+      height: 400px;
+    }
+    .visual-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .visual-break .vb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, transparent 40%, transparent 60%, rgba(10,10,10,0.2) 100%);
+      pointer-events: none;
+    }
+
+    /* ---------- SNS (LIGHT) ---------- */
     .sns-section {
-      background: #fff;
+      background: #f8f9fb;
       text-align: center;
+      padding: 100px 0;
     }
     .sns-links {
       display: flex;
       justify-content: center;
       gap: 16px;
-      margin-top: 24px;
+      margin-top: 28px;
     }
     .sns-links a {
       display: inline-flex;
@@ -147,22 +201,25 @@
       gap: 10px;
       background: #1877f2;
       color: #fff;
-      padding: 14px 32px;
-      border-radius: 8px;
+      padding: 16px 40px;
+      border-radius: 4px;
       font-size: 0.92rem;
       font-weight: 700;
-      transition: opacity var(--transition);
+      transition: opacity var(--transition), transform 0.3s ease;
     }
-    .sns-links a:hover { opacity: 0.85; }
+    .sns-links a:hover { opacity: 0.9; transform: translateY(-2px); }
 
-    /* Access */
-    .access-section { background: #fff; }
+    /* ---------- Access (LIGHT) ---------- */
+    .access-section {
+      background: #fff;
+      padding: 100px 0;
+    }
     .map-placeholder {
-      max-width: 840px;
+      max-width: 880px;
       margin: 0 auto;
-      background: #eef0f4;
-      border-radius: 12px;
-      height: 340px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      height: 360px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -173,25 +230,25 @@
     .map-placeholder svg {
       width: 40px;
       height: 40px;
-      opacity: 0.4;
+      opacity: 0.35;
     }
-    .map-placeholder span {
-      font-size: 0.88rem;
-    }
+    .map-placeholder span { font-size: 0.88rem; }
 
-    /* Contact Form */
-    .contact-section { background: #f8f9fb; }
+    /* ---------- Contact Form (LIGHT) ---------- */
+    .contact-section {
+      background: #f8f9fb;
+      padding: 120px 0;
+    }
     .contact-form-wrap {
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
       background: #fff;
-      border-radius: 12px;
-      border: 1px solid var(--color-border);
-      padding: 48px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 56px 52px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.04);
     }
-    .form-group {
-      margin-bottom: 24px;
-    }
+    .form-group { margin-bottom: 24px; }
     .form-group label {
       display: block;
       font-size: 0.88rem;
@@ -203,9 +260,9 @@
       display: inline-block;
       background: var(--color-accent);
       color: #fff;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       padding: 2px 8px;
-      border-radius: 4px;
+      border-radius: 3px;
       margin-left: 8px;
       font-weight: 500;
     }
@@ -214,12 +271,12 @@
     .form-group textarea {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
       font-size: 0.95rem;
       font-family: 'Noto Sans JP', sans-serif;
       color: var(--color-text);
-      background: #f8f9fb;
+      background: #fafafa;
       transition: border-color var(--transition), box-shadow var(--transition);
       box-sizing: border-box;
     }
@@ -231,60 +288,58 @@
       box-shadow: 0 0 0 3px rgba(10,22,40,0.06);
       background: #fff;
     }
-    .form-group textarea {
-      height: 160px;
-      resize: vertical;
-    }
+    .form-group textarea { height: 160px; resize: vertical; }
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
-    .form-submit {
-      text-align: center;
-      margin-top: 32px;
-    }
+    .form-submit { text-align: center; margin-top: 36px; }
     .form-note {
       text-align: center;
       margin-top: 16px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #999;
     }
 
-    /* Responsive */
+    /* ---------- Footer (DARK) ---------- */
+    .footer {
+      background: #050505 !important;
+      color: rgba(255,255,255,0.5);
+      padding: 80px 0 40px;
+    }
+    .footer .logo { color: #fff; }
+    .footer .footer-brand p { color: rgba(255,255,255,0.35); }
+    .footer h4 { color: rgba(255,255,255,0.7); }
+    .footer .footer-links a { color: rgba(255,255,255,0.4); }
+    .footer .footer-links a:hover { color: var(--color-accent); }
+    .footer .footer-social a { color: rgba(255,255,255,0.4); }
+    .footer .footer-social a:hover { color: var(--color-accent); }
+    .footer-bottom { border-top-color: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.25); }
+
+    /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
-      .company-dl-row {
-        grid-template-columns: 140px 1fr;
-      }
+      .page-hero { padding: 160px 0 80px; min-height: 400px; }
+      .page-hero h1 { font-size: clamp(2.8rem, 10vw, 4.5rem); }
+      .company-dl-row { grid-template-columns: 150px 1fr; }
       .company-dl-row dt,
-      .company-dl-row dd {
-        padding: 14px 16px;
-      }
+      .company-dl-row dd { padding: 16px 20px; }
       .message-card {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 24px;
       }
-      .message-avatar {
-        margin: 0 auto;
-      }
+      .message-avatar { margin: 0 auto; }
       .message-body { text-align: left; }
-      .contact-form-wrap { padding: 32px 24px; }
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+      .contact-form-wrap { padding: 36px 28px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .visual-break { height: 280px; }
     }
     @media (max-width: 480px) {
-      .company-dl-row {
-        grid-template-columns: 1fr;
-      }
-      .company-dl-row dt {
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-      .company-dl-row dd {
-        padding-top: 4px;
-      }
+      .company-dl-row { grid-template-columns: 1fr; }
+      .company-dl-row dt { border-bottom: none; padding-bottom: 0; }
+      .company-dl-row dd { padding-top: 4px; }
+      .visual-break { height: 200px; }
     }
   </style>
 </head>
@@ -306,16 +361,16 @@
     </div>
   </header>
 
-  <!-- Page Hero -->
+  <!-- Page Hero (DARK) -->
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">トップ</a> / 会社概要</div>
+      <div class="breadcrumb"><a href="index.html">Top</a> &mdash; Company</div>
       <h1>Company</h1>
       <p>株式会社JISOKについて</p>
     </div>
   </section>
 
-  <!-- Company Info -->
+  <!-- Company Info (LIGHT) -->
   <section class="company-section fade-up">
     <div class="container">
       <div class="section-header">
@@ -348,7 +403,7 @@
           <dd>
             3Dレーザースキャン計測<br>
             プラント設計・BIM化<br>
-            干渉チェック<br>
+            干渉チェック・施工支援<br>
             デジタルツインコンサルティング
           </dd>
         </div>
@@ -364,7 +419,7 @@
     </div>
   </section>
 
-  <!-- CEO Message -->
+  <!-- CEO Message (DARK) -->
   <section class="message-section fade-up">
     <div class="container">
       <div class="section-header">
@@ -387,13 +442,19 @@
             少数精鋭5名の小さな会社ですが、その分、お客様の現場に深く入り込んで、本当に必要なソリューションをご提案できる自信があります。<br><br>
             図面がない。足場が組めない。手戻りをなくしたい。そんな課題を抱えている方は、ぜひ一度お声がけください。
           </p>
-          <p class="message-author">株式会社JISOK 代表取締役 大下本淳一</p>
+          <p class="message-author">— 株式会社JISOK 代表取締役 大下本淳一</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SNS -->
+  <!-- Visual Break (Full-Bleed) -->
+  <section class="visual-break fade-up">
+    <img src="images/precision-03.jpg" alt="JISOKの3Dスキャン計測現場" loading="lazy">
+    <div class="vb-overlay"></div>
+  </section>
+
+  <!-- SNS (LIGHT) -->
   <section class="sns-section fade-up">
     <div class="container">
       <div class="section-header">
@@ -409,7 +470,7 @@
     </div>
   </section>
 
-  <!-- Access -->
+  <!-- Access (LIGHT) -->
   <section class="access-section fade-up">
     <div class="container">
       <div class="section-header">
@@ -422,12 +483,12 @@
           <circle cx="24" cy="18" r="5" stroke="#0a1628" stroke-width="2"/>
         </svg>
         <span>Google Maps 埋め込み予定エリア</span>
-        <span style="font-size: 0.78rem; color: #aaa;">鹿児島県出水市</span>
+        <span style="font-size: 0.76rem; color: #aaa;">鹿児島県出水市</span>
       </div>
     </div>
   </section>
 
-  <!-- Contact Form -->
+  <!-- Contact Form (LIGHT) -->
   <section class="contact-section fade-up" id="contact">
     <div class="container">
       <div class="section-header">
@@ -480,7 +541,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (DARK) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -540,7 +601,7 @@
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Fade-up animation
+    // Fade-up animation with IntersectionObserver
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

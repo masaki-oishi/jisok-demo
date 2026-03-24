@@ -10,115 +10,534 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* === Hero — White Editorial === */
-    .hero {
-      background: #fff;
-    }
-    .hero::before {
-      display: none;
-    }
-    .hero::after {
-      border-color: rgba(10, 22, 40, 0.06);
-    }
-    .hero h1 {
-      color: var(--color-primary);
-    }
-    .hero p {
-      color: var(--color-text-light);
-    }
+    /* === Cinematic Corporate — TYO Statement Style === */
 
-    /* Geometric decoration — thin navy circles */
-    .hero-geo {
+    /* Hero — Dark Cinematic */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+    .hero-bg {
       position: absolute;
-      top: 50%;
-      right: -5%;
-      transform: translateY(-50%);
-      width: 520px;
-      height: 520px;
-      pointer-events: none;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
       z-index: 0;
     }
-    .hero-geo::before {
+    .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      border: 1.5px solid rgba(10, 22, 40, 0.06);
-      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
     }
-    .hero-geo::after {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 60%;
-      height: 60%;
-      border: 1px solid rgba(10, 22, 40, 0.04);
-      border-radius: 50%;
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      max-width: 720px;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 32px;
+      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.05);
+    }
+    .hero h1 {
+      font-family: var(--font-main);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .hero h1 span {
+      color: var(--color-accent);
+    }
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-btns .btn-outline {
+      border-color: rgba(255,255,255,0.4);
+      color: #fff;
+    }
+    .hero-btns .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
     }
 
-    /* Thin decorative line */
-    .hero-line {
-      position: absolute;
-      top: 30%;
-      right: 15%;
-      width: 1px;
-      height: 40%;
-      background: rgba(10, 22, 40, 0.06);
-      pointer-events: none;
-      z-index: 0;
+    /* Section alternating: Light */
+    .section-light {
+      background: #fff;
+      padding: 100px 0;
     }
-
-    /* === Solutions 4-col === */
-    .solutions-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .solutions-grid .card { text-align: center; }
-    .solutions-grid .card .card-icon { margin: 0 auto 20px; }
-
-    /* === Stat cards — navy numbers === */
-    .stat-card {
-      padding: 32px 20px;
-      background: var(--color-bg-white);
-      border-radius: 12px;
-      border: 1px solid var(--color-border);
-      transition: all var(--transition);
+    /* Section alternating: Dark */
+    .section-dark {
+      background: #0a0a0a;
+      padding: 100px 0;
       position: relative;
       overflow: hidden;
     }
-    .stat-card::after {
-      content: '';
+    .section-dark .section-bg {
       position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      opacity: 0;
-      transition: opacity var(--transition);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.08;
+      z-index: 0;
     }
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(10, 22, 40, 0.08);
+    .section-dark .container {
+      position: relative;
+      z-index: 1;
     }
-    .stat-card:hover::after { opacity: 1; }
-    .stat-card .stat-num {
-      color: var(--color-primary);
+    .section-dark .section-label {
+      color: var(--color-accent);
+      border-color: rgba(230,126,34,0.3);
+    }
+    .section-dark .section-title {
+      color: #fff;
+    }
+    .section-dark .section-desc {
+      color: rgba(255,255,255,0.6);
     }
 
-    /* === CTA — light grey editorial === */
-    .cta-section {
-      background: #f4f5f8;
+    /* Problems — 2 column layout */
+    .problems-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
     }
-    .cta-section::before {
-      display: none;
+    .problems-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
-    .cta-section h2 {
-      color: var(--color-primary);
+    .problem-card {
+      display: flex;
+      gap: 20px;
+      padding: 28px;
+      background: #f8f9fb;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
     }
-    .cta-section p {
+    .problem-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .problem-card .card-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .problem-card h3 {
+      font-family: var(--font-main);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+    .problem-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
       color: var(--color-text-light);
     }
+    .problems-image {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .problems-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-    /* === Mobile hide geo === */
-    @media (max-width: 900px) {
-      .hero-geo,
-      .hero-line { display: none; }
+    /* Solution cards — dark variant */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .card-dark {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .card-dark:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .card-dark .card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .card-dark .card-icon.alt {
+      background: var(--color-primary-light);
+    }
+    .card-dark h3 {
+      font-family: var(--font-main);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .card-dark p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Workflow steps */
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .wf-step {
+      text-align: center;
+      padding: 32px 16px;
+      background: #f8f9fb;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .wf-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .wf-step-num {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .wf-step-num.alt {
+      color: var(--color-primary);
+    }
+    .wf-step-tool {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 600;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .wf-step h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .wf-step p {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--color-text-light);
+    }
+    .workflow-pipeline {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    .workflow-pipeline img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Full-bleed image break */
+    .fullbleed-image {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+    .fullbleed-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .fullbleed-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.2) 100%);
+    }
+
+    /* Stats — cinematic cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      padding: 36px 24px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+    }
+    .stat-num {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .stat-unit {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--color-text-light);
+      font-weight: 500;
+    }
+
+    /* CTA — Dark Cinematic */
+    .cta-section {
+      background: #0a0a0a;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-main);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-btns .btn-outline {
+      border-color: rgba(255,255,255,0.3);
+      color: #fff;
+    }
+    .cta-btns .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+    }
+
+    /* Footer — Dark 4col */
+    .footer {
+      background: #050505;
+      padding: 64px 0 0;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+    .footer-brand .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--color-accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    .footer h4 {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .footer-social a:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 0;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 1024px) {
+      .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .workflow-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .problems-layout {
+        grid-template-columns: 1fr;
+      }
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+      .workflow-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .fullbleed-image {
+        height: 260px;
+      }
+    }
+    @media (max-width: 480px) {
+      .workflow-steps {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -148,11 +567,12 @@
   </header>
 
   <!-- ============================================
-       HERO — White Editorial
+       HERO — Dark Cinematic
        ============================================ -->
   <section class="hero">
+    <img src="images/precision-01.jpg" alt="空間をデータ化し、未来を設計する" class="hero-bg">
     <div class="container">
-      <div class="hero-content" style="max-width:600px;">
+      <div class="hero-content fade-up">
         <div class="hero-badge">
           FARO Focus &times; JISOK Engineering
         </div>
@@ -165,82 +585,90 @@
         </div>
       </div>
     </div>
-
-    <!-- Geometric decoration -->
-    <div class="hero-geo"></div>
-    <div class="hero-line"></div>
   </section>
 
   <!-- ============================================
-       PROBLEMS
+       PROBLEMS — White Section
        ============================================ -->
-  <section style="background:#f8f9fb;">
+  <section class="section-light">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Problems</div>
         <h2 class="section-title">こんなお悩み、ありませんか？</h2>
         <p class="section-desc">プラントの更新・改修を計画するとき、多くの現場で同じ壁にぶつかっています。</p>
       </div>
-      <div class="card-grid">
-        <div class="card fade-up" data-delay="1">
-          <div class="card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="4" y1="12" x2="20" y2="12" stroke="#e67e22" stroke-width="3"/></svg>
+      <div class="problems-layout">
+        <div class="problems-cards">
+          <div class="problem-card fade-up" data-delay="1">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="4" y1="12" x2="20" y2="12" stroke="#e67e22" stroke-width="3"/></svg>
+            </div>
+            <div>
+              <h3>図面と現場が合っていない</h3>
+              <p>改修のたびに少しずつズレてきた図面。いざ工事の計画を始めると、現況と図面がまるで別物…というのはよくある話です。</p>
+            </div>
           </div>
-          <h3>図面と現場が合っていない</h3>
-          <p>改修のたびに少しずつズレてきた図面。いざ工事の計画を始めると、現況と図面がまるで別物…というのはよくある話です。</p>
+          <div class="problem-card fade-up" data-delay="2">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h3>計測のたびに足場が必要</h3>
+              <p>高所の配管まわりを測るために、わざわざ足場を組んでいませんか？時間もコストも、安全面のリスクも大きな負担です。</p>
+            </div>
+          </div>
+          <div class="problem-card fade-up" data-delay="3">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <h3>施工してから"入らない"が発覚</h3>
+              <p>設計段階では気づかなかった干渉が、現場で判明。手戻り工事は工期にも予算にも痛手です。</p>
+            </div>
+          </div>
         </div>
-        <div class="card fade-up" data-delay="2">
-          <div class="card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <h3>計測のたびに足場が必要</h3>
-          <p>高所の配管まわりを測るために、わざわざ足場を組んでいませんか？時間もコストも、安全面のリスクも大きな負担です。</p>
-        </div>
-        <div class="card fade-up" data-delay="3">
-          <div class="card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          </div>
-          <h3>施工してから"入らない"が発覚</h3>
-          <p>設計段階では気づかなかった干渉が、現場で判明。手戻り工事は工期にも予算にも痛手です。</p>
+        <div class="problems-image fade-up" data-delay="2">
+          <img src="images/precision-02.jpg" alt="既存プラントの3つのリスク" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================
-       SOLUTIONS
+       SOLUTIONS — Dark Section
        ============================================ -->
-  <section style="background:#fff;">
+  <section class="section-dark">
+    <img src="images/blueprint-01.jpg" alt="" class="section-bg" loading="lazy">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Solutions</div>
         <h2 class="section-title">JISOKが選ばれている理由</h2>
         <p class="section-desc">FARO Focusレーザースキャナーの性能と、15年の現場経験。この2つを掛け合わせて、プラントの課題を解決しています。</p>
       </div>
-      <div class="card-grid solutions-grid">
-        <div class="card fade-up" data-delay="1">
+      <div class="solutions-grid fade-up">
+        <div class="card-dark">
           <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><path d="M9 12l2 2 4-4"/></svg>
           </div>
           <h3>足場なしで計測できる</h3>
           <p>非接触のレーザースキャンだから、足場の設置は不要。地上から安全に、高所や狭所もスキャンできます。</p>
         </div>
-        <div class="card fade-up" data-delay="2">
-          <div class="card-icon accent">
+        <div class="card-dark">
+          <div class="card-icon alt">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <h3>現場作業は約1時間</h3>
           <p>1エリア（10&times;5&times;7m）あたり約1時間でスキャン完了。従来の手計測と比べて、現場の拘束時間を大幅に短縮します。</p>
         </div>
-        <div class="card fade-up" data-delay="3">
+        <div class="card-dark">
           <div class="card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           </div>
           <h3>&plusmn;2mmの精密データ</h3>
           <p>毎秒97.6万点をキャプチャ。手作業では避けられない測り忘れやヒューマンエラーとは無縁です。</p>
         </div>
-        <div class="card fade-up" data-delay="4">
-          <div class="card-icon accent">
+        <div class="card-dark">
+          <div class="card-icon alt">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           <h3>誰でも現場を"歩ける"</h3>
@@ -251,59 +679,69 @@
   </section>
 
   <!-- ============================================
-       WORKFLOW
+       WORKFLOW — White Section
        ============================================ -->
-  <section style="background:#f8f9fb;">
+  <section class="section-light">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">Workflow</div>
         <h2 class="section-title">現場の"いま"をBIMに変える5つのステップ</h2>
       </div>
-      <div class="steps fade-up">
-        <div class="step">
-          <div class="step-tool">FARO Focus</div>
-          <div class="step-num accent">01</div>
+      <div class="workflow-steps fade-up">
+        <div class="wf-step">
+          <div class="wf-step-tool">FARO Focus</div>
+          <div class="wf-step-num">01</div>
           <h4>Survey</h4>
           <p>物理空間のキャプチャ<br>高精度LiDARによる点群化</p>
         </div>
-        <div class="step">
-          <div class="step-tool">Autodesk ReCap</div>
-          <div class="step-num">02</div>
+        <div class="wf-step">
+          <div class="wf-step-tool">Autodesk ReCap</div>
+          <div class="wf-step-num alt">02</div>
           <h4>Process</h4>
           <p>データの構造化<br>点群から3Dオブジェクトへ</p>
         </div>
-        <div class="step">
-          <div class="step-tool">Plant 3D / Revit</div>
-          <div class="step-num accent">03</div>
+        <div class="wf-step">
+          <div class="wf-step-tool">Plant 3D / Revit</div>
+          <div class="wf-step-num">03</div>
           <h4>Design</h4>
           <p>基本・詳細設計<br>P&amp;IDと3Dモデルの統合</p>
         </div>
-        <div class="step">
-          <div class="step-tool">Navisworks / JISOK</div>
-          <div class="step-num">04</div>
+        <div class="wf-step">
+          <div class="wf-step-tool">Navisworks / JISOK</div>
+          <div class="wf-step-num alt">04</div>
           <h4>Execute</h4>
           <p>施工と検証<br>仮想空間での干渉チェック</p>
         </div>
-        <div class="step">
-          <div class="step-tool">LDAR Compliance</div>
-          <div class="step-num accent">05</div>
+        <div class="wf-step">
+          <div class="wf-step-tool">LDAR Compliance</div>
+          <div class="wf-step-num">05</div>
           <h4>Operate</h4>
           <p>維持管理<br>スマートデータでの運用</p>
         </div>
+      </div>
+      <div class="workflow-pipeline fade-up">
+        <img src="images/blueprint-03.jpg" alt="データパイプライン" loading="lazy">
       </div>
     </div>
   </section>
 
   <!-- ============================================
-       STATS / BY THE NUMBERS
+       FULL-BLEED IMAGE — FARO x JISOK
        ============================================ -->
-  <section style="background:#fff;">
+  <div class="fullbleed-image">
+    <img src="images/precision-03.jpg" alt="FARO Focus × JISOK" loading="lazy">
+  </div>
+
+  <!-- ============================================
+       STATS — White Section
+       ============================================ -->
+  <section class="section-light">
     <div class="container">
       <div class="section-header fade-up">
         <div class="section-label">By the Numbers</div>
         <h2 class="section-title">使っている機材のスペック</h2>
       </div>
-      <div class="stats fade-up">
+      <div class="stats-grid fade-up">
         <div class="stat-card">
           <div class="stat-num">350<span class="stat-unit">m</span></div>
           <div class="stat-label">最大計測距離</div>
@@ -325,13 +763,13 @@
   </section>
 
   <!-- ============================================
-       CTA
+       CTA — Dark Cinematic
        ============================================ -->
   <section class="cta-section">
     <div class="container fade-up">
       <h2>まずは、お気軽にご相談ください</h2>
       <p>図面がない、コストを抑えたい、工期を短くしたい。どんなご相談でも大丈夫です。現場の状況をお聞かせいただければ、最適な進め方をご提案します。</p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <div class="cta-btns">
         <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
         <a href="service.html" class="btn btn-outline btn-lg">サービス詳細を見る</a>
       </div>
@@ -339,7 +777,7 @@
   </section>
 
   <!-- ============================================
-       FOOTER
+       FOOTER — Dark 4-Column
        ============================================ -->
   <footer class="footer">
     <div class="container">
