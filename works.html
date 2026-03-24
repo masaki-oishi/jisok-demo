@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>導入事例・実績 | 株式会社JISOK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Works Page Styles ===== */
+
+    /* Hero */
+    .page-hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 60%, #1a365d 100%);
+      color: #fff;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(230,126,34,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 40%);
+    }
+    .page-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      position: relative;
+    }
+
+    /* Section common */
+    .section {
+      padding: 80px 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #1a365d;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Case Cards */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .case-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(26,54,93,0.08);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(26,54,93,0.15);
+    }
+    .case-visual {
+      background: linear-gradient(135deg, #1a365d, #2c5282);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      position: relative;
+    }
+    .case-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.15);
+      position: absolute;
+      top: 16px;
+      left: 20px;
+    }
+    .case-visual svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.7;
+    }
+    .case-content {
+      padding: 32px;
+    }
+    .case-tag {
+      display: inline-block;
+      background: rgba(230,126,34,0.12);
+      color: #e67e22;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .case-content h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 20px;
+    }
+    .case-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+    .case-flow-item {
+      text-align: center;
+    }
+    .case-flow-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e67e22;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .case-flow-text {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.6;
+    }
+    .case-flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+      color: #e67e22;
+      font-size: 1.2rem;
+    }
+
+    /* Numbers Section */
+    .numbers-section {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+      color: #fff;
+      padding: 80px 0;
+    }
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .number-item {
+      padding: 24px;
+    }
+    .number-value {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #e67e22;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .number-value span {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .number-label {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .testimonial-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(26,54,93,0.08);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-size: 4rem;
+      color: #e67e22;
+      opacity: 0.3;
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      padding-top: 24px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a365d, #2c5282);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .testimonial-avatar svg {
+      width: 24px;
+      height: 24px;
+    }
+    .testimonial-name {
+      font-weight: 700;
+      color: #1a365d;
+      font-size: 0.9rem;
+    }
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: #f7f8fc;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #1a365d;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: #666;
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #e67e22;
+      color: #fff;
+      padding: 16px 48px;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 16px rgba(230,126,34,0.3);
+    }
+    .cta-btn:hover {
+      background: #cf6d17;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-hero {
+        padding: 100px 0 60px;
+      }
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      .case-card {
+        grid-template-columns: 1fr;
+      }
+      .case-visual {
+        padding: 24px;
+        min-height: 120px;
+      }
+      .case-flow {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .case-flow-arrow {
+        transform: rotate(90deg);
+        padding-top: 0;
+      }
+      .numbers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .number-value {
+        font-size: 2.2rem;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">JISOK</a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="technology.html">技術・設備</a></li>
+          <li><a href="works.html" class="active">実績</a></li>
+          <li><a href="company.html">会社概要</a></li>
+        </ul>
+      </nav>
+      <a href="company.html#contact" class="header-cta">お問い合わせ</a>
+      <button class="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>導入事例・実績</h1>
+      <p>3Dスキャン技術で実現した、プラントDXの成功事例をご紹介します</p>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="section" style="background: #f7f8fc;">
+    <div class="container">
+      <h2 class="section-title">Case Studies</h2>
+      <p class="section-subtitle">お客様の課題を3Dスキャン技術で解決してきた実績</p>
+
+      <div class="cases-grid">
+
+        <!-- Case 01 -->
+        <div class="case-card">
+          <div class="case-visual">
+            <span class="case-number">01</span>
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="30" width="24" height="40" rx="2" stroke="#fff" stroke-width="2"/>
+              <rect x="46" y="20" width="24" height="50" rx="2" stroke="#fff" stroke-width="2"/>
+              <path d="M22 30V15a3 3 0 013-3h30a3 3 0 013 3v5" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="22" cy="50" r="6" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="58" cy="45" r="6" stroke="#e67e22" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">化学プラント</span>
+            <h3>大規模化学プラント改修</h3>
+            <div class="case-flow">
+              <div class="case-flow-item">
+                <div class="case-flow-label">課題</div>
+                <div class="case-flow-text">老朽化した設備の図面が散逸。改修計画の立案に時間とコストがかかっていた。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">解決</div>
+                <div class="case-flow-text">3Dレーザースキャンで現況を正確に取得。散逸した図面を3Dモデルとして復元。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">成果</div>
+                <div class="case-flow-text">工期30%短縮を達成。設計変更にも柔軟に対応可能に。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 02 -->
+        <div class="case-card">
+          <div class="case-visual">
+            <span class="case-number">02</span>
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 60h20v-20h20v-20h20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="10" cy="60" r="4" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="30" cy="40" r="4" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="50" cy="20" r="4" stroke="#e67e22" stroke-width="2"/>
+              <circle cx="70" cy="20" r="4" stroke="#e67e22" stroke-width="2"/>
+              <path d="M15 70h50" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 3"/>
+            </svg>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">石油精製</span>
+            <h3>石油精製施設の配管更新</h3>
+            <div class="case-flow">
+              <div class="case-flow-item">
+                <div class="case-flow-label">課題</div>
+                <div class="case-flow-text">複雑な配管ルートの更新で、既存設備との干渉が懸念されていた。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">解決</div>
+                <div class="case-flow-text">点群データによる精密な3Dモデルを構築。事前に干渉チェックを徹底実施。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">成果</div>
+                <div class="case-flow-text">施工時の手戻りゼロを達成。安全性と効率の両立を実現。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 03 -->
+        <div class="case-card">
+          <div class="case-visual">
+            <span class="case-number">03</span>
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="15" y="25" width="50" height="35" rx="3" stroke="#fff" stroke-width="2"/>
+              <path d="M25 70h30" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M40 60v10" stroke="#fff" stroke-width="2"/>
+              <path d="M25 40l8 8 16-16" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">食品工場</span>
+            <h3>食品工場の設備増設</h3>
+            <div class="case-flow">
+              <div class="case-flow-item">
+                <div class="case-flow-label">課題</div>
+                <div class="case-flow-text">2D図面だけでは関係者間の認識にズレが発生。合意形成に時間がかかっていた。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">解決</div>
+                <div class="case-flow-text">3Dモデルで増設計画を可視化。誰でも直感的に設備配置を理解できる環境を構築。</div>
+              </div>
+              <div class="case-flow-arrow">&#9654;</div>
+              <div class="case-flow-item">
+                <div class="case-flow-label">成果</div>
+                <div class="case-flow-text">関係者全員の理解が一致。合意形成の大幅な効率化に成功。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="numbers-section">
+    <div class="container">
+      <h2 class="section-title" style="color: #fff;">数字で見るJISOKの実績</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">着実に積み重ねてきた信頼と成果</p>
+      <div class="numbers-grid">
+        <div class="number-item">
+          <div class="number-value">50,000<span>&#13217;+</span></div>
+          <div class="number-label">累計スキャン面積</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">100<span>+</span></div>
+          <div class="number-label">プロジェクト数</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">30<span>%</span></div>
+          <div class="number-label">平均工期短縮率</div>
+        </div>
+        <div class="number-item">
+          <div class="number-value">85<span>%</span></div>
+          <div class="number-label">リピート率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">お客様の声</h2>
+      <p class="section-subtitle">JISOKのサービスをご利用いただいたお客様からの評価</p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <p class="testimonial-text">老朽化した図面しかなく改修計画に不安がありましたが、JISOKさんの3Dスキャンで現況が正確に把握できました。おかげで設計のやり直しがなくなり、スケジュール通りにプロジェクトを完了できました。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <div class="testimonial-name">A社 エンジニアリング部 部長</div>
+              <div class="testimonial-role">化学プラント</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-text">3Dモデルのおかげで、現場担当者から経営層まで全員が同じビジョンを共有できました。従来は何度も会議を重ねていた合意形成が、一度のプレゼンで完了。DXの効果を実感しています。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <div class="testimonial-name">B社 施設管理課 課長</div>
+              <div class="testimonial-role">食品工場</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>3Dスキャンの導入をご検討ですか？</h2>
+      <p>まずはお気軽にご相談ください。貴社の課題に合わせた最適なプランをご提案します。</p>
+      <a href="company.html#contact" class="cta-btn">お問い合わせはこちら</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">JISOK</div>
+        <p class="footer-desc">3Dレーザースキャン計測で、プラント・工場のDXを推進します。</p>
+      </div>
+      <div class="footer-nav">
+        <h4>ページ</h4>
+        <ul>
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="technology.html">技術・設備</a></li>
+          <li><a href="works.html">実績</a></li>
+          <li><a href="company.html">会社概要</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">3Dレーザースキャン</a></li>
+          <li><a href="service.html">BIM/CIMモデリング</a></li>
+          <li><a href="service.html">干渉チェック</a></li>
+          <li><a href="service.html">デジタルツイン</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>お問い合わせ</h4>
+        <a href="company.html#contact" class="footer-cta-btn">お問い合わせフォーム</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

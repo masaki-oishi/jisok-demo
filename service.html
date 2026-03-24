@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス紹介 | 株式会社JISOK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Page Hero ===== */
+    .page-hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(230,126,34,.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(255,255,255,.05) 0%, transparent 40%);
+      animation: heroFloat 20s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-2%, -1%); }
+    }
+    .page-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Services Section ===== */
+    .services-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .services-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 60px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(26,54,93,.08);
+      border: 1px solid rgba(26,54,93,.06);
+      transition: transform .3s ease, box-shadow .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,54,93,.14);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #e67e22, #1a365d);
+      border-radius: 4px 0 0 4px;
+    }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg {
+      width: 32px;
+      height: 32px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .service-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: #555;
+      line-height: 1.8;
+      font-size: .95rem;
+    }
+    .service-tag {
+      display: inline-block;
+      background: rgba(230,126,34,.1);
+      color: #e67e22;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 16px;
+    }
+
+    /* ===== Flow Section ===== */
+    .flow-section {
+      background: #fff;
+      padding: 80px 20px;
+    }
+    .flow-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 60px;
+    }
+    .flow-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+      position: relative;
+      text-align: center;
+    }
+    .flow-number {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step.active .flow-number {
+      background: linear-gradient(135deg, #e67e22, #f39c12);
+    }
+    .flow-label {
+      font-size: .9rem;
+      font-weight: 500;
+      color: #1a1a2e;
+    }
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      padding-top: 0;
+      margin-top: 14px;
+    }
+    .flow-arrow svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: #e67e22;
+      stroke-width: 2.5;
+    }
+
+    /* ===== ROI Section ===== */
+    .roi-section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .roi-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 20px;
+    }
+    .roi-section .section-sub {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: .95rem;
+    }
+    .roi-table-wrapper {
+      overflow-x: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(26,54,93,.08);
+    }
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      min-width: 600px;
+    }
+    .roi-table thead th {
+      background: #1a365d;
+      color: #fff;
+      padding: 18px 24px;
+      font-size: .95rem;
+      font-weight: 700;
+      text-align: left;
+    }
+    .roi-table thead th:first-child {
+      border-radius: 16px 0 0 0;
+    }
+    .roi-table thead th:last-child {
+      border-radius: 0 16px 0 0;
+      background: linear-gradient(135deg, #e67e22, #f39c12);
+    }
+    .roi-table tbody td {
+      padding: 16px 24px;
+      border-bottom: 1px solid #eee;
+      font-size: .9rem;
+      color: #333;
+    }
+    .roi-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .roi-table tbody tr:hover {
+      background: rgba(230,126,34,.04);
+    }
+    .roi-table .highlight {
+      color: #e67e22;
+      font-weight: 700;
+    }
+    .roi-table .dim {
+      color: #999;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+      padding: 80px 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      opacity: .85;
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #e67e22;
+      color: #fff;
+      padding: 16px 48px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .3s ease, transform .2s ease;
+    }
+    .cta-btn:hover {
+      background: #d35400;
+      transform: translateY(-2px);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .flow-container { flex-direction: column; align-items: center; gap: 8px; }
+      .flow-arrow { transform: rotate(90deg); width: auto; margin-top: 0; }
+      .flow-step { width: 100%; max-width: 200px; }
+      .roi-section { padding: 60px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">JISOK</span>
+        <span class="logo-sub">3D Plant Engineering</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="service.html" class="active">サービス</a></li>
+          <li><a href="technology.html">技術・設備</a></li>
+          <li><a href="contact.html" class="nav-cta">お問い合わせ</a></li>
+        </ul>
+        <button class="hamburger" aria-label="メニュー" onclick="this.classList.toggle('open');document.querySelector('.nav-list').classList.toggle('open');">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <h1>JISOKのサービス</h1>
+    <p>3Dレーザースキャンを起点に、プラントの設計・施工・維持管理をトータルサポート</p>
+  </section>
+
+  <!-- ===== Service List ===== -->
+  <section class="services-section">
+    <h2 class="section-title">サービス一覧</h2>
+    <div class="services-grid">
+
+      <!-- 3Dレーザースキャン -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3>3Dレーザースキャン</h3>
+        <p>FARO Focusシリーズによる高精度点群データ取得。非接触・足場不要で安全かつ効率的に現場を3Dデータ化します。1エリア約1時間で完了。</p>
+        <span class="service-tag">非接触・高精度</span>
+      </div>
+
+      <!-- Scan-to-BIM -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 20V8l10-6 10 6v12"/><path d="M6 20V10"/><path d="M18 20V10"/><path d="M2 8l10 6 10-6"/><path d="M12 14v6"/></svg>
+        </div>
+        <h3>Scan-to-BIM</h3>
+        <p>取得した点群データからAutodesk ReCap、Plant 3D、Revitを活用して精密な3Dモデルを作成。既存設備のデジタル化を実現します。</p>
+        <span class="service-tag">BIM/CIMモデル化</span>
+      </div>
+
+      <!-- 干渉チェック -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4"/><path d="M15 3h4a2 2 0 012 2v4"/><path d="M9 21H5a2 2 0 01-2-2v-4"/><path d="M15 21h4a2 2 0 002-2v-4"/><circle cx="12" cy="12" r="4"/><path d="M12 8v8M8 12h8"/></svg>
+        </div>
+        <h3>干渉チェック・施工検証</h3>
+        <p>Navisworksによる仮想空間での干渉チェック。施工前にデジタル上で検証することで、手戻りを大幅に削減します。</p>
+        <span class="service-tag">手戻り削減</span>
+      </div>
+
+      <!-- 維持管理支援 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>維持管理支援</h3>
+        <p>デジタルツインデータを活用した効率的な維持管理。LDAR Compliance対応により法令遵守をサポートします。</p>
+        <span class="service-tag">デジタルツイン</span>
+      </div>
+
+      <!-- コンサルティング -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>コンサルティング</h3>
+        <p>プラントDXの導入支援から最適なスキャン計画の立案まで。お客様の課題に合わせた包括的なソリューションを提供します。</p>
+        <span class="service-tag">DX支援</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Flow Section ===== -->
+  <section class="flow-section">
+    <h2 class="section-title">導入フロー</h2>
+    <div class="flow-container">
+
+      <div class="flow-step">
+        <div class="flow-number">1</div>
+        <div class="flow-label">ヒアリング</div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+
+      <div class="flow-step">
+        <div class="flow-number">2</div>
+        <div class="flow-label">現場調査</div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+
+      <div class="flow-step">
+        <div class="flow-number">3</div>
+        <div class="flow-label">スキャン</div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+
+      <div class="flow-step active">
+        <div class="flow-number">4</div>
+        <div class="flow-label">データ処理</div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+
+      <div class="flow-step">
+        <div class="flow-number">5</div>
+        <div class="flow-label">納品</div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+
+      <div class="flow-step">
+        <div class="flow-number">6</div>
+        <div class="flow-label">アフター<br>サポート</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ROI Comparison ===== -->
+  <section class="roi-section">
+    <h2 class="section-title">ROI比較</h2>
+    <p class="section-sub">従来手法とJISOK 3Dスキャンの導入効果を比較</p>
+    <div class="roi-table-wrapper">
+      <table class="roi-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>従来手法</th>
+            <th>JISOK 3Dスキャン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>安全性</td>
+            <td class="dim">足場設置・高所作業が必要<br>作業員のリスクあり</td>
+            <td class="highlight">非接触計測で足場不要<br>安全性を大幅に向上</td>
+          </tr>
+          <tr>
+            <td>計測時間</td>
+            <td class="dim">数日〜数週間</td>
+            <td class="highlight">1エリア約1時間<br>工期を最大80%短縮</td>
+          </tr>
+          <tr>
+            <td>精度</td>
+            <td class="dim">手作業による計測誤差<br>数cm単位のばらつき</td>
+            <td class="highlight">&plusmn;2mmの高精度<br>97万点/秒の高密度データ</td>
+          </tr>
+          <tr>
+            <td>可視性</td>
+            <td class="dim">2D図面ベース<br>空間把握が困難</td>
+            <td class="highlight">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
+          </tr>
+          <tr>
+            <td>手戻り</td>
+            <td class="dim">施工後に干渉が発覚<br>高コストな手戻り</td>
+            <td class="highlight">事前の干渉チェックで<br>手戻りを大幅削減</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <h2>プラントの3D化、はじめませんか？</h2>
+    <p>まずはお気軽にご相談ください。最適なソリューションをご提案いたします。</p>
+    <a href="contact.html" class="cta-btn">お問い合わせはこちら</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">JISOK</span>
+        <p class="footer-desc">3Dレーザースキャンを活用したプラントエンジニアリング</p>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="technology.html">技術・設備</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

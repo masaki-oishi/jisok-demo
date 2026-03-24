@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技術・設備 | 株式会社JISOK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Page Hero ===== */
+    .page-hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 60% 30%, rgba(230,126,34,.15) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 70%, rgba(255,255,255,.05) 0%, transparent 40%);
+      animation: heroFloat 20s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-2%, -1%); }
+    }
+    .page-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Scanner Section ===== */
+    .scanner-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .scanner-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 16px;
+    }
+    .scanner-section .section-sub {
+      text-align: center;
+      color: #666;
+      margin-bottom: 60px;
+      font-size: .95rem;
+    }
+    .scanner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .scanner-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 0;
+      box-shadow: 0 4px 24px rgba(26,54,93,.08);
+      border: 1px solid rgba(26,54,93,.06);
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .scanner-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,54,93,.14);
+    }
+    .scanner-card-header {
+      padding: 32px 28px 20px;
+      position: relative;
+    }
+    .scanner-card.premium-max .scanner-card-header {
+      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      color: #fff;
+    }
+    .scanner-card.premium .scanner-card-header {
+      background: linear-gradient(135deg, #2a4a7f, #3b5998);
+      color: #fff;
+    }
+    .scanner-card.core .scanner-card-header {
+      background: linear-gradient(135deg, #e67e22, #f39c12);
+      color: #fff;
+    }
+    .scanner-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .scanner-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .scanner-card .scanner-range {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+    .scanner-card .scanner-range span {
+      font-size: .9rem;
+      font-weight: 400;
+      opacity: .8;
+    }
+    .scanner-card-body {
+      padding: 24px 28px 32px;
+    }
+    .scanner-card-body p {
+      color: #555;
+      line-height: 1.8;
+      font-size: .9rem;
+      margin-bottom: 16px;
+    }
+    .scanner-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .scanner-feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: .85rem;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scanner-feature-list li:last-child {
+      border-bottom: none;
+    }
+    .scanner-feature-list li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #e67e22;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .scanner-common {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(26,54,93,.08);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .scanner-common h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 12px;
+    }
+    .scanner-common p {
+      color: #666;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Specs Section ===== */
+    .specs-section {
+      background: #fff;
+      padding: 80px 20px;
+    }
+    .specs-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 60px;
+    }
+    .specs-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+    }
+    .spec-item {
+      text-align: center;
+      padding: 32px 16px;
+      background: #f7f8fc;
+      border-radius: 16px;
+      transition: transform .3s ease;
+    }
+    .spec-item:hover {
+      transform: translateY(-4px);
+    }
+    .spec-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .spec-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .spec-value {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #e67e22;
+      margin-bottom: 4px;
+    }
+    .spec-label {
+      font-size: .85rem;
+      color: #666;
+    }
+
+    /* ===== Pipeline Section ===== */
+    .pipeline-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pipeline-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 60px;
+    }
+    .pipeline-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      align-items: stretch;
+    }
+    .pipeline-step {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 24px rgba(26,54,93,.08);
+      text-align: center;
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .pipeline-step-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #1a365d, #2a4a7f);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .pipeline-step-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pipeline-step h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 6px;
+    }
+    .pipeline-step .pipeline-tool {
+      font-size: .8rem;
+      color: #e67e22;
+      font-weight: 600;
+    }
+    .pipeline-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+    }
+    .pipeline-arrow svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #e67e22;
+      stroke-width: 2.5;
+    }
+
+    /* ===== Video Section ===== */
+    .video-section {
+      background: #fff;
+      padding: 80px 20px;
+    }
+    .video-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 16px;
+    }
+    .video-section .section-sub {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: .95rem;
+    }
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26,54,93,.12);
+      background: #1a365d;
+    }
+    .video-placeholder {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-placeholder-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .video-play-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(230,126,34,.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: transform .3s ease;
+    }
+    .video-play-icon:hover {
+      transform: scale(1.1);
+    }
+    .video-play-icon svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+    .video-placeholder-inner p {
+      font-size: .95rem;
+      opacity: .8;
+    }
+    /* iframe が入る場合 */
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%);
+      padding: 80px 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      opacity: .85;
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #e67e22;
+      color: #fff;
+      padding: 16px 48px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .3s ease, transform .2s ease;
+    }
+    .cta-btn:hover {
+      background: #d35400;
+      transform: translateY(-2px);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 2rem; }
+      .scanner-grid { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-flow { flex-direction: column; align-items: center; gap: 8px; }
+      .pipeline-arrow { transform: rotate(90deg); width: auto; }
+      .pipeline-step { width: 100%; max-width: 220px; }
+    }
+    @media (max-width: 480px) {
+      .specs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">JISOK</span>
+        <span class="logo-sub">3D Plant Engineering</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="technology.html" class="active">技術・設備</a></li>
+          <li><a href="contact.html" class="nav-cta">お問い合わせ</a></li>
+        </ul>
+        <button class="hamburger" aria-label="メニュー" onclick="this.classList.toggle('open');document.querySelector('.nav-list').classList.toggle('open');">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Page Hero ===== -->
+  <section class="page-hero">
+    <h1>技術と設備</h1>
+    <p>最先端の3Dレーザースキャナーと統合データパイプラインで、プラントをデジタル化</p>
+  </section>
+
+  <!-- ===== FARO Focus Scanner Section ===== -->
+  <section class="scanner-section">
+    <h2 class="section-title">FARO Focus シリーズ</h2>
+    <p class="section-sub">用途・規模に応じて最適なスキャナーを選定します</p>
+
+    <div class="scanner-grid">
+
+      <!-- Focus Premium Max -->
+      <div class="scanner-card premium-max">
+        <div class="scanner-card-header">
+          <span class="scanner-badge">大規模インフラ向け</span>
+          <h3>Focus Premium Max</h3>
+          <div class="scanner-range">400m <span>最大計測距離</span></div>
+        </div>
+        <div class="scanner-card-body">
+          <p>大規模プラント・インフラ設備に最適。広大なエリアを高精度にカバーします。</p>
+          <ul class="scanner-feature-list">
+            <li>長距離スキャンに対応</li>
+            <li>大型石油化学プラント</li>
+            <li>橋梁・トンネル等インフラ</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Focus Premium -->
+      <div class="scanner-card premium">
+        <div class="scanner-card-header">
+          <span class="scanner-badge">AEC・中規模プラント</span>
+          <h3>Focus Premium</h3>
+          <div class="scanner-range">200m <span>最大計測距離</span></div>
+        </div>
+        <div class="scanner-card-body">
+          <p>建築・中規模プラントに最適なバランスモデル。高精度と効率を両立します。</p>
+          <ul class="scanner-feature-list">
+            <li>AEC（建築・土木）分野</li>
+            <li>中規模プラント設備</li>
+            <li>工場内レイアウト管理</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Focus Core -->
+      <div class="scanner-card core">
+        <div class="scanner-card-header">
+          <span class="scanner-badge">コスパ重視</span>
+          <h3>Focus Core</h3>
+          <div class="scanner-range">100m <span>最大計測距離</span></div>
+        </div>
+        <div class="scanner-card-body">
+          <p>コストパフォーマンスに優れたエントリーモデル。必要十分な性能を備えます。</p>
+          <ul class="scanner-feature-list">
+            <li>小〜中規模現場</li>
+            <li>室内設備の3D化</li>
+            <li>導入コストを抑えたい場合</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 共通仕様 -->
+    <div class="scanner-common">
+      <h4>全モデル共通仕様</h4>
+      <p>512GB SSD内蔵ストレージ / FARO Stream リアルタイムデータ転送対応</p>
+    </div>
+  </section>
+
+  <!-- ===== Specs Section ===== -->
+  <section class="specs-section">
+    <h2 class="section-title">スペックハイライト</h2>
+    <div class="specs-grid">
+
+      <div class="spec-item">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        </div>
+        <div class="spec-value">976,000</div>
+        <div class="spec-label">点/秒（最大スキャン速度）</div>
+      </div>
+
+      <div class="spec-item">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="spec-value">&plusmn;2mm</div>
+        <div class="spec-label">計測精度</div>
+      </div>
+
+      <div class="spec-item">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="spec-value">IP54</div>
+        <div class="spec-label">防塵・防水等級</div>
+      </div>
+
+      <div class="spec-item">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4L10 14"/><path d="M10 20H4v-6"/><path d="M4 20l10-10"/></svg>
+        </div>
+        <div class="spec-value">-20~55&#176;C</div>
+        <div class="spec-label">動作温度範囲</div>
+      </div>
+
+      <div class="spec-item">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="spec-value">165MP</div>
+        <div class="spec-label">HDRカメラ解像度</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Data Pipeline ===== -->
+  <section class="pipeline-section">
+    <h2 class="section-title">データパイプライン</h2>
+    <div class="pipeline-flow">
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h4>Survey</h4>
+        <span class="pipeline-tool">FARO Focus</span>
+      </div>
+
+      <div class="pipeline-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h4>Process</h4>
+        <span class="pipeline-tool">ReCap</span>
+      </div>
+
+      <div class="pipeline-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 20V8l10-6 10 6v12"/><path d="M6 20V10"/><path d="M18 20V10"/><path d="M2 8l10 6 10-6"/></svg>
+        </div>
+        <h4>Design</h4>
+        <span class="pipeline-tool">Plant 3D / Revit</span>
+      </div>
+
+      <div class="pipeline-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4"/><path d="M15 3h4a2 2 0 012 2v4"/><path d="M9 21H5a2 2 0 01-2-2v-4"/><path d="M15 21h4a2 2 0 002-2v-4"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <h4>Execute</h4>
+        <span class="pipeline-tool">Navisworks</span>
+      </div>
+
+      <div class="pipeline-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon" style="background: linear-gradient(135deg, #e67e22, #f39c12);">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h4>Operate</h4>
+        <span class="pipeline-tool">LDAR</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Video Section ===== -->
+  <section class="video-section">
+    <h2 class="section-title">動画で見るJISOKの技術</h2>
+    <p class="section-sub">3Dレーザースキャンの実際の作業風景をご覧ください</p>
+    <div class="video-container">
+      <!-- YouTube iframe をここに埋め込み -->
+      <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="video-placeholder-inner">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+          <p>YouTube動画プレースホルダー</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <h2>最先端技術で、現場の課題を解決</h2>
+    <p>機材・技術についてのご質問もお気軽にどうぞ。</p>
+    <a href="contact.html" class="cta-btn">お問い合わせはこちら</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">JISOK</span>
+        <p class="footer-desc">3Dレーザースキャンを活用したプラントエンジニアリング</p>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="service.html">サービス</a></li>
+          <li><a href="technology.html">技術・設備</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 株式会社JISOK All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
