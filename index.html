@@ -3,737 +3,416 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>トップ｜株式会社JISOK — プラント3Dスキャン・設計</title>
-  <meta name="description" content="図面がないプラントも3Dレーザースキャンで丸ごとデータ化。点群データからBIMモデルを構築し、配管干渉チェック・既存図面作成まで一貫対応。">
+  <title>株式会社JISOK｜プラント3Dスキャン・設計</title>
+  <meta name="description" content="図面がないプラントも3Dレーザースキャンで丸ごとデータ化。FARO Focusと15年の現場経験で、計測から設計まで一貫対応。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --accent: #e67e22;
-      --dark: #0a0a0a;
-      --gray: #888;
-      --border: rgba(255,255,255,0.1);
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: var(--dark);
-      color: #fff;
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--accent:#e67e22;--dark:#0a0a0a;--border:rgba(255,255,255,0.08)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans JP',sans-serif;background:var(--dark);color:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
-    /* ====== HEADER — Minimal Fixed ====== */
-    .header {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 24px 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      mix-blend-mode: difference;
-    }
-    .header-logo {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem; font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #fff;
-    }
-    .header-nav { display: flex; gap: 32px; align-items: center; }
-    .header-nav a {
-      font-size: 0.82rem; font-weight: 500;
-      color: rgba(255,255,255,0.7);
-      transition: color 0.3s;
-    }
-    .header-nav a:hover { color: #fff; }
-    .header-cta {
-      padding: 8px 24px;
-      background: var(--accent);
-      color: #fff !important;
-      border-radius: 4px;
-      font-size: 0.78rem; font-weight: 700;
-      mix-blend-mode: normal;
-    }
-    .hamburger { display: none; cursor: pointer; }
-    .hamburger span { display: block; width: 28px; height: 2px; background: #fff; margin: 6px 0; transition: 0.3s; }
+    /* HEADER */
+    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,backdrop-filter 0.4s}
+    .hd.scrolled{background:rgba(10,10,10,0.85);backdrop-filter:blur(16px)}
+    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:#fff}
+    .hd-nav{display:flex;gap:28px;align-items:center}
+    .hd-nav a{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);transition:0.3s}
+    .hd-nav a:hover{color:#fff}
+    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700}
+    .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
+    .burger span{display:block;width:24px;height:2px;background:#fff;transition:0.3s}
 
-    /* ====== HERO — Full Viewport Cinematic ====== */
-    .hero {
-      position: relative;
-      height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end;
-      padding: 0 0 80px;
-      overflow: hidden;
-    }
-    .hero-media {
-      position: absolute; inset: 0;
-      z-index: 0;
-    }
-    .hero-media img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(0.35);
-    }
-    .hero-media::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.3) 100%);
-    }
-    .hero-inner {
-      position: relative; z-index: 1;
-      width: 100%; padding: 0 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: end;
-    }
-    .hero-copy h1 {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      font-weight: 900; line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-    .hero-copy h1 span { color: var(--accent); }
-    .hero-meta {
-      display: flex; flex-direction: column; gap: 24px;
-      padding-bottom: 8px;
-    }
-    .hero-meta p {
-      font-size: 0.95rem; line-height: 2;
-      color: rgba(255,255,255,0.65);
-      max-width: 400px;
-    }
-    .hero-meta .tag {
-      display: inline-block;
-      padding: 6px 16px;
-      border: 1px solid rgba(255,255,255,0.2);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-    }
-    .hero-btns { display: flex; gap: 12px; margin-top: 8px; }
-    .btn-fill {
-      padding: 14px 36px; background: var(--accent); color: #fff;
-      font-size: 0.85rem; font-weight: 700; border: none; border-radius: 4px;
-      cursor: pointer; transition: 0.3s;
-    }
-    .btn-fill:hover { background: #d35400; transform: translateY(-2px); }
-    .btn-ghost {
-      padding: 14px 36px; background: transparent; color: #fff;
-      font-size: 0.85rem; font-weight: 500;
-      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
-      cursor: pointer; transition: 0.3s;
-    }
-    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+    /* HERO — Split: Copy Left + 3D Model Right */
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+    .hero canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .hero-grid{position:relative;z-index:2;width:100%;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .hero-copy .tag{display:inline-block;padding:5px 14px;border:1px solid rgba(255,255,255,0.12);font-family:'Outfit';font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:28px}
+    .hero-copy h1{font-size:clamp(2.2rem,4.8vw,4.2rem);font-weight:900;line-height:1.12;letter-spacing:-0.03em;margin-bottom:24px}
+    .hero-copy h1 em{font-style:normal;color:var(--accent)}
+    .hero-copy .lead{font-size:0.92rem;line-height:2;color:rgba(255,255,255,0.5);margin-bottom:36px;max-width:420px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-f{padding:14px 32px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-f:hover{background:#d35400;transform:translateY(-2px)}
+    .btn-g{padding:14px 32px;background:transparent;color:#fff;font-size:0.82rem;font-weight:500;border:1px solid rgba(255,255,255,0.25);border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-g:hover{border-color:#fff;background:rgba(255,255,255,0.04)}
+    .hero-visual{display:flex;justify-content:center;position:relative}
+    .hero-visual img{width:100%;max-width:540px;filter:drop-shadow(0 30px 60px rgba(0,0,0,0.6));animation:floatY 6s ease-in-out infinite}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px}
+    .scroll-hint span{font-family:'Outfit';font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+    .scroll-hint .line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:0.3;transform:scaleY(0.5)}}
 
-    /* ====== SCROLL INDICATOR ====== */
-    .scroll-indicator {
-      position: absolute; bottom: 32px; left: 50%;
-      transform: translateX(-50%); z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-    }
-    .scroll-indicator span {
-      font-family: 'Outfit'; font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(255,255,255,0.35);
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 1; transform: scaleY(1); }
-      50% { opacity: 0.4; transform: scaleY(0.6); }
-    }
+    /* MARQUEE */
+    .marquee{padding:60px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
+    .marquee-inner{font-family:'Outfit';font-size:clamp(1.8rem,4vw,4rem);font-weight:200;white-space:nowrap;color:rgba(255,255,255,0.06);animation:marq 30s linear infinite}
+    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* ====== MARQUEE — Full Width Statement ====== */
-    .marquee-section {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .marquee-text {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 300; letter-spacing: 0.04em;
-      white-space: nowrap;
-      color: rgba(255,255,255,0.08);
-      animation: marqueeScroll 25s linear infinite;
-    }
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    /* SECTION UTILS */
+    .sec-w{background:#fff;color:var(--dark)}
+    .sec-d{background:var(--dark);color:#fff}
+    .pad{padding:140px 48px}
 
-    /* ====== PROBLEMS — Asymmetric Split ====== */
-    .problems {
-      padding: 160px 48px;
-      background: #fff; color: var(--dark);
-    }
-    .problems-top {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 80px; gap: 48px;
-    }
-    .problems-top .label {
-      font-family: 'Outfit'; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
-    }
-    .problems-top h2 {
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 900; line-height: 1.3; letter-spacing: -0.02em;
-      max-width: 600px;
-    }
-    .problems-top p {
-      font-size: 0.9rem; color: #777; max-width: 360px;
-      line-height: 2;
-    }
-    .problems-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      gap: 48px;
-    }
-    .problems-cards { display: flex; flex-direction: column; gap: 1px; }
-    .p-card {
-      display: grid; grid-template-columns: 64px 1fr;
-      gap: 24px; padding: 36px 0;
-      border-bottom: 1px solid #e5e5e5;
-      transition: 0.4s;
-    }
-    .p-card:first-child { border-top: 1px solid #e5e5e5; }
-    .p-card:hover { padding-left: 16px; }
-    .p-card-num {
-      font-family: 'Outfit'; font-size: 2.2rem; font-weight: 200;
-      color: #ccc; line-height: 1;
-    }
-    .p-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-    .p-card p { font-size: 0.88rem; color: #777; line-height: 1.8; }
-    .problems-visual {
-      position: relative; border-radius: 8px; overflow: hidden;
-      aspect-ratio: 3/4;
-    }
-    .problems-visual img { width: 100%; height: 100%; object-fit: cover; }
-    .problems-visual .overlay-text {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 40px 32px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-      color: #fff;
-    }
-    .problems-visual .overlay-text span {
-      font-family: 'Outfit'; font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent);
-    }
-    .problems-visual .overlay-text p {
-      font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 8px;
-    }
+    /* === PROBLEMS === */
+    .prob-top{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:80px}
+    .prob-top .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .prob-top h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;max-width:560px}
+    .prob-top .sub{font-size:0.9rem;color:#777;max-width:360px;line-height:2}
+    .prob-body{display:grid;grid-template-columns:1fr 0.85fr;gap:48px}
+    .prob-list{display:flex;flex-direction:column}
+    .prob-item{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-bottom:1px solid #e5e5e5;transition:0.4s}
+    .prob-item:first-child{border-top:1px solid #e5e5e5}
+    .prob-item:hover{padding-left:12px}
+    .prob-item .num{font-family:'Outfit';font-size:2rem;font-weight:200;color:#ccc;line-height:1}
+    .prob-item h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+    .prob-item p{font-size:0.88rem;color:#666;line-height:1.9}
+    .prob-item .solve{margin-top:12px;font-size:0.82rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px}
+    .prob-img{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:3/4}
+    .prob-img img{width:100%;height:100%;object-fit:cover}
 
-    /* ====== SOLUTIONS — Dark with Offset Images ====== */
-    .solutions {
-      padding: 160px 48px;
-      position: relative; overflow: hidden;
-    }
-    .solutions-header {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; margin-bottom: 100px;
-    }
-    .solutions-header .label {
-      font-family: 'Outfit'; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
-    }
-    .solutions-header h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 900; line-height: 1.2; letter-spacing: -0.02em;
-    }
-    .solutions-header p {
-      font-size: 0.9rem; color: rgba(255,255,255,0.5);
-      line-height: 2; max-width: 420px;
-      align-self: end;
-    }
-    .solutions-items {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; border-top: 1px solid var(--border);
-    }
-    .sol-item {
-      padding: 48px 32px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.4s;
-    }
-    .sol-item:last-child { border-right: none; }
-    .sol-item:hover { background: rgba(255,255,255,0.03); }
-    .sol-item .num {
-      font-family: 'Outfit'; font-size: 3rem; font-weight: 200;
-      color: rgba(255,255,255,0.1); line-height: 1; margin-bottom: 24px;
-    }
-    .sol-item h3 {
-      font-size: 1.05rem; font-weight: 700; margin-bottom: 16px;
-      color: #fff;
-    }
-    .sol-item p {
-      font-size: 0.85rem; line-height: 1.8;
-      color: rgba(255,255,255,0.45);
-    }
+    /* === SOLUTIONS === */
+    .sol-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:100px}
+    .sol-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .sol-head h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.2;letter-spacing:-0.02em}
+    .sol-head .desc{font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:2;max-width:420px;align-self:end}
+    .sol-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border)}
+    .sol-card{padding:48px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:0.4s}
+    .sol-card:last-child{border-right:none}
+    .sol-card:hover{background:rgba(255,255,255,0.03)}
+    .sol-card .n{font-family:'Outfit';font-size:2.8rem;font-weight:200;color:rgba(255,255,255,0.08);line-height:1;margin-bottom:20px}
+    .sol-card h3{font-size:1rem;font-weight:700;margin-bottom:14px}
+    .sol-card p{font-size:0.85rem;line-height:1.85;color:rgba(255,255,255,0.4)}
 
-    /* ====== VISUAL BREAK — Full Image ====== */
-    .visual-break {
-      position: relative; height: 70vh; min-height: 500px;
-      overflow: hidden;
-    }
-    .visual-break img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.4);
-    }
-    .visual-break .vb-text {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center; z-index: 1;
-    }
-    .visual-break .vb-text h2 {
-      font-family: 'Outfit'; font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 800; letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-    .visual-break .vb-text h2 span { color: var(--accent); }
-    .visual-break .vb-text p {
-      font-size: 0.95rem; color: rgba(255,255,255,0.55);
-    }
+    /* === VISUAL BREAK === */
+    .vb{position:relative;height:60vh;min-height:400px;overflow:hidden}
+    .vb img{width:100%;height:100%;object-fit:cover;filter:brightness(0.35)}
+    .vb .vb-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;z-index:1}
+    .vb .vb-overlay h2{font-family:'Outfit';font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px}
+    .vb .vb-overlay h2 em{font-style:normal;color:var(--accent)}
+    .vb .vb-overlay p{font-size:0.9rem;color:rgba(255,255,255,0.5)}
 
-    /* ====== WORKFLOW — Editorial Timeline ====== */
-    .workflow {
-      padding: 160px 48px;
-      background: #fff; color: var(--dark);
-    }
-    .workflow-header {
-      max-width: 640px; margin-bottom: 80px;
-    }
-    .workflow-header .label {
-      font-family: 'Outfit'; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
-    }
-    .workflow-header h2 {
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 900; line-height: 1.3; letter-spacing: -0.02em;
-    }
-    .wf-timeline {
-      display: grid; grid-template-columns: 80px 1fr 1fr;
-      gap: 0;
-    }
-    .wf-row {
-      display: contents;
-    }
-    .wf-row .wf-num {
-      font-family: 'Outfit'; font-size: 3.5rem; font-weight: 200;
-      color: #ddd; line-height: 1;
-      padding: 40px 0;
-      border-top: 1px solid #e5e5e5;
-    }
-    .wf-row .wf-content {
-      padding: 40px 32px;
-      border-top: 1px solid #e5e5e5;
-    }
-    .wf-row .wf-content .tool {
-      font-family: 'Outfit'; font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 8px;
-    }
-    .wf-row .wf-content h3 {
-      font-family: 'Outfit'; font-size: 1.3rem; font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .wf-row .wf-content p {
-      font-size: 0.88rem; color: #777; line-height: 1.8;
-    }
-    .wf-row .wf-image {
-      padding: 40px 0 40px 32px;
-      border-top: 1px solid #e5e5e5;
-    }
-    .wf-row .wf-image img {
-      width: 100%; border-radius: 6px;
-      aspect-ratio: 16/9; object-fit: cover;
-    }
-    .wf-row:last-child .wf-num,
-    .wf-row:last-child .wf-content,
-    .wf-row:last-child .wf-image {
-      border-bottom: 1px solid #e5e5e5;
-    }
+    /* === WORKFLOW — Editorial Timeline with Images === */
+    .wf-head{max-width:640px;margin-bottom:80px}
+    .wf-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .wf-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .wf-row{display:grid;grid-template-columns:64px 1fr 1fr;gap:0;border-top:1px solid #e5e5e5}
+    .wf-row:last-child{border-bottom:1px solid #e5e5e5}
+    .wf-num{font-family:'Outfit';font-size:3.2rem;font-weight:200;color:#ddd;padding:48px 0}
+    .wf-text{padding:48px 32px}
+    .wf-text .tool{font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .wf-text h3{font-family:'Outfit';font-size:1.2rem;font-weight:700;margin-bottom:12px}
+    .wf-text p{font-size:0.88rem;color:#666;line-height:1.9}
+    .wf-text .detail{margin-top:12px;font-size:0.82rem;color:#999;line-height:1.8}
+    .wf-img{padding:48px 0 48px 24px;display:flex;align-items:center}
+    .wf-img img{width:100%;border-radius:6px;aspect-ratio:16/10;object-fit:cover}
 
-    /* ====== STATS — Oversized Numbers ====== */
-    .stats-section {
-      padding: 120px 48px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stats-row {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; text-align: center;
-    }
-    .stat-item {
-      padding: 40px 20px;
-      border-right: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-item .val {
-      font-family: 'Outfit';
-      font-size: clamp(3rem, 5vw, 5rem);
-      font-weight: 800; line-height: 1; letter-spacing: -0.03em;
-      color: #fff;
-    }
-    .stat-item .val span {
-      font-size: 0.4em; font-weight: 400; color: var(--accent);
-    }
-    .stat-item .desc {
-      font-size: 0.82rem; color: rgba(255,255,255,0.35);
-      margin-top: 16px;
-    }
+    /* === STATS === */
+    .stats{padding:100px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+    .stat{padding:32px 16px;border-right:1px solid var(--border)}
+    .stat:last-child{border-right:none}
+    .stat .v{font-family:'Outfit';font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:800;line-height:1;letter-spacing:-0.03em}
+    .stat .v span{font-size:0.35em;font-weight:400;color:var(--accent)}
+    .stat .d{font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:12px}
 
-    /* ====== CTA — Cinematic ====== */
-    .cta {
-      position: relative; padding: 200px 48px;
-      text-align: center; overflow: hidden;
-    }
-    .cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(230,126,34,0.06) 0%, transparent 70%);
-    }
-    .cta h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 900; line-height: 1.3;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-      position: relative;
-    }
-    .cta p {
-      font-size: 0.95rem; color: rgba(255,255,255,0.45);
-      max-width: 520px; margin: 0 auto 40px; line-height: 2;
-      position: relative;
-    }
-    .cta .btns { display: flex; gap: 16px; justify-content: center; position: relative; }
+    /* === CTA === */
+    .cta{position:relative;padding:180px 48px;text-align:center;overflow:hidden}
+    .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(230,126,34,0.05) 0%,transparent 65%)}
+    .cta h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;line-height:1.3;letter-spacing:-0.02em;margin-bottom:20px;position:relative}
+    .cta p{font-size:0.92rem;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto 40px;line-height:2;position:relative}
+    .cta .btns{display:flex;gap:16px;justify-content:center;position:relative}
 
-    /* ====== FOOTER ====== */
-    .footer {
-      padding: 80px 48px 32px;
-      border-top: 1px solid var(--border);
-    }
-    .footer-inner {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 64px;
-    }
-    .footer-brand p {
-      font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.8;
-      margin-top: 16px;
-    }
-    .footer h4 {
-      font-family: 'Outfit'; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); margin-bottom: 20px;
-    }
-    .footer-links { display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a {
-      font-size: 0.85rem; color: rgba(255,255,255,0.35);
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-bottom {
-      display: flex; justify-content: space-between;
-      padding-top: 32px; border-top: 1px solid var(--border);
-      font-size: 0.72rem; color: rgba(255,255,255,0.2);
-    }
+    /* FOOTER */
+    .ft{padding:72px 48px 28px;border-top:1px solid var(--border)}
+    .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+    .ft-brand .hd-logo{font-size:1.1rem;margin-bottom:12px;display:inline-block}
+    .ft-brand p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.8}
+    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px}
+    .ft-links{display:flex;flex-direction:column;gap:10px}
+    .ft-links a{font-size:0.82rem;color:rgba(255,255,255,0.3);transition:0.3s}
+    .ft-links a:hover{color:var(--accent)}
+    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:rgba(255,255,255,0.18)}
 
-    /* ====== ANIMATIONS ====== */
-    .reveal {
-      opacity: 0; transform: translateY(40px);
-      transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal[data-delay="1"] { transition-delay: 0.15s; }
-    .reveal[data-delay="2"] { transition-delay: 0.3s; }
-    .reveal[data-delay="3"] { transition-delay: 0.45s; }
+    /* SP CTA */
+    .sp-cta{display:none;position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:var(--dark);border-top:1px solid var(--border);z-index:99;gap:8px}
+    .sp-cta .btn-f,.sp-cta .btn-g{flex:1;text-align:center;padding:12px;font-size:0.78rem}
 
-    /* ====== SP FIXED CTA ====== */
-    .sp-cta {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0;
-      padding: 12px 16px; background: var(--dark);
-      border-top: 1px solid var(--border); z-index: 99;
-      gap: 8px;
-    }
-    .sp-cta .btn-fill, .sp-cta .btn-ghost { flex: 1; text-align: center; padding: 12px; font-size: 0.8rem; }
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(36px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1)}
+    .rv.vis{opacity:1;transform:none}
+    .rv[data-d="1"]{transition-delay:0.15s}
+    .rv[data-d="2"]{transition-delay:0.3s}
+    .rv[data-d="3"]{transition-delay:0.45s}
 
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-meta { display: none; }
-      .solutions-items { grid-template-columns: repeat(2, 1fr); }
-      .sol-item:nth-child(2) { border-right: none; }
-      .wf-timeline { grid-template-columns: 60px 1fr; }
-      .wf-row .wf-image { display: none; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(1), .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr;gap:40px}
+      .hero-visual{order:-1}
+      .hero-visual img{max-width:400px}
+      .sol-grid{grid-template-columns:repeat(2,1fr)}
+      .sol-card:nth-child(2){border-right:none}
+      .wf-row{grid-template-columns:48px 1fr}
+      .wf-img{display:none}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:none}
+      .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--border)}
     }
-    @media (max-width: 768px) {
-      .header { padding: 16px 24px; }
-      .header-nav { display: none; }
-      .hamburger { display: block; }
-      .hero { height: auto; min-height: 90vh; padding: 120px 0 60px; }
-      .hero-inner { padding: 0 24px; }
-      .hero-copy h1 { font-size: 2.2rem; }
-      .problems, .solutions, .workflow, .stats-section, .cta, .footer { padding-left: 24px; padding-right: 24px; }
-      .problems-top { flex-direction: column; }
-      .problems-grid { grid-template-columns: 1fr; }
-      .problems-visual { aspect-ratio: 16/9; }
-      .solutions-header { grid-template-columns: 1fr; }
-      .solutions-items { grid-template-columns: 1fr; }
-      .sol-item { border-right: none !important; }
-      .stats-row { grid-template-columns: 1fr; }
-      .stat-item { border-right: none !important; border-bottom: 1px solid var(--border); }
-      .visual-break { height: 50vh; min-height: 300px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; gap: 8px; }
-      .sp-cta { display: flex; }
-      .footer { padding-bottom: 80px; }
+    @media(max-width:768px){
+      .hd,.pad,.stats,.cta,.ft{padding-left:24px;padding-right:24px}
+      .hd-nav{display:none}
+      .burger{display:flex}
+      .hero-grid{padding:120px 24px 60px}
+      .hero-copy h1{font-size:2rem}
+      .prob-top{flex-direction:column}
+      .prob-body{grid-template-columns:1fr}
+      .prob-img{aspect-ratio:16/9}
+      .sol-head{grid-template-columns:1fr}
+      .sol-grid{grid-template-columns:1fr}
+      .sol-card{border-right:none!important}
+      .stats-row{grid-template-columns:1fr}
+      .stat{border-right:none!important;border-bottom:1px solid var(--border)}
+      .vb{height:40vh;min-height:280px}
+      .ft-grid{grid-template-columns:1fr;gap:28px}
+      .ft-btm{flex-direction:column;gap:6px}
+      .sp-cta{display:flex}
+      .ft{padding-bottom:72px}
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="header" id="header">
-    <a href="index.html" class="header-logo">JISOK</a>
-    <nav class="header-nav" id="nav">
+  <header class="hd" id="hd">
+    <a href="index.html" class="hd-logo">JISOK</a>
+    <nav class="hd-nav">
       <a href="service.html">Service</a>
       <a href="technology.html">Technology</a>
       <a href="works.html">Works</a>
       <a href="company.html">Company</a>
-      <a href="company.html#contact" class="header-cta">Contact</a>
+      <a href="company.html#contact" class="hd-cta">Contact</a>
     </nav>
-    <div class="hamburger" id="hamburger" onclick="document.getElementById('nav').classList.toggle('open');this.classList.toggle('active');">
-      <span></span><span></span>
-    </div>
+    <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
 
-  <!-- HERO — Full Viewport -->
-  <section class="hero">
-    <div class="hero-media">
-      <img src="images/precision-01.jpg" alt="空間をデータ化し、未来を設計する">
-    </div>
-    <div class="hero-inner">
-      <div class="hero-copy reveal">
-        <h1>図面がない、を<br><span>終わりにする。</span></h1>
-      </div>
-      <div class="hero-meta reveal" data-delay="1">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="pc"></canvas>
+    <div class="hero-grid">
+      <div class="hero-copy rv">
         <div class="tag">FARO Focus × JISOK Engineering</div>
-        <p>3Dレーザースキャンで、プラントの"いま"を丸ごとデータ化。15年の現場経験で、計測から設計まで一貫してお手伝いします。</p>
+        <h1>図面がない、を<br><em>終わりにする。</em></h1>
+        <p class="lead">プラントの改修計画、こんな壁にぶつかっていませんか？<br>「既存図面が現場と合っていない」「高所の計測に足場が必要」「施工後に干渉が発覚」——<br>JISOKの3Dレーザースキャンが、これらの課題を根本から解決します。</p>
         <div class="hero-btns">
-          <a href="service.html" class="btn-fill">サービスを見る</a>
-          <a href="company.html#contact" class="btn-ghost">お問い合わせ</a>
+          <a href="service.html" class="btn-f">解決の流れを見る</a>
+          <a href="company.html#contact" class="btn-g">まずは相談する</a>
         </div>
       </div>
+      <div class="hero-visual rv" data-d="1">
+        <img src="images/hero-3d-model.jpg" alt="3Dプラントモデル">
+      </div>
     </div>
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="line"></div></div>
   </section>
 
   <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee-text">
-      3D LASER SCANNING — PLANT ENGINEERING — SCAN TO BIM — DIGITAL TWIN — FARO FOCUS — 3D LASER SCANNING — PLANT ENGINEERING — SCAN TO BIM — DIGITAL TWIN — FARO FOCUS —&nbsp;
-    </div>
+  <div class="marquee">
+    <div class="marquee-inner">3D LASER SCANNING — PLANT ENGINEERING — SCAN TO BIM — DIGITAL TWIN — FARO FOCUS — 3D LASER SCANNING — PLANT ENGINEERING — SCAN TO BIM — DIGITAL TWIN — FARO FOCUS —&nbsp;</div>
   </div>
 
-  <!-- PROBLEMS — White, Asymmetric -->
-  <section class="problems">
-    <div class="problems-top">
-      <div class="reveal">
-        <div class="label">Problems</div>
-        <h2>こんなお悩み、<br>ありませんか？</h2>
+  <!-- PROBLEMS — 悩み → ソリューション提示 -->
+  <section class="sec-w pad">
+    <div class="prob-top">
+      <div class="rv">
+        <div class="lbl">Problems → Solutions</div>
+        <h2>現場のこの悩み、<br>すべて解決できます。</h2>
       </div>
-      <p class="reveal" data-delay="1">プラントの更新・改修を計画するとき、多くの現場で同じ壁にぶつかっています。</p>
+      <p class="sub rv" data-d="1">プラントの更新・改修で多くの現場がぶつかる壁。JISOKは3Dスキャンで、それぞれに明確な答えを出します。</p>
     </div>
-    <div class="problems-grid">
-      <div class="problems-cards">
-        <div class="p-card reveal">
-          <div class="p-card-num">01</div>
+    <div class="prob-body">
+      <div class="prob-list">
+        <div class="prob-item rv">
+          <div class="num">01</div>
           <div>
             <h3>図面と現場が合っていない</h3>
-            <p>改修のたびに少しずつズレてきた図面。いざ工事の計画を始めると、現況と図面がまるで別物…というのはよくある話です。</p>
+            <p>度重なる改修で図面と現況がズレている。竣工図が紙しかない、あるいは紛失している——こうした状況では改修計画の第一歩すら踏み出せません。</p>
+            <div class="solve">→ 3Dスキャンで現場を丸ごとデータ化。最新の現況3Dモデルを構築します</div>
           </div>
         </div>
-        <div class="p-card reveal" data-delay="1">
-          <div class="p-card-num">02</div>
+        <div class="prob-item rv" data-d="1">
+          <div class="num">02</div>
           <div>
             <h3>計測のたびに足場が必要</h3>
-            <p>高所の配管まわりを測るために、わざわざ足場を組んでいませんか？時間もコストも、安全面のリスクも大きな負担です。</p>
+            <p>高所の配管まわりを手計測するために足場を組み、人員を配置する。計測だけで数日を費やし、安全面のリスクも無視できません。</p>
+            <div class="solve">→ 非接触レーザースキャンで足場不要。地上から安全に1時間でスキャン完了</div>
           </div>
         </div>
-        <div class="p-card reveal" data-delay="2">
-          <div class="p-card-num">03</div>
+        <div class="prob-item rv" data-d="2">
+          <div class="num">03</div>
           <div>
             <h3>施工してから"入らない"が発覚</h3>
-            <p>設計段階では気づかなかった干渉が、現場で判明。手戻り工事は工期にも予算にも痛手です。</p>
+            <p>2D図面だけでは見抜けなかった配管の干渉が、施工段階で判明。手戻り工事は工期の遅延とコスト増に直結します。</p>
+            <div class="solve">→ 3Dモデル上で事前に干渉チェック。手戻りゼロの施工を実現します</div>
           </div>
         </div>
       </div>
-      <div class="problems-visual reveal" data-delay="1">
-        <img src="images/hero-infographic.jpg" alt="プラント計測の課題">
-        <div class="overlay-text">
-          <span>Point Cloud Data</span>
-          <p>3Dスキャンが変えるプラント計測の未来</p>
-        </div>
+      <div class="prob-img rv" data-d="1">
+        <img src="images/hero-infographic.jpg" alt="3Dスキャンが変えるプラント計測の未来">
       </div>
     </div>
   </section>
 
-  <!-- SOLUTIONS — Dark, Border Grid -->
-  <section class="solutions">
-    <div class="solutions-header">
-      <div class="reveal">
-        <div class="label">Solutions</div>
+  <!-- SOLUTIONS — Dark Border Grid -->
+  <section class="sec-d pad">
+    <div class="sol-head">
+      <div class="rv">
+        <div class="lbl">Why JISOK</div>
         <h2>JISOKが<br>選ばれている理由</h2>
       </div>
-      <p class="reveal" data-delay="1">FARO Focusレーザースキャナーの性能と、15年の現場経験。この2つを掛け合わせて、プラントの課題を解決しています。</p>
+      <p class="desc rv" data-d="1">FARO Focusレーザースキャナーの性能と、15年の現場経験。ハードウェアの「精度」と専門家の「実装力」を掛け合わせて、プラントの課題を根本から解決しています。</p>
     </div>
-    <div class="solutions-items reveal">
-      <div class="sol-item">
-        <div class="num">01</div>
+    <div class="sol-grid rv">
+      <div class="sol-card">
+        <div class="n">01</div>
         <h3>足場なしで計測できる</h3>
-        <p>非接触のレーザースキャンだから、足場の設置は不要。地上から安全に、高所や狭所もスキャンできます。</p>
+        <p>非接触のレーザースキャンなら、足場の設置は一切不要。高所や狭所も地上から安全にスキャン。計測のための足場コスト・工期をゼロにします。</p>
       </div>
-      <div class="sol-item">
-        <div class="num">02</div>
+      <div class="sol-card">
+        <div class="n">02</div>
         <h3>現場作業は約1時間</h3>
-        <p>1エリアあたり約1時間でスキャン完了。従来の手計測と比べて、現場の拘束時間を大幅に短縮します。</p>
+        <p>1エリア（10×5×7m）あたり約1時間でスキャン完了。従来の手計測では数日かかっていた現地調査を、大幅に短縮。プラント稼働への影響も最小限です。</p>
       </div>
-      <div class="sol-item">
-        <div class="num">03</div>
+      <div class="sol-card">
+        <div class="n">03</div>
         <h3>±2mmの精密データ</h3>
-        <p>毎秒97.6万点をキャプチャ。手作業では避けられない測り忘れやヒューマンエラーとは無縁です。</p>
+        <p>毎秒97.6万点をキャプチャし、10m地点で±2mmの精度を実現。手作業では避けられない測り忘れやヒューマンエラーとは無縁の、信頼できるデータです。</p>
       </div>
-      <div class="sol-item">
-        <div class="num">04</div>
+      <div class="sol-card">
+        <div class="n">04</div>
         <h3>誰でも現場を"歩ける"</h3>
-        <p>3Dモデル上で仮想的にプラント内を歩き回れます。図面が読めない関係者とも、直感的に合意形成ができます。</p>
+        <p>3Dモデル上でプラント内を仮想歩行。2D図面では伝わらない空間の広がりや配管の複雑さが、図面が読めない関係者にも一目で伝わります。</p>
       </div>
     </div>
   </section>
 
   <!-- VISUAL BREAK -->
-  <div class="visual-break">
+  <div class="vb">
     <img src="images/precision-03.jpg" alt="FARO Focus × JISOK">
-    <div class="vb-text reveal">
-      <h2>Scan to <span>BIM</span></h2>
+    <div class="vb-overlay rv">
+      <h2>Scan to <em>BIM</em></h2>
       <p>現実の空間を、設計可能なデジタルデータに変換する</p>
     </div>
   </div>
 
-  <!-- WORKFLOW — White, Editorial Timeline -->
-  <section class="workflow">
-    <div class="workflow-header reveal">
-      <div class="label">Workflow</div>
+  <!-- WORKFLOW — Timeline + Step Images + Expanded Text -->
+  <section class="sec-w pad">
+    <div class="wf-head rv">
+      <div class="lbl">Workflow</div>
       <h2>現場の"いま"をBIMに変える<br>5つのステップ</h2>
     </div>
-    <div class="wf-timeline">
-      <div class="wf-row reveal">
-        <div class="wf-num">01</div>
-        <div class="wf-content">
-          <div class="tool">FARO Focus</div>
-          <h3>Survey — 現場を丸ごとスキャン</h3>
-          <p>高精度LiDARで物理空間を点群データ化。非接触・足場不要で安全にキャプチャします。</p>
-        </div>
-        <div class="wf-image"><img src="images/precision-05.jpg" alt="FARO Focus" loading="lazy"></div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">01</div>
+      <div class="wf-text">
+        <div class="tool">FARO Focus — Survey</div>
+        <h3>現場を丸ごとスキャン</h3>
+        <p>FARO Focusレーザースキャナーで、プラント全体を高密度の点群データとして取得します。三脚を設置してスタートボタンを押すだけ。足場は一切不要で、1エリアあたり約1時間でスキャンが完了します。</p>
+        <p class="detail">最大976,000点/秒の超高速キャプチャ。350m先まで届くレーザーが、配管の裏側や高所のディテールまで逃さず記録します。HDR写真オーバーレイにより、カラー付きの点群データも取得可能です。</p>
       </div>
-      <div class="wf-row reveal" data-delay="1">
-        <div class="wf-num">02</div>
-        <div class="wf-content">
-          <div class="tool">Autodesk ReCap</div>
-          <h3>Process — データを構造化</h3>
-          <p>点群データを統合・ノイズ除去し、設計に使える高品質なデータセットを構築します。</p>
-        </div>
-        <div class="wf-image"><img src="images/blueprint-03.jpg" alt="データパイプライン" loading="lazy"></div>
+      <div class="wf-img"><img src="images/step-01-survey.jpg" alt="FARO Focus レーザースキャナー" loading="lazy"></div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">02</div>
+      <div class="wf-text">
+        <div class="tool">Autodesk ReCap — Process</div>
+        <h3>データを"使える形"に整える</h3>
+        <p>取得した膨大な点群データを、Autodesk ReCapで統合・構造化します。複数スキャンの自動位置合わせ、ノイズ除去、座標統合を行い、設計にそのまま使える高品質なデータセットを構築します。</p>
+        <p class="detail">必要に応じて断面図の切り出しや、特定エリアの抽出も可能。「データを受け取っても活用できない」という心配は不要です。御社の設計環境に合わせた形式で納品します。</p>
       </div>
-      <div class="wf-row reveal" data-delay="2">
-        <div class="wf-num">03</div>
-        <div class="wf-content">
-          <div class="tool">Plant 3D / Revit</div>
-          <h3>Design — 3Dモデルを構築</h3>
-          <p>点群から精密な3Dモデルを作成。配管・ダクト・構造体をBIM化します。</p>
-        </div>
-        <div class="wf-image"><img src="images/blueprint-01.jpg" alt="デジタルツイン" loading="lazy"></div>
+      <div class="wf-img"><img src="images/step-02-process.jpg" alt="点群データ処理" loading="lazy"></div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">03</div>
+      <div class="wf-text">
+        <div class="tool">Plant 3D / Revit — Design</div>
+        <h3>点群から精密な3Dモデルを構築</h3>
+        <p>AutoCAD Plant 3DやRevitを使い、点群データから配管・ダクト・構造体の精密な3Dモデルを作成します。既存図面がなくても、スキャンデータから現況のBIMモデルを新たに構築できます。</p>
+        <p class="detail">P&ID（配管計装図）との統合設計にも対応。設計の手戻りを防ぐため、モデリング段階で既設との整合性を逐一チェックします。18年のプラント設計経験が、モデルの精度と実用性を支えています。</p>
       </div>
-      <div class="wf-row reveal">
-        <div class="wf-num">04</div>
-        <div class="wf-content">
-          <div class="tool">Navisworks</div>
-          <h3>Execute — 干渉ゼロを確認</h3>
-          <p>仮想空間上で干渉チェック。施工前にPC上で確認し、手戻り工事をなくします。</p>
-        </div>
-        <div class="wf-image"><img src="images/precision-04.jpg" alt="ROI比較" loading="lazy"></div>
+      <div class="wf-img"><img src="images/step-03-design.jpg" alt="3Dモデリング・BIM化" loading="lazy"></div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">04</div>
+      <div class="wf-text">
+        <div class="tool">Navisworks — Execute</div>
+        <h3>施工前に"干渉ゼロ"を確認</h3>
+        <p>Navisworksの干渉チェック（クラッシュ検出）機能で、新設配管と既設設備がぶつからないかを施工前にPC上で完全検証。「現場で入らない」を未然に防ぎます。</p>
+        <p class="detail">ウォークスルー機能で施工手順のシミュレーションも可能。現場に行く前に、PCの中で施工を"予行演習"できます。これにより内作率が向上し、現合箇所を極小化します。</p>
       </div>
-      <div class="wf-row reveal" data-delay="1">
-        <div class="wf-num">05</div>
-        <div class="wf-content">
-          <div class="tool">LDAR Compliance</div>
-          <h3>Operate — デジタルツインで維持管理</h3>
-          <p>スキャンデータを完工後の維持管理にも活用。経年変化も定期スキャンで把握します。</p>
-        </div>
-        <div class="wf-image"><img src="images/blueprint-04.jpg" alt="FARO Focus S-350" loading="lazy"></div>
+      <div class="wf-img"><img src="images/step-04-execute.jpg" alt="干渉チェック・施工検証" loading="lazy"></div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">05</div>
+      <div class="wf-text">
+        <div class="tool">LDAR Compliance — Operate</div>
+        <h3>デジタルツインで維持管理</h3>
+        <p>完工後のスキャンデータは、デジタルツインとして維持管理にも活用。定期スキャンで設備の経年変化を可視化し、改修の優先度判断をデータに基づいて行えます。</p>
+        <p class="detail">LDAR（漏洩検知・修理）コンプライアンスへの対応も支援。設備台帳との連携により、属性情報を持ったスマートな3Dデータとしてプラントの資産を管理できます。</p>
       </div>
+      <div class="wf-img"><img src="images/step-05-operate.jpg" alt="維持管理・デジタルツイン" loading="lazy"></div>
     </div>
   </section>
 
-  <!-- STATS — Oversized Dark -->
-  <section class="stats-section">
-    <div class="stats-row reveal">
-      <div class="stat-item">
-        <div class="val">350<span>m</span></div>
-        <div class="desc">最大計測距離</div>
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-row rv">
+      <div class="stat">
+        <div class="v">350<span>m</span></div>
+        <div class="d">最大計測距離</div>
       </div>
-      <div class="stat-item">
-        <div class="val">976,000<span>点/秒</span></div>
-        <div class="desc">最大測定速度</div>
+      <div class="stat">
+        <div class="v">976,000<span>点/秒</span></div>
+        <div class="d">最大測定速度</div>
       </div>
-      <div class="stat-item">
-        <div class="val">±2<span>mm</span></div>
-        <div class="desc">10m地点での精度</div>
+      <div class="stat">
+        <div class="v">±2<span>mm</span></div>
+        <div class="d">10m地点での精度</div>
       </div>
-      <div class="stat-item">
-        <div class="val">IP54</div>
-        <div class="desc">防塵・防水性能</div>
+      <div class="stat">
+        <div class="v">IP54</div>
+        <div class="d">防塵・防水性能</div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta">
-    <h2 class="reveal">まずは、お気軽に<br>ご相談ください</h2>
-    <p class="reveal" data-delay="1">図面がない、コストを抑えたい、工期を短くしたい。<br>どんなご相談でも大丈夫です。</p>
-    <div class="btns reveal" data-delay="2">
-      <a href="company.html#contact" class="btn-fill">お問い合わせはこちら</a>
-      <a href="service.html" class="btn-ghost">サービス詳細を見る</a>
+    <h2 class="rv">まずは、お気軽に<br>ご相談ください</h2>
+    <p class="rv" data-d="1">図面がない、コストを抑えたい、工期を短くしたい。<br>どんなご相談でも大丈夫です。現場の状況をお聞かせください。</p>
+    <div class="btns rv" data-d="2">
+      <a href="company.html#contact" class="btn-f">お問い合わせ</a>
+      <a href="service.html" class="btn-g">サービス詳細を見る</a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="index.html" class="header-logo" style="font-size:1.2rem;">JISOK</a>
+  <footer class="ft">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="hd-logo">JISOK</span>
         <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
       </div>
       <div>
         <h4>Service</h4>
-        <div class="footer-links">
+        <div class="ft-links">
           <a href="service.html">サービス紹介</a>
           <a href="technology.html">技術・設備</a>
           <a href="works.html">導入事例</a>
@@ -741,35 +420,90 @@
       </div>
       <div>
         <h4>Company</h4>
-        <div class="footer-links">
+        <div class="ft-links">
           <a href="company.html">会社概要</a>
           <a href="company.html#contact">お問い合わせ</a>
         </div>
       </div>
       <div>
         <h4>Social</h4>
-        <div class="footer-links">
+        <div class="ft-links">
           <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="ft-btm">
       <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
       <span>FARO Focus is a trademark of FARO Technologies, Inc.</span>
     </div>
   </footer>
 
-  <!-- SP CTA -->
   <div class="sp-cta">
-    <a href="company.html#contact" class="btn-fill">お問い合わせ</a>
-    <a href="tel:" class="btn-ghost">電話する</a>
+    <a href="company.html#contact" class="btn-f">お問い合わせ</a>
+    <a href="tel:" class="btn-g">電話する</a>
   </div>
 
+  <!-- Three.js CDN + 点群パーティクル -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    // Scroll reveal
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:0.08});
+    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
+
+    // WebGL Point Cloud
+    (function(){
+      const canvas=document.getElementById('pc');
+      if(!canvas)return;
+      const hero=document.getElementById('hero');
+      const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+      renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+      const scene=new THREE.Scene();
+      const camera=new THREE.PerspectiveCamera(60,1,0.1,100);
+      camera.position.z=3;
+
+      const count=2000;
+      const positions=new Float32Array(count*3);
+      const colors=new Float32Array(count*3);
+      const accentR=230/255,accentG=126/255,accentB=34/255;
+      for(let i=0;i<count;i++){
+        positions[i*3]=(Math.random()-0.5)*6;
+        positions[i*3+1]=(Math.random()-0.5)*4;
+        positions[i*3+2]=(Math.random()-0.5)*3;
+        if(Math.random()<0.3){colors[i*3]=accentR;colors[i*3+1]=accentG;colors[i*3+2]=accentB}
+        else{const g=0.3+Math.random()*0.3;colors[i*3]=g;colors[i*3+1]=g;colors[i*3+2]=g+0.1}
+      }
+      const geo=new THREE.BufferGeometry();
+      geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+      geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+      const mat=new THREE.PointsMaterial({size:0.02,vertexColors:true,transparent:true,opacity:0.6,sizeAttenuation:true});
+      const points=new THREE.Points(geo,mat);
+      scene.add(points);
+
+      function resize(){
+        const w=hero.clientWidth,h=hero.clientHeight;
+        renderer.setSize(w,h);
+        camera.aspect=w/h;camera.updateProjectionMatrix();
+      }
+      resize();
+      window.addEventListener('resize',resize);
+
+      let mouse={x:0,y:0};
+      window.addEventListener('mousemove',e=>{mouse.x=(e.clientX/innerWidth-0.5)*2;mouse.y=-(e.clientY/innerHeight-0.5)*2});
+
+      function loop(t){
+        requestAnimationFrame(loop);
+        points.rotation.y=t*0.00005+mouse.x*0.15;
+        points.rotation.x=t*0.00003+mouse.y*0.1;
+        const pos=geo.attributes.position.array;
+        for(let i=0;i<count;i++){pos[i*3+1]+=Math.sin(t*0.001+i*0.1)*0.0003}
+        geo.attributes.position.needsUpdate=true;
+        renderer.render(scene,camera);
+      }
+      loop(0);
+    })();
   </script>
 
 </body>
