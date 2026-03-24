@@ -7,675 +7,416 @@
   <meta name="description" content="プラント3Dスキャンの導入事例。図面がない既存プラントの現況図面作成、配管干渉チェックによる手戻りゼロ、3Dモデルを活用した合意形成の効率化など、実績をご紹介します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ===== Works Page — Cinematic Corporate (TYO Statement Style) ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--accent:#e67e22;--dark:#0a0a0a;--border:rgba(255,255,255,0.08)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans JP',sans-serif;background:var(--dark);color:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
 
-    /* ---------- Page Hero (DARK) ---------- */
-    .page-hero {
-      position: relative;
-      background: #0a0a0a;
-      padding: 200px 0 120px;
-      text-align: left;
-      overflow: hidden;
-      min-height: 520px;
-      display: flex;
-      align-items: flex-end;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/blueprint-01.jpg') center/cover no-repeat;
-      opacity: 0.15;
-      z-index: 0;
-    }
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 200px;
-      background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
-      z-index: 1;
-    }
-    .page-hero .container { position: relative; z-index: 2; }
-    .page-hero .breadcrumb {
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 24px;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .page-hero .breadcrumb a {
-      color: rgba(255,255,255,0.4);
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-    .page-hero .breadcrumb a:hover { color: var(--color-accent); }
-    .page-hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(3.6rem, 8vw, 7rem);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .page-hero p {
-      color: rgba(255,255,255,0.55);
-      font-size: 1.05rem;
-      max-width: 600px;
-      margin: 0;
-      line-height: 1.9;
-    }
+    /* HEADER */
+    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,backdrop-filter 0.4s}
+    .hd.scrolled{background:rgba(10,10,10,0.85);backdrop-filter:blur(16px)}
+    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:#fff}
+    .hd-nav{display:flex;gap:28px;align-items:center}
+    .hd-nav a{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);transition:0.3s}
+    .hd-nav a:hover{color:#fff}
+    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700}
+    .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
+    .burger span{display:block;width:24px;height:2px;background:#fff;transition:0.3s}
 
-    /* ---------- Video Section (LIGHT) ---------- */
-    .video-section {
-      background: #fff;
-      padding: 120px 0;
-    }
-    .video-section .section-header .section-label { color: var(--color-text-light); }
-    .video-section .section-header .section-title { color: var(--color-primary); }
-    .video-section .section-header .section-desc { color: var(--color-text-light); }
-    .video-wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      background: #0d1b2a;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.18);
-    }
-    .video-play-btn {
-      width: 88px;
-      height: 88px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
-      box-shadow: 0 0 0 0 rgba(230,126,34,0.3);
-    }
-    .video-play-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 0 20px rgba(230,126,34,0.08);
-    }
-    .video-label {
-      position: absolute;
-      bottom: 24px;
-      left: 0; right: 0;
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-    }
+    /* SECTION UTILS */
+    .sec-w{background:#fff;color:var(--dark)}
+    .sec-d{background:var(--dark);color:#fff}
+    .pad{padding:140px 48px}
 
-    /* ---------- Gallery Full-Bleed (DARK) ---------- */
-    .gallery-fullbleed {
-      background: #0a0a0a;
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-fullbleed img {
-      width: 100%;
-      height: auto;
-      display: block;
-      opacity: 0.92;
-    }
-    .gallery-fullbleed .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, transparent 30%, transparent 70%, rgba(10,10,10,0.3) 100%);
-      pointer-events: none;
-    }
+    /* PAGE HERO */
+    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
+    .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(230,126,34,0.06) 0%,transparent 60%)}
+    .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
+    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
+    .pg-hero .bc a{color:rgba(255,255,255,0.3);transition:0.3s}
+    .pg-hero .bc a:hover{color:var(--accent)}
+    .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px}
+    .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .pg-hero .lead{font-size:0.95rem;color:rgba(255,255,255,0.45);max-width:560px;line-height:2}
 
-    /* ---------- Cases Section (LIGHT) ---------- */
-    .cases-section {
-      background: #fff;
-      padding: 120px 0;
-    }
-    .cases-section .section-header .section-label { color: var(--color-text-light); }
-    .cases-section .section-header .section-title { color: var(--color-primary); }
-    .cases-section .section-header .section-desc { color: var(--color-text-light); }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-    .case-card {
-      background: #fff;
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(0,0,0,0.06);
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease;
-    }
-    .case-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 32px 64px rgba(0,0,0,0.1);
-    }
-    .img-card {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-    }
-    .case-content {
-      padding: 32px 28px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .case-number {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--color-accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .case-tag {
-      display: inline-block;
-      background: rgba(230,126,34,0.06);
-      color: var(--color-accent);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 100px;
-      margin-bottom: 14px;
-      align-self: flex-start;
-    }
-    .case-content h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--color-primary);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .case-flow-item { margin-bottom: 16px; }
-    .case-flow-item:last-child { margin-bottom: 0; }
-    .case-flow-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--color-accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 4px;
-    }
-    .case-flow-text {
-      font-size: 0.9rem;
-      color: var(--color-text-light);
-      line-height: 1.8;
-    }
+    /* VIDEO SECTION (White) */
+    .vid-head{text-align:center;margin-bottom:56px}
+    .vid-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .vid-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .vid-head p{font-size:0.9rem;color:#777;margin-top:12px}
+    .vid-wrap{max-width:960px;margin:0 auto;aspect-ratio:16/9;background:var(--dark);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.18)}
+    .vid-play{width:88px;height:88px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:0.3s;box-shadow:0 0 0 0 rgba(230,126,34,0.3)}
+    .vid-play:hover{transform:scale(1.08);box-shadow:0 0 0 20px rgba(230,126,34,0.08)}
+    .vid-play svg{width:32px;height:32px;fill:#fff;margin-left:4px}
+    .vid-label{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:500;letter-spacing:0.06em}
 
-    /* ---------- Numbers Section (DARK) ---------- */
-    .numbers-section {
-      background: #0a0a0a;
-      color: #fff;
-      padding: 120px 0;
-    }
-    .numbers-section .section-header .section-label { color: rgba(255,255,255,0.3); }
-    .numbers-section .section-header .section-title { color: #fff; }
-    .numbers-section .section-header .section-desc { color: rgba(255,255,255,0.45); }
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.8rem, 5vw, 4rem);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    .stat-num span {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      margin-top: 0;
-      letter-spacing: 0.02em;
-    }
+    /* CASE STUDIES (prob-item style: number + text, visual right) */
+    .case-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:80px}
+    .case-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .case-head h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;max-width:560px}
+    .case-head .sub{font-size:0.9rem;color:#777;max-width:360px;line-height:2}
 
-    /* ---------- Testimonials (LIGHT) ---------- */
-    .testimonials-section {
-      background: #f8f9fb;
-      padding: 120px 0;
-    }
-    .testimonials-section .section-header .section-label { color: var(--color-text-light); }
-    .testimonials-section .section-header .section-title { color: var(--color-primary); }
-    .testimonials-section .section-header .section-desc { color: var(--color-text-light); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .testimonial-card {
-      background: #fff;
-      border-radius: 4px;
-      padding: 40px 36px;
-      border: 1px solid rgba(0,0,0,0.06);
-      position: relative;
-      transition: box-shadow 0.4s ease;
-    }
-    .testimonial-card:hover {
-      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
-    }
-    .testimonial-quote {
-      font-family: 'Outfit', serif;
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--color-accent);
-      opacity: 0.1;
-      line-height: 1;
-      pointer-events: none;
-      margin-bottom: -12px;
-    }
-    .testimonial-text {
-      font-size: 0.92rem;
-      color: var(--color-text-light);
-      line-height: 2;
-      margin-bottom: 28px;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .testimonial-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--color-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .testimonial-avatar svg { width: 22px; height: 22px; }
-    .testimonial-name {
-      font-weight: 700;
-      color: var(--color-primary);
-      font-size: 0.88rem;
-    }
-    .testimonial-role {
-      font-size: 0.76rem;
-      color: var(--color-text-light);
-    }
+    .case-item{display:grid;grid-template-columns:1fr 0.7fr;gap:48px;padding:64px 0;border-bottom:1px solid #e5e5e5;align-items:center}
+    .case-item:first-of-type{border-top:1px solid #e5e5e5}
+    .case-item .num{font-family:'Outfit';font-size:3.5rem;font-weight:200;color:#ddd;line-height:1;margin-bottom:16px}
+    .case-item .tag{display:inline-block;padding:4px 16px;border-radius:20px;font-size:0.72rem;font-weight:700;background:rgba(230,126,34,0.08);color:var(--accent);margin-bottom:16px}
+    .case-item h3{font-size:1.2rem;font-weight:800;margin-bottom:24px;line-height:1.5}
+    .case-flow{margin-bottom:12px}
+    .case-flow .fl{font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+    .case-flow p{font-size:0.88rem;color:#666;line-height:1.8}
+    .case-vis{aspect-ratio:4/3;background:#1a1a1a;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .case-vis svg{width:80px;height:80px;stroke:#333;stroke-width:1;fill:none;opacity:0.5}
 
-    /* ---------- CTA Section (DARK) ---------- */
-    .cta-section {
-      background: #0a0a0a;
-      color: #fff;
-      text-align: center;
-      padding: 120px 0;
-      position: relative;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(230,126,34,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-section h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .cta-section p {
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 40px;
-      font-size: 1rem;
-    }
+    /* NUMBERS (Dark, stats style) */
+    .nums{padding:100px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .nums-head{text-align:center;margin-bottom:64px}
+    .nums-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .nums-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .nums-head p{font-size:0.88rem;color:rgba(255,255,255,0.35);margin-top:12px}
+    .nums-row{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+    .n-stat{padding:32px 16px;border-right:1px solid var(--border)}
+    .n-stat:last-child{border-right:none}
+    .n-stat .v{font-family:'Outfit';font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:800;line-height:1;letter-spacing:-0.03em}
+    .n-stat .v span{font-size:0.35em;font-weight:400;color:var(--accent)}
+    .n-stat .d{font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:12px}
 
-    /* ---------- Footer (DARK) ---------- */
-    .footer {
-      background: #050505 !important;
-      color: rgba(255,255,255,0.5);
-      padding: 80px 0 40px;
-    }
-    .footer .logo { color: #fff; }
-    .footer .footer-brand p { color: rgba(255,255,255,0.35); }
-    .footer h4 { color: rgba(255,255,255,0.7); }
-    .footer .footer-links a { color: rgba(255,255,255,0.4); }
-    .footer .footer-links a:hover { color: var(--color-accent); }
-    .footer .footer-social a { color: rgba(255,255,255,0.4); }
-    .footer .footer-social a:hover { color: var(--color-accent); }
-    .footer-bottom { border-top-color: rgba(255,255,255,0.08) !important; color: rgba(255,255,255,0.25); }
+    /* TESTIMONIALS (White) */
+    .testi-head{text-align:center;margin-bottom:64px}
+    .testi-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .testi-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .testi-head p{font-size:0.9rem;color:#777;margin-top:12px}
+    .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:960px;margin:0 auto}
+    .testi-card{background:#f8f8f8;border-radius:8px;padding:40px 36px;border:1px solid #eee;transition:0.3s}
+    .testi-card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+    .testi-q{font-family:'Outfit';font-size:4rem;font-weight:900;color:var(--accent);opacity:0.1;line-height:1;pointer-events:none;margin-bottom:-12px}
+    .testi-txt{font-size:0.92rem;color:#555;line-height:2;margin-bottom:28px}
+    .testi-author{display:flex;align-items:center;gap:14px}
+    .testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .testi-avatar svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2}
+    .testi-name{font-weight:700;font-size:0.88rem}
+    .testi-role{font-size:0.76rem;color:#999}
 
-    /* ---------- Responsive ---------- */
-    @media (max-width: 900px) {
-      .card-grid {
-        grid-template-columns: 1fr;
-        max-width: 540px;
-        margin: 0 auto;
-        gap: 24px;
-      }
-      .numbers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
-      }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .page-hero { padding: 160px 0 80px; min-height: 400px; }
-      .page-hero h1 { font-size: clamp(2.8rem, 10vw, 4.5rem); }
+    /* CTA */
+    .cta{position:relative;padding:180px 48px;text-align:center;overflow:hidden}
+    .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(230,126,34,0.05) 0%,transparent 65%)}
+    .cta h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;line-height:1.3;letter-spacing:-0.02em;margin-bottom:20px;position:relative}
+    .cta p{font-size:0.92rem;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto 40px;line-height:2;position:relative}
+    .cta .btns{display:flex;gap:16px;justify-content:center;position:relative}
+    .btn-f{padding:14px 32px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-f:hover{background:#d35400;transform:translateY(-2px)}
+    .btn-g{padding:14px 32px;background:transparent;color:#fff;font-size:0.82rem;font-weight:500;border:1px solid rgba(255,255,255,0.25);border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-g:hover{border-color:#fff;background:rgba(255,255,255,0.04)}
+
+    /* FOOTER */
+    .ft{padding:72px 48px 28px;border-top:1px solid var(--border)}
+    .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+    .ft-brand .hd-logo{font-size:1.1rem;margin-bottom:12px;display:inline-block}
+    .ft-brand p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.8}
+    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px}
+    .ft-links{display:flex;flex-direction:column;gap:10px}
+    .ft-links a{font-size:0.82rem;color:rgba(255,255,255,0.3);transition:0.3s}
+    .ft-links a:hover{color:var(--accent)}
+    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:rgba(255,255,255,0.18)}
+
+    /* SP CTA */
+    .sp-cta{display:none;position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:var(--dark);border-top:1px solid var(--border);z-index:99;gap:8px}
+    .sp-cta .btn-f,.sp-cta .btn-g{flex:1;text-align:center;padding:12px;font-size:0.78rem}
+
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(36px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1)}
+    .rv.vis{opacity:1;transform:none}
+    .rv[data-d="1"]{transition-delay:0.15s}
+    .rv[data-d="2"]{transition-delay:0.3s}
+    .rv[data-d="3"]{transition-delay:0.45s}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .nums-row{grid-template-columns:repeat(2,1fr)}
+      .n-stat:nth-child(2){border-right:none}
+      .n-stat:nth-child(1),.n-stat:nth-child(2){border-bottom:1px solid var(--border)}
     }
-    @media (max-width: 480px) {
-      .numbers-grid { grid-template-columns: 1fr; }
-      .video-play-btn { width: 64px; height: 64px; }
+    @media(max-width:768px){
+      .hd,.pad,.nums,.cta,.ft{padding-left:24px;padding-right:24px}
+      .hd-nav{display:none}
+      .burger{display:flex}
+      .pg-hero{padding:0 24px 60px;min-height:50vh}
+      .pg-hero .inner{padding-top:120px}
+      .case-head{flex-direction:column}
+      .case-item{grid-template-columns:1fr}
+      .case-vis{aspect-ratio:16/9}
+      .nums-row{grid-template-columns:1fr}
+      .n-stat{border-right:none!important;border-bottom:1px solid var(--border)}
+      .n-stat:last-child{border-bottom:none}
+      .testi-grid{grid-template-columns:1fr}
+      .ft-grid{grid-template-columns:1fr;gap:28px}
+      .ft-btm{flex-direction:column;gap:6px}
+      .sp-cta{display:flex}
+      .ft{padding-bottom:72px}
+      .cta{padding:100px 24px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container">
-      <a href="index.html" class="logo"><div class="logo-icon">Q</div><span>JISOK</span></a>
-      <nav class="nav" id="nav">
-        <a href="index.html">トップ</a>
-        <a href="service.html">サービス</a>
-        <a href="technology.html">技術・設備</a>
-        <a href="works.html" class="active">実績</a>
-        <a href="company.html">会社概要</a>
-        <a href="company.html#contact" class="btn btn-primary btn-header">お問い合わせ</a>
-      </nav>
-      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
-    </div>
+  <!-- HEADER -->
+  <header class="hd" id="hd">
+    <a href="index.html" class="hd-logo">JISOK</a>
+    <nav class="hd-nav">
+      <a href="service.html">サービス</a>
+      <a href="technology.html">技術・設備</a>
+      <a href="works.html">実績</a>
+      <a href="company.html">会社概要</a>
+      <a href="company.html#contact" class="hd-cta">お問い合わせ</a>
+    </nav>
+    <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
 
-  <!-- Page Hero (DARK) -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="index.html">Top</a> &mdash; Works
-      </div>
-      <h1>Works</h1>
-      <p>これまでの計測・設計事例をご紹介します。（※守秘義務に配慮し、詳細は一部変更しています）</p>
+  <!-- PAGE HERO -->
+  <section class="pg-hero">
+    <div class="inner rv">
+      <div class="bc"><a href="index.html">Top</a> &mdash; Works</div>
+      <h1><small>Case Studies</small>実績</h1>
+      <p class="lead">これまでの計測・設計事例をご紹介します。（※守秘義務に配慮し、詳細は一部変更しています）</p>
     </div>
   </section>
 
-  <!-- YouTube Video Section (LIGHT) -->
-  <section class="video-section">
-    <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-label">Movie</div>
-        <h2 class="section-title">JISOKの現場を動画で体感</h2>
-        <p class="section-desc">3Dレーザースキャン計測の実際の作業風景と、その成果をご覧ください。</p>
+  <!-- YouTube VIDEO (White) -->
+  <section class="sec-w pad">
+    <div class="vid-head rv">
+      <div class="lbl">Movie</div>
+      <h2>JISOKの現場を動画で体感</h2>
+      <p>3Dレーザースキャン計測の実際の作業風景と、その成果をご覧ください。</p>
+    </div>
+    <div class="vid-wrap rv">
+      <div class="vid-play">
+        <svg viewBox="0 0 24 24"><path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z"/></svg>
       </div>
-      <div class="video-wrapper fade-up">
-        <div class="video-play-btn">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="#fff"/>
-          </svg>
-        </div>
-        <div class="video-label">3Dレーザースキャン計測 作業紹介ムービー</div>
-      </div>
+      <div class="vid-label">3Dレーザースキャン計測 作業紹介ムービー</div>
     </div>
   </section>
 
-  <!-- Gallery Full-Bleed (DARK) -->
-  <section class="gallery-fullbleed fade-up">
-    <img src="images/hero-infographic.jpg" alt="JISOK 3Dスキャン計測 インフォグラフィック" loading="lazy">
-    <div class="gallery-overlay"></div>
-  </section>
-
-  <!-- Case Studies (LIGHT) -->
-  <section class="cases-section">
-    <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-label">Case Studies</div>
-        <h2 class="section-title">お客様の課題を、3Dスキャンで解決</h2>
-        <p class="section-desc">業種を問わず、計測・設計・施工の現場で確かな成果を出し続けています。</p>
+  <!-- CASE STUDIES (White, prob-item style) -->
+  <section class="sec-w pad" style="padding-top:0">
+    <div class="case-head rv">
+      <div>
+        <div class="lbl">Case Studies</div>
+        <h2>お客様の課題を、<br>3Dスキャンで解決</h2>
       </div>
+      <p class="sub rv" data-d="1">業種を問わず、計測・設計・施工の現場で確かな成果を出し続けています。</p>
+    </div>
 
-      <div class="card-grid">
-
-        <!-- Case 01 -->
-        <div class="case-card fade-up">
-          <img src="images/precision-02.jpg" alt="化学プラント改修 3Dスキャン事例" class="img-card" loading="lazy">
-          <div class="case-content">
-            <div class="case-number">Case 01</div>
-            <span class="case-tag">化学プラント</span>
-            <h3>大規模化学プラント改修</h3>
-            <div class="case-flow-item">
-              <div class="case-flow-label">課題</div>
-              <div class="case-flow-text">30年以上前の竣工図しかなく、改修設計の基礎データがなかった。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">解決</div>
-              <div class="case-flow-text">プラント全体を3Dスキャンし、現況の3Dモデルを構築。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">成果</div>
-              <div class="case-flow-text">設計工期を30%短縮。既存プラントの図面作成も同時に完了。</div>
-            </div>
-          </div>
+    <!-- Case 01 -->
+    <div class="case-item rv">
+      <div>
+        <div class="num">01</div>
+        <span class="tag">化学プラント</span>
+        <h3>大規模化学プラント改修</h3>
+        <div class="case-flow">
+          <div class="fl">Challenge</div>
+          <p>30年以上前の竣工図しかなく、改修設計の基礎データがなかった。</p>
         </div>
-
-        <!-- Case 02 -->
-        <div class="case-card fade-up">
-          <img src="images/blueprint-02.jpg" alt="石油精製施設 配管更新 3Dスキャン事例" class="img-card" loading="lazy">
-          <div class="case-content">
-            <div class="case-number">Case 02</div>
-            <span class="case-tag">石油精製</span>
-            <h3>石油精製施設の配管更新</h3>
-            <div class="case-flow-item">
-              <div class="case-flow-label">課題</div>
-              <div class="case-flow-text">新設配管のルートが既設と干渉するか、現場に行かないと分からなかった。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">解決</div>
-              <div class="case-flow-text">点群データ上でナビスワークスによる干渉チェックを実施。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">成果</div>
-              <div class="case-flow-text">施工段階での手戻りゼロを達成。3Dスキャンによる配管干渉チェックの有効性を実証。</div>
-            </div>
-          </div>
+        <div class="case-flow">
+          <div class="fl">Solution</div>
+          <p>プラント全体を3Dスキャンし、現況の3Dモデルを構築。</p>
         </div>
-
-        <!-- Case 03 -->
-        <div class="case-card fade-up">
-          <img src="images/precision-03.jpg" alt="食品工場 設備増設 3Dスキャン事例" class="img-card" loading="lazy">
-          <div class="case-content">
-            <div class="case-number">Case 03</div>
-            <span class="case-tag">食品工場</span>
-            <h3>食品工場の設備増設</h3>
-            <div class="case-flow-item">
-              <div class="case-flow-label">課題</div>
-              <div class="case-flow-text">図面では設備の配置が分かりにくく、関係部署との合意形成に時間がかかっていた。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">解決</div>
-              <div class="case-flow-text">3Dモデルで仮想ウォークスルーを実施。誰でも直感的に設備配置を把握できる環境を構築。</div>
-            </div>
-            <div class="case-flow-item">
-              <div class="case-flow-label">成果</div>
-              <div class="case-flow-text">打ち合わせ回数を半減。プラントの現地調査効率化にも大きく貢献。</div>
-            </div>
-          </div>
+        <div class="case-flow">
+          <div class="fl">Result</div>
+          <p>設計工期を30%短縮。既存プラントの図面作成も同時に完了。</p>
         </div>
-
+      </div>
+      <div class="case-vis">
+        <svg viewBox="0 0 80 80" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="20" width="60" height="40" rx="3"/>
+          <path d="M20 60V48l12-8 12 6 12-14 8 8"/>
+          <circle cx="28" cy="36" r="6" stroke-dasharray="3 2"/>
+          <path d="M34 36h20"/>
+        </svg>
       </div>
     </div>
-  </section>
 
-  <!-- Numbers (DARK) -->
-  <section class="numbers-section">
-    <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-label">By the Numbers</div>
-        <h2 class="section-title">数字で見るJISOKの実績</h2>
-        <p class="section-desc">着実に積み重ねてきた信頼と成果</p>
+    <!-- Case 02 -->
+    <div class="case-item rv">
+      <div>
+        <div class="num">02</div>
+        <span class="tag">石油精製</span>
+        <h3>石油精製施設の配管更新</h3>
+        <div class="case-flow">
+          <div class="fl">Challenge</div>
+          <p>新設配管のルートが既設と干渉するか、現場に行かないと分からなかった。</p>
+        </div>
+        <div class="case-flow">
+          <div class="fl">Solution</div>
+          <p>点群データ上でナビスワークスによる干渉チェックを実施。</p>
+        </div>
+        <div class="case-flow">
+          <div class="fl">Result</div>
+          <p>施工段階での手戻りゼロを達成。3Dスキャンによる配管干渉チェックの有効性を実証。</p>
+        </div>
       </div>
-      <div class="numbers-grid fade-up">
-        <div>
-          <div class="stat-num">50,000<span>&#13217;+</span></div>
-          <div class="stat-label">累計スキャン面積</div>
+      <div class="case-vis">
+        <svg viewBox="0 0 80 80" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="14" y="14" width="24" height="24" rx="2" opacity="0.4"/>
+          <rect x="42" y="42" width="24" height="24" rx="2" opacity="0.4"/>
+          <rect x="26" y="26" width="28" height="28" rx="2"/>
+          <path d="M40 26v28M26 40h28" opacity="0.3"/>
+          <circle cx="40" cy="40" r="4" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Case 03 -->
+    <div class="case-item rv">
+      <div>
+        <div class="num">03</div>
+        <span class="tag">食品工場</span>
+        <h3>食品工場の設備増設</h3>
+        <div class="case-flow">
+          <div class="fl">Challenge</div>
+          <p>図面では設備の配置が分かりにくく、関係部署との合意形成に時間がかかっていた。</p>
         </div>
-        <div>
-          <div class="stat-num">100<span>+</span></div>
-          <div class="stat-label">プロジェクト数</div>
+        <div class="case-flow">
+          <div class="fl">Solution</div>
+          <p>3Dモデルで仮想ウォークスルーを実施。誰でも直感的に設備配置を把握できる環境を構築。</p>
         </div>
-        <div>
-          <div class="stat-num">30<span>%</span></div>
-          <div class="stat-label">平均工期短縮率</div>
+        <div class="case-flow">
+          <div class="fl">Result</div>
+          <p>打ち合わせ回数を半減。プラントの現地調査効率化にも大きく貢献。</p>
         </div>
-        <div>
-          <div class="stat-num">85<span>%</span></div>
-          <div class="stat-label">リピート率</div>
-        </div>
+      </div>
+      <div class="case-vis">
+        <svg viewBox="0 0 80 80" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="40" cy="40" r="22" stroke-dasharray="4 3"/>
+          <circle cx="40" cy="40" r="8"/>
+          <circle cx="40" cy="40" r="3" fill="#333" stroke="none" opacity="0.3"/>
+          <path d="M40 32v-8M48 40h8M40 48v8M32 40h-8"/>
+        </svg>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials (LIGHT) -->
-  <section class="testimonials-section">
-    <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-label">Testimonials</div>
-        <h2 class="section-title">お客様の声</h2>
-        <p class="section-desc">JISOKのサービスをご利用いただいたお客様からの評価</p>
+  <!-- NUMBERS (Dark) -->
+  <section class="nums">
+    <div class="nums-head rv">
+      <div class="lbl">By the Numbers</div>
+      <h2>数字で見るJISOKの実績</h2>
+      <p>着実に積み重ねてきた信頼と成果</p>
+    </div>
+    <div class="nums-row rv">
+      <div class="n-stat">
+        <div class="v">50,000<span>&#13217;+</span></div>
+        <div class="d">累計スキャン面積</div>
       </div>
-      <div class="testimonials-grid fade-up">
-
-        <div class="testimonial-card">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">現地調査に何度も通っていたのが、1回のスキャンで全てのデータが揃いました。測り忘れの心配がなくなったのが一番大きいです。</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="2"/></svg>
-            </div>
-            <div>
-              <div class="testimonial-name">化学プラント 設備管理部門</div>
-              <div class="testimonial-role">設備担当者様</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">図面がほぼ残っていない設備の改修で、3Dスキャンなしでは計画すら立てられませんでした。データの精度にも驚いています。</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="2"/></svg>
-            </div>
-            <div>
-              <div class="testimonial-name">製鉄所 エンジニアリング部門</div>
-              <div class="testimonial-role">プロジェクト担当者様</div>
-            </div>
-          </div>
-        </div>
-
+      <div class="n-stat">
+        <div class="v">100<span>+</span></div>
+        <div class="d">プロジェクト数</div>
+      </div>
+      <div class="n-stat">
+        <div class="v">30<span>%</span></div>
+        <div class="d">平均工期短縮率</div>
+      </div>
+      <div class="n-stat">
+        <div class="v">85<span>%</span></div>
+        <div class="d">リピート率</div>
       </div>
     </div>
   </section>
 
-  <!-- CTA (DARK) -->
-  <section class="cta-section">
-    <div class="container fade-up">
-      <h2>御社の現場でも、同じ成果を出せます</h2>
-      <p>図面がない、老朽化した設備を何とかしたい。まずはお気軽にご相談ください。</p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-        <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
-        <a href="service.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.25);color:#fff;">サービス詳細を見る</a>
+  <!-- TESTIMONIALS (White) -->
+  <section class="sec-w pad">
+    <div class="testi-head rv">
+      <div class="lbl">Testimonials</div>
+      <h2>お客様の声</h2>
+      <p>JISOKのサービスをご利用いただいたお客様からの評価</p>
+    </div>
+    <div class="testi-grid rv">
+      <div class="testi-card">
+        <div class="testi-q">&ldquo;</div>
+        <p class="testi-txt">現地調査に何度も通っていたのが、1回のスキャンで全てのデータが揃いました。測り忘れの心配がなくなったのが一番大きいです。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div>
+            <div class="testi-name">化学プラント 設備管理部門</div>
+            <div class="testi-role">設備担当者様</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">&ldquo;</div>
+        <p class="testi-txt">図面がほぼ残っていない設備の改修で、3Dスキャンなしでは計画すら立てられませんでした。データの精度にも驚いています。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div>
+            <div class="testi-name">製鉄所 エンジニアリング部門</div>
+            <div class="testi-role">プロジェクト担当者様</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer (DARK) -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">Q</div>
-            JISOK
-          </div>
-          <p>FARO Focus Laser Scanning Solutions ×<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
-        </div>
-        <div>
-          <h4>サービス</h4>
-          <div class="footer-links">
-            <a href="service.html">サービス紹介</a>
-            <a href="technology.html">技術・設備</a>
-            <a href="works.html">導入事例</a>
-          </div>
-        </div>
-        <div>
-          <h4>会社情報</h4>
-          <div class="footer-links">
-            <a href="company.html">会社概要</a>
-            <a href="company.html#contact">お問い合わせ</a>
-          </div>
-        </div>
-        <div>
-          <h4>SNS</h4>
-          <div class="footer-social">
-            <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-          </div>
+  <!-- CTA -->
+  <section class="cta">
+    <h2 class="rv">御社の現場でも、同じ成果を出せます</h2>
+    <p class="rv" data-d="1">図面がない、老朽化した設備を何とかしたい。まずはお気軽にご相談ください。</p>
+    <div class="btns rv" data-d="2">
+      <a href="company.html#contact" class="btn-f">お問い合わせはこちら</a>
+      <a href="service.html" class="btn-g">サービス詳細を見る</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="hd-logo">JISOK</span>
+        <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <div class="ft-links">
+          <a href="service.html">サービス紹介</a>
+          <a href="technology.html">技術・設備</a>
+          <a href="works.html">導入事例</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
-        <span>FARO Focus is a registered trademark of FARO Technologies, Inc.</span>
+      <div>
+        <h4>会社情報</h4>
+        <div class="ft-links">
+          <a href="company.html">会社概要</a>
+          <a href="company.html#contact">お問い合わせ</a>
+        </div>
       </div>
+      <div>
+        <h4>ソーシャル</h4>
+        <div class="ft-links">
+          <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-btm">
+      <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+      <span>FARO Focus is a trademark of FARO Technologies, Inc.</span>
     </div>
   </footer>
 
-  <!-- SP Fixed CTA -->
-  <div class="sp-fixed-cta">
-    <a href="company.html#contact" class="btn btn-primary">お問い合わせ</a>
-    <a href="tel:" class="btn btn-outline">電話する</a>
+  <div class="sp-cta">
+    <a href="company.html#contact" class="btn-f">お問い合わせ</a>
+    <a href="tel:" class="btn-g">電話する</a>
   </div>
 
   <script>
-    // Hamburger
-    function toggleNav() {
-      document.getElementById('nav').classList.toggle('open');
-      document.getElementById('hamburger').classList.toggle('active');
-    }
-
-    // Header scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Fade-up animation with IntersectionObserver
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:0.08});
+    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+    window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
   </script>
 
 </body>

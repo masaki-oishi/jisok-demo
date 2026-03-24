@@ -7,589 +7,419 @@
   <meta name="description" content="プラントの3Dレーザースキャン計測から点群データ処理、Scan to BIM、配管干渉チェックまでワンストップで対応。既存プラントの図面作成や現地調査の効率化もお任せください。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ===== Cinematic Corporate — Service Page ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--accent:#e67e22;--dark:#0a0a0a;--border:rgba(255,255,255,0.08)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans JP',sans-serif;background:var(--dark);color:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
 
-    /* --- Page Hero (Dark) --- */
-    .page-hero {
-      position: relative;
-      min-height: 52vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 0 72px;
-      background: var(--color-primary);
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/precision-03.jpg') center/cover no-repeat;
-      opacity: 0.2;
-    }
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(13,27,42,0.6) 0%, rgba(13,27,42,0.95) 100%);
-    }
-    .page-hero .container {
-      position: relative;
-      z-index: 2;
-      padding-top: calc(var(--header-height) + 48px);
-    }
-    .page-hero .breadcrumb {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 20px;
-      letter-spacing: 0.04em;
-    }
-    .page-hero .breadcrumb a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .page-hero .breadcrumb a:hover { color: var(--color-accent); }
-    .page-hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: 0.04em;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-    .page-hero h1 span {
-      display: block;
-      font-size: 0.18em;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: 8px;
-    }
-    .page-hero > .container > p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 540px;
-      line-height: 1.9;
-    }
+    /* HEADER */
+    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,backdrop-filter 0.4s}
+    .hd.scrolled{background:rgba(10,10,10,0.85);backdrop-filter:blur(16px)}
+    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:#fff}
+    .hd-nav{display:flex;gap:28px;align-items:center}
+    .hd-nav a{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);transition:0.3s}
+    .hd-nav a:hover{color:#fff}
+    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700}
+    .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
+    .burger span{display:block;width:24px;height:2px;background:#fff;transition:0.3s}
 
-    /* --- Cinematic Section Base --- */
-    .cin-section {
-      padding: 120px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .cin-section.is-dark {
-      background: var(--color-primary);
-      color: #fff;
-    }
-    .cin-section.is-light {
-      background: #fff;
-      color: var(--color-text);
-    }
+    /* SECTION UTILS */
+    .sec-w{background:#fff;color:var(--dark)}
+    .sec-d{background:var(--dark);color:#fff}
+    .pad{padding:140px 48px}
 
-    /* --- Service Step Grid --- */
-    .step-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-    .step-grid.reverse { direction: rtl; }
-    .step-grid.reverse > * { direction: ltr; }
+    /* PAGE HERO */
+    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
+    .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(230,126,34,0.06) 0%,transparent 60%)}
+    .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
+    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
+    .pg-hero .bc a{color:rgba(255,255,255,0.3);transition:0.3s}
+    .pg-hero .bc a:hover{color:var(--accent)}
+    .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px}
+    .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .pg-hero .lead{font-size:0.95rem;color:rgba(255,255,255,0.45);max-width:520px;line-height:2}
 
-    .step-visual {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-    }
-    .step-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .step-visual--icon {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .is-light .step-visual--icon {
-      background: #f8f9fb;
-      border-color: var(--color-border);
-    }
-    .step-visual--icon svg {
-      width: 80px;
-      height: 80px;
-      opacity: 0.2;
-    }
-    .is-dark .step-visual--icon svg { stroke: #fff; }
-    .is-light .step-visual--icon svg { stroke: var(--color-primary); }
+    /* SERVICE GRID (sol-grid style) */
+    .svc-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:100px}
+    .svc-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .svc-head h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.2;letter-spacing:-0.02em}
+    .svc-head .desc{font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:2;max-width:420px;align-self:end}
+    .svc-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--border)}
+    .svc-card{padding:48px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:0.4s}
+    .svc-card:last-child{border-right:none}
+    .svc-card:hover{background:rgba(255,255,255,0.03)}
+    .svc-card .n{font-family:'Outfit';font-size:2.8rem;font-weight:200;color:rgba(255,255,255,0.08);line-height:1;margin-bottom:20px}
+    .svc-card .ico{width:48px;height:48px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:12px}
+    .svc-card .ico svg{width:24px;height:24px;stroke:#fff;stroke-width:1.5;fill:none;opacity:0.5}
+    .svc-card h3{font-size:0.95rem;font-weight:700;margin-bottom:14px}
+    .svc-card p{font-size:0.82rem;line-height:1.85;color:rgba(255,255,255,0.4)}
 
-    .step-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: 16px;
-    }
-    .step-label::before {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--color-accent);
-    }
+    /* WORKFLOW TIMELINE (wf-row style) */
+    .wf-head{max-width:640px;margin-bottom:80px}
+    .wf-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .wf-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .wf-row{display:grid;grid-template-columns:64px 1fr 1fr;gap:0;border-top:1px solid #e5e5e5}
+    .wf-row:last-child{border-bottom:1px solid #e5e5e5}
+    .wf-num{font-family:'Outfit';font-size:3.2rem;font-weight:200;color:#ddd;padding:48px 0}
+    .wf-text{padding:48px 32px}
+    .wf-text .tool{font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .wf-text h3{font-family:'Outfit';font-size:1.2rem;font-weight:700;margin-bottom:12px}
+    .wf-text p{font-size:0.88rem;color:#666;line-height:1.9}
+    .wf-img{padding:48px 0 48px 24px;display:flex;align-items:center;justify-content:center}
+    .wf-img .placeholder{width:100%;aspect-ratio:16/10;background:#1a1a1a;border-radius:6px;display:flex;align-items:center;justify-content:center}
+    .wf-img .placeholder svg{width:48px;height:48px;stroke:#444;stroke-width:1;fill:none}
 
-    .step-text h3 {
-      font-size: clamp(1.4rem, 2.8vw, 2rem);
-      font-weight: 900;
-      line-height: 1.35;
-      margin-bottom: 20px;
-    }
-    .is-dark .step-text h3 { color: #fff; }
-    .is-light .step-text h3 { color: var(--color-primary); }
+    /* ROI TABLE (white section) */
+    .roi-head{text-align:center;margin-bottom:56px}
+    .roi-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .roi-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .roi-head p{font-size:0.9rem;color:#777;margin-top:12px}
+    .tbl-wrap{max-width:960px;margin:0 auto;overflow-x:auto}
+    table.roi{width:100%;border-collapse:collapse;font-size:0.88rem}
+    table.roi thead th{background:#f5f5f5;color:#666;font-weight:700;padding:18px 24px;text-align:left;border-bottom:2px solid #e0e0e0}
+    table.roi thead th:first-child{width:18%}
+    table.roi thead th:last-child{background:var(--dark);color:#fff}
+    table.roi tbody td{padding:18px 24px;border-bottom:1px solid #eee;color:#555;vertical-align:top;line-height:1.7}
+    table.roi tbody td:first-child{font-weight:700;color:var(--dark)}
+    table.roi tbody td:last-child{background:rgba(10,10,10,0.02)}
+    table.roi tbody td.hl{color:var(--accent);font-weight:700}
+    table.roi tbody tr:last-child td{border-bottom:none}
 
-    .step-text > p {
-      font-size: 0.92rem;
-      line-height: 2;
-      margin-bottom: 32px;
-    }
-    .is-dark .step-text > p { color: rgba(255,255,255,0.65); }
-    .is-light .step-text > p { color: var(--color-text-light); }
+    /* CTA */
+    .cta{position:relative;padding:180px 48px;text-align:center;overflow:hidden}
+    .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(230,126,34,0.05) 0%,transparent 65%)}
+    .cta h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:900;line-height:1.3;letter-spacing:-0.02em;margin-bottom:20px;position:relative}
+    .cta p{font-size:0.92rem;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto 40px;line-height:2;position:relative}
+    .cta .btns{display:flex;gap:16px;justify-content:center;position:relative}
+    .btn-f{padding:14px 32px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-f:hover{background:#d35400;transform:translateY(-2px)}
+    .btn-g{padding:14px 32px;background:transparent;color:#fff;font-size:0.82rem;font-weight:500;border:1px solid rgba(255,255,255,0.25);border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-g:hover{border-color:#fff;background:rgba(255,255,255,0.04)}
 
-    .merit-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .merit-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-    .is-dark .merit-list li { color: rgba(255,255,255,0.8); }
-    .is-light .merit-list li { color: var(--color-text); }
-    .merit-list li::before {
-      content: '';
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      margin-top: 2px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 10px;
-    }
+    /* FOOTER */
+    .ft{padding:72px 48px 28px;border-top:1px solid var(--border)}
+    .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+    .ft-brand .hd-logo{font-size:1.1rem;margin-bottom:12px;display:inline-block}
+    .ft-brand p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.8}
+    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px}
+    .ft-links{display:flex;flex-direction:column;gap:10px}
+    .ft-links a{font-size:0.82rem;color:rgba(255,255,255,0.3);transition:0.3s}
+    .ft-links a:hover{color:var(--accent)}
+    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:rgba(255,255,255,0.18)}
 
-    /* --- ROI Section (Dark) --- */
-    .roi-section {
-      background: var(--color-primary);
-      padding: 120px 0;
-      color: #fff;
-    }
-    .roi-image {
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 64px;
-    }
-    .roi-image img {
-      width: 100%;
-      display: block;
-    }
-    .roi-section .section-header .section-label { color: var(--color-accent); }
-    .roi-section .section-header .section-title { color: #fff; }
-    .roi-section .section-header .section-desc { color: rgba(255,255,255,0.6); }
+    /* SP CTA */
+    .sp-cta{display:none;position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:var(--dark);border-top:1px solid var(--border);z-index:99;gap:8px}
+    .sp-cta .btn-f,.sp-cta .btn-g{flex:1;text-align:center;padding:12px;font-size:0.78rem}
 
-    .compare-table-wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      overflow-x: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-    .compare-table thead th {
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.7);
-      font-weight: 700;
-      padding: 18px 24px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .compare-table thead th:first-child { width: 20%; }
-    .compare-table tbody td {
-      padding: 18px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.6);
-      vertical-align: top;
-      line-height: 1.7;
-    }
-    .compare-table tbody td.highlight {
-      color: #fff;
-      font-weight: 600;
-    }
-    .compare-table tbody tr:last-child td { border-bottom: none; }
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(36px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1)}
+    .rv.vis{opacity:1;transform:none}
+    .rv[data-d="1"]{transition-delay:0.15s}
+    .rv[data-d="2"]{transition-delay:0.3s}
+    .rv[data-d="3"]{transition-delay:0.45s}
+    .rv[data-d="4"]{transition-delay:0.6s}
 
-    /* --- CTA Section (Dark) --- */
-    .cta-section {
-      background: linear-gradient(135deg, #0a1628, #162d50);
-      padding: 100px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .svc-grid{grid-template-columns:repeat(3,1fr)}
+      .svc-card:nth-child(3){border-right:none}
+      .wf-row{grid-template-columns:48px 1fr}
+      .wf-img{display:none}
     }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -20%;
-      width: 140%;
-      height: 200%;
-      background: radial-gradient(ellipse at center, rgba(230,126,34,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-section .container { position: relative; z-index: 2; }
-    .cta-section h2 {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.95rem;
-      margin-bottom: 40px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8;
-    }
-
-    /* --- Responsive --- */
-    @media (max-width: 900px) {
-      .cin-section { padding: 80px 0; }
-      .step-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .step-grid.reverse { direction: ltr; }
-      .roi-section { padding: 80px 0; }
-    }
-    @media (max-width: 480px) {
-      .page-hero { min-height: 44vh; padding-bottom: 48px; }
+    @media(max-width:768px){
+      .hd,.pad,.cta,.ft{padding-left:24px;padding-right:24px}
+      .hd-nav{display:none}
+      .burger{display:flex}
+      .pg-hero{padding:0 24px 60px;min-height:50vh}
+      .pg-hero .inner{padding-top:120px}
+      .svc-head{grid-template-columns:1fr}
+      .svc-grid{grid-template-columns:1fr}
+      .svc-card{border-right:none!important}
+      .wf-row{grid-template-columns:1fr}
+      .wf-num{display:none}
+      .ft-grid{grid-template-columns:1fr;gap:28px}
+      .ft-btm{flex-direction:column;gap:6px}
+      .sp-cta{display:flex}
+      .ft{padding-bottom:72px}
+      .cta{padding:100px 24px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container">
-      <a href="index.html" class="logo"><div class="logo-icon">Q</div><span>JISOK</span></a>
-      <nav class="nav" id="nav">
-        <a href="index.html">トップ</a>
-        <a href="service.html" class="active">サービス</a>
-        <a href="technology.html">技術・設備</a>
-        <a href="works.html">実績</a>
-        <a href="company.html">会社概要</a>
-        <a href="company.html#contact" class="btn btn-primary btn-header">お問い合わせ</a>
-      </nav>
-      <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
-    </div>
+  <!-- HEADER -->
+  <header class="hd" id="hd">
+    <a href="index.html" class="hd-logo">JISOK</a>
+    <nav class="hd-nav">
+      <a href="service.html">サービス</a>
+      <a href="technology.html">技術・設備</a>
+      <a href="works.html">実績</a>
+      <a href="company.html">会社概要</a>
+      <a href="company.html#contact" class="hd-cta">お問い合わせ</a>
+    </nav>
+    <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
 
-  <!-- ===== Page Hero (Dark) ===== -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="index.html">トップ</a> ／ サービス紹介</div>
-      <h1><span>What We Do</span>Service</h1>
-      <p>プラントの計測から設計・施工検証まで。3Dスキャンを起点に、ワンストップでお手伝いします。</p>
+  <!-- PAGE HERO -->
+  <section class="pg-hero">
+    <div class="inner rv">
+      <div class="bc"><a href="index.html">Top</a> &mdash; Service</div>
+      <h1><small>What We Do</small>サービス</h1>
+      <p class="lead">プラントの計測から設計・施工検証まで。3Dスキャンを起点に、ワンストップでお手伝いします。</p>
     </div>
   </section>
 
-  <!-- ===== STEP 01: Survey (Light) ===== -->
-  <section class="cin-section is-light fade-up">
-    <div class="container">
-      <div class="step-grid">
-        <div class="step-text">
-          <div class="step-label">STEP 01 &mdash; Survey</div>
-          <h3>まず、現場を丸ごとスキャン</h3>
-          <p>FARO Focusレーザースキャナーで、プラント全体を点群データとして取得します。足場は不要。非接触で安全に、1エリア約1時間でスキャンが完了します。</p>
-          <ul class="merit-list">
-            <li>非接触計測で足場仮設が不要、安全性を大幅に向上</li>
-            <li>10m地点で&plusmn;2mmの超高精度を担保</li>
-            <li>従来の手作業計測と比較し、現場作業時間を最大80%短縮</li>
-            <li>IP54準拠で粉塵・水滴環境下でも安定稼働</li>
-          </ul>
-        </div>
-        <div class="step-visual">
-          <img src="images/precision-01.jpg" alt="3Dレーザースキャン計測の様子" loading="lazy">
-        </div>
+  <!-- SERVICE CARDS (Dark, sol-grid style) -->
+  <section class="sec-d pad">
+    <div class="svc-head">
+      <div class="rv">
+        <div class="lbl">Our Services</div>
+        <h2>5つのサービスで<br>プラント課題を解決</h2>
       </div>
+      <p class="desc rv" data-d="1">FARO Focusレーザースキャナーによる計測から、BIM化・干渉チェック・デジタルツイン構築まで。すべてワンストップで対応します。</p>
     </div>
-  </section>
-
-  <!-- ===== STEP 02: Process (Dark) ===== -->
-  <section class="cin-section is-dark fade-up">
-    <div class="container">
-      <div class="step-grid reverse">
-        <div class="step-text">
-          <div class="step-label">STEP 02 &mdash; Process</div>
-          <h3>スキャンデータを"使える形"に</h3>
-          <p>取得した膨大な点群データを、Autodesk ReCapで統合・構造化。ノイズを除去し、設計にそのまま使える高品質なデータセットを作ります。</p>
-          <ul class="merit-list">
-            <li>複数スキャンデータの自動レジストレーションで高効率処理</li>
-            <li>ノイズ除去・フィルタリングによるクリーンなデータ生成</li>
-            <li>座標系統合で複数フロアや広域プラントにも対応</li>
-            <li>各種CAD・BIMソフトへの連携フォーマットに対応</li>
-          </ul>
+    <div class="svc-grid rv">
+      <div class="svc-card">
+        <div class="n">01</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <div class="step-visual step-visual--icon">
-          <svg viewBox="0 0 80 80" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="12" y="20" width="56" height="40" rx="4"/>
-            <circle cx="28" cy="36" r="2" fill="currentColor" stroke="none" opacity="0.3"/>
-            <circle cx="36" cy="42" r="1.5" fill="currentColor" stroke="none" opacity="0.25"/>
-            <circle cx="44" cy="34" r="2.5" fill="currentColor" stroke="none" opacity="0.3"/>
-            <circle cx="52" cy="44" r="1.5" fill="currentColor" stroke="none" opacity="0.2"/>
-            <circle cx="56" cy="38" r="2" fill="currentColor" stroke="none" opacity="0.25"/>
-            <path d="M20 56l8-10 8 6 8-12 8 4 8-8" stroke-width="1"/>
-          </svg>
-        </div>
+        <h3>3Dレーザースキャン</h3>
+        <p>FARO Focusで現場を丸ごと点群データ化。非接触・足場不要で、1エリア約1時間でスキャン完了。</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== STEP 03: Design (Light) ===== -->
-  <section class="cin-section is-light fade-up">
-    <div class="container">
-      <div class="step-grid">
-        <div class="step-text">
-          <div class="step-label">STEP 03 &mdash; Design</div>
-          <h3>点群から3Dモデルを構築</h3>
-          <p>Plant 3DやRevitを使い、点群データから精密な3Dモデルを作成。配管・ダクト・構造体をBIM化し、既存図面との整合性もチェックします。</p>
-          <ul class="merit-list">
-            <li>既存プラントの正確なデジタルツイン（3D複製）を構築</li>
-            <li>P&amp;IDと3Dモデルの自動連携で設計精度を向上</li>
-            <li>配管アイソメ図・平面図の自動生成で図面作成工数を削減</li>
-            <li>改修・増設計画のシミュレーション基盤として活用可能</li>
-          </ul>
+      <div class="svc-card">
+        <div class="n">02</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
         </div>
-        <div class="step-visual">
-          <img src="images/blueprint-01.jpg" alt="3Dモデリング・デジタルツイン構築" loading="lazy">
+        <h3>Scan-to-BIM</h3>
+        <p>点群データからBIMモデルを構築。既存図面がなくても、現況を正確にデジタル化します。</p>
+      </div>
+      <div class="svc-card">
+        <div class="n">03</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8l10-6 10 6v12"/><path d="M6 20V10"/><path d="M18 20V10"/><path d="M2 8l10 6 10-6"/></svg>
         </div>
+        <h3>3Dモデリング</h3>
+        <p>Plant 3D/Revitで配管・ダクト・構造体を精密にモデリング。P&amp;IDとの統合設計にも対応。</p>
+      </div>
+      <div class="svc-card">
+        <div class="n">04</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4"/><path d="M15 3h4a2 2 0 012 2v4"/><path d="M9 21H5a2 2 0 01-2-2v-4"/><path d="M15 21h4a2 2 0 002-2v-4"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <h3>干渉チェック</h3>
+        <p>Navisworksで施工前にPC上で干渉を検出。手戻り工事をゼロにし、工期とコストを削減します。</p>
+      </div>
+      <div class="svc-card">
+        <div class="n">05</div>
+        <div class="ico">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>デジタルツイン</h3>
+        <p>スキャンデータを維持管理にも活用。定期スキャンで経年変化を可視化し、予防保全を支援。</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== STEP 04: Execute (Dark) ===== -->
-  <section class="cin-section is-dark fade-up">
-    <div class="container">
-      <div class="step-grid reverse">
-        <div class="step-text">
-          <div class="step-label">STEP 04 &mdash; Execute</div>
-          <h3>施工前に"干渉ゼロ"を確認</h3>
-          <p>Navisworksで仮想空間上の干渉チェック。新設配管と既設設備がぶつからないか、施工前にPC上で確認できます。手戻り工事をなくします。</p>
-          <ul class="merit-list">
-            <li>施工前にデジタル上で干渉箇所を網羅的に検出</li>
-            <li>現場合わせによる手戻り工事を大幅に削減</li>
-            <li>4Dタイムラインで施工手順の可視化・最適化</li>
-            <li>関係者間のウォークスルーで合意形成をスムーズに</li>
-          </ul>
+  <!-- WORKFLOW TIMELINE (White) -->
+  <section class="sec-w pad">
+    <div class="wf-head rv">
+      <div class="lbl">Workflow</div>
+      <h2>導入フロー<br>6つのステップ</h2>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">01</div>
+      <div class="wf-text">
+        <div class="tool">Hearing</div>
+        <h3>ヒアリング</h3>
+        <p>まずは現場の課題やご要望をお聞きします。計測対象の規模・環境・ご予算に合わせて最適なプランをご提案します。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="12"/><path d="M24 16v8l6 3"/></svg>
         </div>
-        <div class="step-visual step-visual--icon">
-          <svg viewBox="0 0 80 80" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="14" y="14" width="24" height="24" rx="2" opacity="0.4"/>
-            <rect x="42" y="42" width="24" height="24" rx="2" opacity="0.4"/>
-            <rect x="26" y="26" width="28" height="28" rx="2"/>
-            <path d="M40 26v28M26 40h28" opacity="0.3"/>
-            <circle cx="40" cy="40" r="4" stroke-width="1.5"/>
-          </svg>
+      </div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">02</div>
+      <div class="wf-text">
+        <div class="tool">Site Check</div>
+        <h3>現場調査</h3>
+        <p>スキャン前に現場を訪問。計測ポイントの確認・安全対策の打ち合わせ・スケジュール調整を行います。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="32" height="32" rx="2"/><path d="M8 18h32"/><circle cx="16" cy="28" r="3"/><path d="M24 26h10"/><path d="M24 32h8"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">03</div>
+      <div class="wf-text">
+        <div class="tool">FARO Focus — Scan</div>
+        <h3>3Dレーザースキャン</h3>
+        <p>FARO Focusレーザースキャナーで現場を丸ごとスキャン。非接触・足場不要。1エリア約1時間で高精度の点群データを取得します。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="3"/><path d="M24 8v6M24 34v6M8 24h6M34 24h6"/><circle cx="24" cy="24" r="14" stroke-dasharray="4 3"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">04</div>
+      <div class="wf-text">
+        <div class="tool">Autodesk ReCap — Process</div>
+        <h3>データ処理</h3>
+        <p>Autodesk ReCapで点群データを統合・構造化。ノイズ除去・座標統合を行い、設計にそのまま使える高品質なデータセットを構築します。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="14" width="32" height="20" rx="3"/><path d="M14 30l6-8 6 4 6-10 6 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">05</div>
+      <div class="wf-text">
+        <div class="tool">Plant 3D / Revit — Design</div>
+        <h3>3Dモデリング</h3>
+        <p>点群から配管・ダクト・構造体の精密な3Dモデルを作成。既存図面との整合性チェックも同時に実施します。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 36V16l16-8 16 8v20"/><path d="M8 16l16 8 16-8"/><path d="M24 24v16"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-row rv">
+      <div class="wf-num">06</div>
+      <div class="wf-text">
+        <div class="tool">Delivery</div>
+        <h3>納品</h3>
+        <p>お客様の設計環境に合わせたフォーマットで納品。必要に応じて干渉チェック・施工シミュレーションのレポートも添付します。</p>
+      </div>
+      <div class="wf-img">
+        <div class="placeholder">
+          <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36V16l12-8 12 8v20"/><path d="M20 36v-10h8v10"/><path d="M12 16l12 8 12-8"/></svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== STEP 05: Operate (Light) ===== -->
-  <section class="cin-section is-light fade-up">
-    <div class="container">
-      <div class="step-grid">
-        <div class="step-text">
-          <div class="step-label">STEP 05 &mdash; Operate</div>
-          <h3>データを維持管理にも活かす</h3>
-          <p>スキャンデータはデジタルツインとして、完工後の維持管理にも活用。定期スキャンで設備の経年変化も把握できます。</p>
-          <ul class="merit-list">
-            <li>デジタルツインによる設備台帳のビジュアル管理</li>
-            <li>LDAR Compliance対応で漏洩検知・補修を体系化</li>
-            <li>定期点検のデジタル化で記録管理を効率化</li>
-            <li>経年変化のトラッキングで予防保全計画を支援</li>
-          </ul>
-        </div>
-        <div class="step-visual step-visual--icon">
-          <svg viewBox="0 0 80 80" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="40" cy="40" r="22" stroke-dasharray="4 3"/>
-            <circle cx="40" cy="40" r="8"/>
-            <circle cx="40" cy="40" r="3" fill="currentColor" stroke="none" opacity="0.2"/>
-            <path d="M40 32v-8M48 40h8M40 48v8M32 40h-8"/>
-          </svg>
-        </div>
-      </div>
+  <!-- ROI COMPARISON (White) -->
+  <section class="sec-w pad" style="padding-top:0">
+    <div class="roi-head rv">
+      <div class="lbl">Comparison</div>
+      <h2>従来の方法と比べてみてください</h2>
+      <p>導入による効果を5つの観点で比較します。</p>
+    </div>
+    <div class="tbl-wrap rv">
+      <table class="roi">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>従来手法</th>
+            <th>JISOK 3Dスキャン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>安全性</td>
+            <td>足場設置・高所作業が必要<br>作業員の落下リスクあり</td>
+            <td class="hl">非接触計測で足場不要<br>安全性を大幅に向上</td>
+          </tr>
+          <tr>
+            <td>計測時間</td>
+            <td>数日〜数週間</td>
+            <td class="hl">1エリア約1時間<br>工期を最大80%短縮</td>
+          </tr>
+          <tr>
+            <td>精度</td>
+            <td>手作業による計測誤差<br>数cm単位のばらつき</td>
+            <td class="hl">&plusmn;2mmの高精度<br>97万点/秒の高密度データ</td>
+          </tr>
+          <tr>
+            <td>可視性</td>
+            <td>2D図面ベース<br>空間把握が困難</td>
+            <td class="hl">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
+          </tr>
+          <tr>
+            <td>手戻り</td>
+            <td>施工後に干渉が発覚<br>高コストな修正工事</td>
+            <td class="hl">事前の干渉チェックで<br>手戻りを大幅削減</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- ===== ROI Comparison (Dark) ===== -->
-  <section class="roi-section fade-up">
-    <div class="container">
-      <div class="roi-image">
-        <img src="images/precision-04.jpg" alt="ROI比較 — 従来手法 vs 3Dスキャン" loading="lazy">
-      </div>
-      <div class="section-header" style="text-align:center; margin-bottom:48px;">
-        <div class="section-label" style="color:var(--color-accent);">Comparison</div>
-        <h2 class="section-title" style="color:#fff;">従来の方法と比べてみてください</h2>
-        <p class="section-desc" style="color:rgba(255,255,255,0.6);">導入による効果を5つの観点で比較します。</p>
-      </div>
-      <div class="compare-table-wrap">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>比較項目</th>
-              <th>従来手法</th>
-              <th>JISOK 3Dスキャン</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>安全性</td>
-              <td>足場設置・高所作業が必要<br>作業員の落下リスクあり</td>
-              <td class="highlight">非接触計測で足場不要<br>安全性を大幅に向上</td>
-            </tr>
-            <tr>
-              <td>計測時間</td>
-              <td>数日〜数週間</td>
-              <td class="highlight">1エリア約1時間<br>工期を最大80%短縮</td>
-            </tr>
-            <tr>
-              <td>精度</td>
-              <td>手作業による計測誤差<br>数cm単位のばらつき</td>
-              <td class="highlight">&plusmn;2mmの高精度<br>97万点/秒の高密度データ</td>
-            </tr>
-            <tr>
-              <td>可視性</td>
-              <td>2D図面ベース<br>空間把握が困難</td>
-              <td class="highlight">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
-            </tr>
-            <tr>
-              <td>手戻り</td>
-              <td>施工後に干渉が発覚<br>高コストな修正工事</td>
-              <td class="highlight">事前の干渉チェックで<br>手戻りを大幅削減</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- CTA -->
+  <section class="cta">
+    <h2 class="rv">御社のプラントでも導入できます</h2>
+    <p class="rv" data-d="1">規模や業種を問わず対応可能です。まずは現場の状況をお聞かせください。</p>
+    <div class="btns rv" data-d="2">
+      <a href="company.html#contact" class="btn-f">お問い合わせはこちら</a>
+      <a href="technology.html" class="btn-g">技術・設備を見る</a>
     </div>
   </section>
 
-  <!-- ===== CTA (Dark) ===== -->
-  <section class="cta-section">
-    <div class="container fade-up">
-      <h2>御社のプラントでも導入できます</h2>
-      <p>規模や業種を問わず対応可能です。まずは現場の状況をお聞かせください。</p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-        <a href="company.html#contact" class="btn btn-primary btn-lg">お問い合わせはこちら</a>
-        <a href="technology.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">技術・設備を見る</a>
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="hd-logo">JISOK</span>
+        <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <div class="ft-links">
+          <a href="service.html">サービス紹介</a>
+          <a href="technology.html">技術・設備</a>
+          <a href="works.html">導入事例</a>
+        </div>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <div class="ft-links">
+          <a href="company.html">会社概要</a>
+          <a href="company.html#contact">お問い合わせ</a>
+        </div>
+      </div>
+      <div>
+        <h4>ソーシャル</h4>
+        <div class="ft-links">
+          <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener">Facebook</a>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">Q</div>
-            JISOK
-          </div>
-          <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
-        </div>
-        <div>
-          <h4>サービス</h4>
-          <div class="footer-links">
-            <a href="service.html">サービス紹介</a>
-            <a href="technology.html">技術・設備</a>
-            <a href="works.html">導入事例</a>
-          </div>
-        </div>
-        <div>
-          <h4>会社情報</h4>
-          <div class="footer-links">
-            <a href="company.html">会社概要</a>
-            <a href="company.html#contact">お問い合わせ</a>
-          </div>
-        </div>
-        <div>
-          <h4>SNS</h4>
-          <div class="footer-social">
-            <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
-        <span>FARO Focus is a registered trademark of FARO Technologies, Inc.</span>
-      </div>
+    <div class="ft-btm">
+      <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+      <span>FARO Focus is a trademark of FARO Technologies, Inc.</span>
     </div>
   </footer>
 
-  <!-- SP Fixed CTA -->
-  <div class="sp-fixed-cta">
-    <a href="company.html#contact" class="btn btn-primary">お問い合わせ</a>
-    <a href="tel:" class="btn btn-outline">電話する</a>
+  <div class="sp-cta">
+    <a href="company.html#contact" class="btn-f">お問い合わせ</a>
+    <a href="tel:" class="btn-g">電話する</a>
   </div>
 
   <script>
-    // Hamburger
-    function toggleNav() {
-      document.getElementById('nav').classList.toggle('open');
-      document.getElementById('hamburger').classList.toggle('active');
-    }
-
-    // Header scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Fade-up animation (IntersectionObserver)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:0.08});
+    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+    window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
   </script>
 
 </body>
