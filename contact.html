@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ｜株式会社JISOK — プラント3Dスキャン・設計</title>
+  <meta name="description" content="株式会社JISOKへのお問い合わせ。3Dレーザースキャン・BIM化・お見積もりなど、お気軽にご相談ください。通常1〜2営業日以内にご返信いたします。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#ffffff;--bg-sub:#f5f6f8;--text:#1a1a2e;--text-light:#6b7280;--accent:#e67e22;--accent-hover:#d35400;--border:#e5e7eb}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* HEADER */
+    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);transition:box-shadow 0.4s}
+    .hd.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06)}
+    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:var(--text)}
+    .hd-nav{display:flex;gap:28px;align-items:center}
+    .hd-nav a{font-size:0.8rem;font-weight:500;color:var(--text-light);transition:0.3s}
+    .hd-nav a:hover{color:var(--text)}
+    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700;transition:0.3s}
+    .hd-cta:hover{background:var(--accent-hover)}
+    .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
+    .burger span{display:block;width:24px;height:2px;background:var(--text);transition:0.3s}
+
+    /* PAGE HERO */
+    .pg-hero{position:relative;min-height:50vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
+    .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(230,126,34,0.04) 0%,transparent 60%)}
+    .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
+    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+    .pg-hero .bc a{color:var(--text-light);transition:0.3s}
+    .pg-hero .bc a:hover{color:var(--accent)}
+    .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--text)}
+    .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .pg-hero .lead{font-size:0.95rem;color:var(--text-light);max-width:520px;line-height:2}
+
+    /* CONTACT SECTION */
+    .ct-section{padding:100px 48px 140px;background:var(--bg)}
+    .ct-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:start}
+    .ct-wrap{background:var(--bg);border-radius:8px;border:1px solid var(--border);padding:56px 52px;box-shadow:0 20px 60px rgba(0,0,0,0.04)}
+    .fg{margin-bottom:24px}
+    .fg label{display:block;font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:8px}
+    .fg label .req{display:inline-block;background:var(--accent);color:#fff;font-size:0.66rem;padding:2px 8px;border-radius:3px;margin-left:8px;font-weight:500}
+    .fg label .opt{display:inline-block;background:var(--bg-sub);color:var(--text-light);font-size:0.66rem;padding:2px 8px;border-radius:3px;margin-left:8px;font-weight:500}
+    .fg input,.fg select,.fg textarea{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:4px;font-size:0.95rem;font-family:'Noto Sans JP',sans-serif;color:var(--text);background:var(--bg-sub);transition:0.3s;box-sizing:border-box;-webkit-appearance:none;appearance:none}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,126,34,0.1);background:var(--bg)}
+    .fg textarea{height:160px;resize:vertical}
+    .fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+    .f-submit{text-align:center;margin-top:36px}
+    .f-note{text-align:center;margin-top:16px;font-size:0.78rem;color:var(--text-light)}
+
+    .btn-f{padding:14px 32px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-f:hover{background:var(--accent-hover);transform:translateY(-2px)}
+
+    /* SIDEBAR INFO */
+    .ct-info{padding-top:16px}
+    .ct-info h3{font-size:1.1rem;font-weight:800;margin-bottom:16px;color:var(--text)}
+    .ct-info p{font-size:0.9rem;color:var(--text-light);line-height:2;margin-bottom:32px}
+    .ct-info .email-link{display:inline-flex;align-items:center;gap:8px;font-size:0.9rem;color:var(--accent);font-weight:600;transition:0.3s}
+    .ct-info .email-link:hover{color:var(--accent-hover)}
+    .ct-info .email-link svg{width:18px;height:18px;stroke:var(--accent);stroke-width:2;fill:none}
+    .ct-info .info-block{margin-top:40px;padding-top:32px;border-top:1px solid var(--border)}
+    .ct-info .info-block h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px}
+    .ct-info .info-block p{font-size:0.85rem;color:var(--text-light);line-height:1.9;margin-bottom:0}
+
+    /* FOOTER */
+    .ft{padding:72px 48px 28px;background:var(--bg-sub);border-top:1px solid var(--border)}
+    .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+    .ft-brand .hd-logo{font-size:1.1rem;margin-bottom:12px;display:inline-block}
+    .ft-brand p{font-size:0.8rem;color:var(--text-light);line-height:1.8}
+    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:16px}
+    .ft-links{display:flex;flex-direction:column;gap:10px}
+    .ft-links a{font-size:0.82rem;color:var(--text-light);transition:0.3s}
+    .ft-links a:hover{color:var(--accent)}
+    .ft-sns{display:flex;gap:12px;margin-top:8px}
+    .ft-sns a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:0.3s}
+    .ft-sns a:hover{background:var(--accent);border-color:var(--accent)}
+    .ft-sns a:hover svg{fill:#fff}
+    .ft-sns a svg{width:18px;height:18px;fill:var(--text-light);transition:0.3s}
+    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--text-light)}
+
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(36px);transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1)}
+    .rv.vis{opacity:1;transform:none}
+    .rv[data-d="1"]{transition-delay:0.15s}
+    .rv[data-d="2"]{transition-delay:0.3s}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .hd,.ct-section,.ft{padding-left:24px;padding-right:24px}
+      .hd-nav{display:none}
+      .burger{display:flex}
+      .pg-hero{padding:0 24px 60px;min-height:40vh}
+      .pg-hero .inner{padding-top:120px}
+      .ct-grid{grid-template-columns:1fr;gap:40px}
+      .ct-wrap{padding:36px 28px}
+      .ct-info{order:-1}
+      .ft-grid{grid-template-columns:1fr;gap:28px}
+      .ft-btm{flex-direction:column;gap:6px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="hd" id="hd">
+    <a href="index.html" class="hd-logo">JISOK</a>
+    <nav class="hd-nav">
+      <a href="service.html">サービス</a>
+      <a href="technology.html">技術・設備</a>
+      <a href="works.html">実績</a>
+      <a href="company.html">会社概要</a>
+      <a href="contact.html" class="hd-cta">お問い合わせ</a>
+    </nav>
+    <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="pg-hero">
+    <div class="inner rv">
+      <div class="bc"><a href="index.html">Top</a> &mdash; Contact</div>
+      <h1><small>Contact Us</small>お問い合わせ</h1>
+      <p class="lead">ご質問・ご相談はお気軽にお問い合わせください。</p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="ct-section">
+    <div class="ct-grid">
+      <div class="ct-wrap rv">
+        <form action="#" method="post">
+          <div class="fg">
+            <label for="company-name">会社名 <span class="opt">任意</span></label>
+            <input type="text" id="company-name" name="company-name" placeholder="例: 株式会社サンプル">
+          </div>
+          <div class="fg">
+            <label for="name">お名前 <span class="req">必須</span></label>
+            <input type="text" id="name" name="name" placeholder="例: 山田 太郎" required>
+          </div>
+          <div class="fg">
+            <label for="email">メールアドレス <span class="req">必須</span></label>
+            <input type="email" id="email" name="email" placeholder="例: info@example.com" required>
+          </div>
+          <div class="fg">
+            <label for="category">お問い合わせ種別</label>
+            <select id="category" name="category">
+              <option value="" disabled selected>選択してください</option>
+              <option value="3d-scan">3Dスキャンについて</option>
+              <option value="bim">BIM化について</option>
+              <option value="estimate">お見積もり</option>
+              <option value="recruit">採用について</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="message">お問い合わせ内容</label>
+            <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          <div class="f-submit">
+            <button type="submit" class="btn-f" style="padding:16px 48px;font-size:0.92rem">送信する</button>
+          </div>
+          <p class="f-note">※ このフォームはデモ用です。実際の送信は行われません。</p>
+        </form>
+      </div>
+
+      <div class="ct-info rv" data-d="1">
+        <h3>お気軽にご連絡ください</h3>
+        <p>通常1〜2営業日以内にご返信いたします。<br>3Dスキャンの費用や工期など、どんなご質問でも大丈夫です。</p>
+        <a href="mailto:ooshitamoto_j@jisok.net" class="email-link">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+          ooshitamoto_j@jisok.net
+        </a>
+
+        <div class="info-block">
+          <h4>Company</h4>
+          <p>株式会社JISOK<br>代表取締役 大下本 淳一</p>
+        </div>
+        <div class="info-block">
+          <h4>Address</h4>
+          <p>鹿児島県出水市本町19-49<br>拠点: 鹿児島・大阪・宮崎</p>
+        </div>
+        <div class="info-block">
+          <h4>Industries</h4>
+          <p>製鉄・製紙・電力・ケミカル・水処理関係</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="hd-logo">JISOK</span>
+        <p>FARO Focus Laser Scanning Solutions &times;<br>株式会社JISOK<br><br>3Dレーザースキャンによる<br>プラント計測・設計・BIM化</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <div class="ft-links">
+          <a href="service.html">サービス紹介</a>
+          <a href="technology.html">技術・設備</a>
+          <a href="works.html">導入事例</a>
+        </div>
+      </div>
+      <div>
+        <h4>会社情報</h4>
+        <div class="ft-links">
+          <a href="company.html">会社概要</a>
+          <a href="contact.html">お問い合わせ</a>
+        </div>
+      </div>
+      <div>
+        <h4>ソーシャル</h4>
+        <div class="ft-sns">
+          <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-btm">
+      <span>&copy; 2026 株式会社JISOK All Rights Reserved.</span>
+      <span>FARO Focus is a trademark of FARO Technologies, Inc.</span>
+    </div>
+  </footer>
+
+  <script>
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:0.08});
+    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+    window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
+  </script>
+
+</body>
+</html>

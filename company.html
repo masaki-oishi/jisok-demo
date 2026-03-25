@@ -4,74 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>会社概要｜株式会社JISOK — プラント3Dスキャン・設計</title>
-  <meta name="description" content="株式会社JISOKの会社概要・代表メッセージ・お問い合わせ。少数精鋭5名で、プラント3Dスキャン・点群データからのBIM化・配管干渉チェックまで一貫対応。15年の現場経験でお手伝いします。">
+  <meta name="description" content="株式会社JISOKの会社概要・代表メッセージ。10名の専門チームで、プラント3Dスキャン・点群データからのBIM化・配管干渉チェックまで一貫対応。15年の現場経験でお手伝いします。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--accent:#e67e22;--dark:#0a0a0a;--border:rgba(255,255,255,0.08)}
+    :root{--bg:#ffffff;--bg-sub:#f5f6f8;--text:#1a1a2e;--text-light:#6b7280;--accent:#e67e22;--accent-hover:#d35400;--border:#e5e7eb}
     html{scroll-behavior:smooth}
-    body{font-family:'Noto Sans JP',sans-serif;background:var(--dark);color:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     ul{list-style:none}
 
     /* HEADER */
-    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,backdrop-filter 0.4s}
-    .hd.scrolled{background:rgba(10,10,10,0.85);backdrop-filter:blur(16px)}
-    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:#fff}
+    .hd{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);transition:box-shadow 0.4s}
+    .hd.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06)}
+    .hd-logo{font-family:'Outfit';font-size:1.3rem;font-weight:800;letter-spacing:0.06em;color:var(--text)}
     .hd-nav{display:flex;gap:28px;align-items:center}
-    .hd-nav a{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);transition:0.3s}
-    .hd-nav a:hover{color:#fff}
-    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700}
+    .hd-nav a{font-size:0.8rem;font-weight:500;color:var(--text-light);transition:0.3s}
+    .hd-nav a:hover{color:var(--text)}
+    .hd-cta{padding:8px 22px;background:var(--accent);color:#fff!important;border-radius:4px;font-size:0.75rem;font-weight:700;transition:0.3s}
+    .hd-cta:hover{background:var(--accent-hover)}
     .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
-    .burger span{display:block;width:24px;height:2px;background:#fff;transition:0.3s}
+    .burger span{display:block;width:24px;height:2px;background:var(--text);transition:0.3s}
 
     /* SECTION UTILS */
-    .sec-w{background:#fff;color:var(--dark)}
-    .sec-d{background:var(--dark);color:#fff}
+    .sec-w{background:var(--bg);color:var(--text)}
+    .sec-sub{background:var(--bg-sub);color:var(--text)}
     .pad{padding:140px 48px}
 
     /* PAGE HERO */
-    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden}
-    .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,rgba(230,126,34,0.06) 0%,transparent 60%)}
+    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
+    .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,rgba(230,126,34,0.04) 0%,transparent 60%)}
     .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
-    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
-    .pg-hero .bc a{color:rgba(255,255,255,0.3);transition:0.3s}
+    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+    .pg-hero .bc a{color:var(--text-light);transition:0.3s}
     .pg-hero .bc a:hover{color:var(--accent)}
-    .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px}
+    .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--text)}
     .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .pg-hero .lead{font-size:0.95rem;color:rgba(255,255,255,0.45);max-width:520px;line-height:2}
+    .pg-hero .lead{font-size:0.95rem;color:var(--text-light);max-width:520px;line-height:2}
 
-    /* COMPANY DL (White, alternating bg) */
+    /* COMPANY DL */
     .co-head{text-align:center;margin-bottom:64px}
     .co-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .co-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
-    .co-dl{max-width:880px;margin:0 auto;border-radius:4px;overflow:hidden}
-    .co-row{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid #eee}
-    .co-row:nth-child(odd){background:#fff}
-    .co-row:nth-child(even){background:#f8f8f8}
+    .co-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
+    .co-dl{max-width:880px;margin:0 auto;border-radius:4px;overflow:hidden;border:1px solid var(--border)}
+    .co-row{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--border)}
+    .co-row:nth-child(odd){background:var(--bg)}
+    .co-row:nth-child(even){background:var(--bg-sub)}
     .co-row:last-child{border-bottom:none}
-    .co-row dt{padding:22px 32px;font-weight:700;color:var(--dark);font-size:0.9rem;display:flex;align-items:flex-start}
-    .co-row dd{padding:22px 32px;color:#444;line-height:1.9;font-size:0.95rem}
+    .co-row dt{padding:22px 32px;font-weight:700;color:var(--text);font-size:0.9rem;display:flex;align-items:flex-start}
+    .co-row dd{padding:22px 32px;color:var(--text-light);line-height:1.9;font-size:0.95rem}
 
-    /* CEO MESSAGE (Dark) */
+    /* CEO MESSAGE */
     .msg-head{text-align:center;margin-bottom:64px}
     .msg-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .msg-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .msg-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
     .msg-card{max-width:880px;margin:0 auto;display:grid;grid-template-columns:100px 1fr;gap:40px;align-items:start}
-    .msg-avatar{width:100px;height:100px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,0.1)}
-    .msg-avatar svg{width:44px;height:44px;color:rgba(255,255,255,0.35);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .msg-avatar{width:100px;height:100px;background:var(--bg-sub);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--border)}
+    .msg-avatar svg{width:44px;height:44px;color:var(--text-light);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
     .msg-label{font-family:'Outfit';font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
-    .msg-body h3{font-size:1.4rem;font-weight:800;margin-bottom:24px;line-height:1.5}
-    .msg-text{color:rgba(255,255,255,0.6);line-height:2.2;font-size:0.95rem}
-    .msg-author{margin-top:32px;text-align:right;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.92rem}
+    .msg-body h3{font-size:1.4rem;font-weight:800;margin-bottom:24px;line-height:1.5;color:var(--text)}
+    .msg-text{color:var(--text-light);line-height:2.2;font-size:0.95rem}
+    .msg-author{margin-top:32px;text-align:right;color:var(--text);font-weight:700;font-size:0.92rem}
 
-    /* SNS + ACCESS (White) */
+    /* SNS + ACCESS */
     .sns-head{text-align:center;margin-bottom:32px}
     .sns-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .sns-head h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
+    .sns-head h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
     .sns-links{display:flex;justify-content:center;gap:16px;margin-bottom:80px}
     .sns-links a{display:inline-flex;align-items:center;gap:10px;background:#1877f2;color:#fff;padding:16px 40px;border-radius:4px;font-size:0.92rem;font-weight:700;transition:0.3s}
     .sns-links a:hover{opacity:0.9;transform:translateY(-2px)}
@@ -79,45 +80,33 @@
 
     .acc-head{text-align:center;margin-bottom:32px}
     .acc-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .acc-head h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
-    .map-ph{max-width:880px;margin:0 auto;background:#f0f0f0;border-radius:4px;height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#999}
-    .map-ph svg{width:40px;height:40px;stroke:#aaa;stroke-width:1.5;fill:none;opacity:0.5}
-
-    /* CONTACT FORM (White) */
-    .ct-head{text-align:center;margin-bottom:56px}
-    .ct-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .ct-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em}
-    .ct-head p{font-size:0.9rem;color:#777;margin-top:12px}
-    .ct-wrap{max-width:720px;margin:0 auto;background:#fff;border-radius:4px;border:1px solid #eee;padding:56px 52px;box-shadow:0 20px 60px rgba(0,0,0,0.04)}
-    .fg{margin-bottom:24px}
-    .fg label{display:block;font-size:0.88rem;font-weight:700;color:var(--dark);margin-bottom:8px}
-    .fg label .req{display:inline-block;background:var(--accent);color:#fff;font-size:0.66rem;padding:2px 8px;border-radius:3px;margin-left:8px;font-weight:500}
-    .fg input,.fg select,.fg textarea{width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:4px;font-size:0.95rem;font-family:'Noto Sans JP',sans-serif;color:var(--dark);background:#fafafa;transition:0.3s;box-sizing:border-box;-webkit-appearance:none;appearance:none}
-    .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(230,126,34,0.1);background:#fff}
-    .fg textarea{height:160px;resize:vertical}
-    .fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23777' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-    .f-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .f-submit{text-align:center;margin-top:36px}
-    .f-note{text-align:center;margin-top:16px;font-size:0.78rem;color:#999}
+    .acc-head h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
+    .map-ph{max-width:880px;margin:0 auto;background:var(--bg-sub);border-radius:4px;height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--text-light);border:1px solid var(--border)}
+    .map-ph svg{width:40px;height:40px;stroke:var(--text-light);stroke-width:1.5;fill:none;opacity:0.5}
 
     .btn-f{padding:14px 32px;background:var(--accent);color:#fff;font-size:0.82rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:0.3s}
-    .btn-f:hover{background:#d35400;transform:translateY(-2px)}
-    .btn-g{padding:14px 32px;background:transparent;color:#fff;font-size:0.82rem;font-weight:500;border:1px solid rgba(255,255,255,0.25);border-radius:4px;cursor:pointer;transition:0.3s}
-    .btn-g:hover{border-color:#fff;background:rgba(255,255,255,0.04)}
+    .btn-f:hover{background:var(--accent-hover);transform:translateY(-2px)}
+    .btn-g{padding:14px 32px;background:transparent;color:var(--text);font-size:0.82rem;font-weight:500;border:1px solid var(--border);border-radius:4px;cursor:pointer;transition:0.3s}
+    .btn-g:hover{border-color:var(--text);background:var(--bg-sub)}
 
     /* FOOTER */
-    .ft{padding:72px 48px 28px;border-top:1px solid var(--border)}
+    .ft{padding:72px 48px 28px;background:var(--bg-sub);border-top:1px solid var(--border)}
     .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
     .ft-brand .hd-logo{font-size:1.1rem;margin-bottom:12px;display:inline-block}
-    .ft-brand p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.8}
-    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px}
+    .ft-brand p{font-size:0.8rem;color:var(--text-light);line-height:1.8}
+    .ft h4{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:16px}
     .ft-links{display:flex;flex-direction:column;gap:10px}
-    .ft-links a{font-size:0.82rem;color:rgba(255,255,255,0.3);transition:0.3s}
+    .ft-links a{font-size:0.82rem;color:var(--text-light);transition:0.3s}
     .ft-links a:hover{color:var(--accent)}
-    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:rgba(255,255,255,0.18)}
+    .ft-sns{display:flex;gap:12px;margin-top:8px}
+    .ft-sns a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:0.3s}
+    .ft-sns a:hover{background:var(--accent);border-color:var(--accent)}
+    .ft-sns a:hover svg{fill:#fff}
+    .ft-sns a svg{width:18px;height:18px;fill:var(--text-light);transition:0.3s}
+    .ft-btm{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--text-light)}
 
     /* SP CTA */
-    .sp-cta{display:none;position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:var(--dark);border-top:1px solid var(--border);z-index:99;gap:8px}
+    .sp-cta{display:none;position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:var(--bg);border-top:1px solid var(--border);z-index:99;gap:8px}
     .sp-cta .btn-f,.sp-cta .btn-g{flex:1;text-align:center;padding:12px;font-size:0.78rem}
 
     /* REVEAL */
@@ -138,8 +127,6 @@
       .msg-card{grid-template-columns:1fr;text-align:center;gap:24px}
       .msg-avatar{margin:0 auto}
       .msg-body{text-align:left}
-      .ct-wrap{padding:36px 28px}
-      .f-row{grid-template-columns:1fr;gap:0}
       .ft-grid{grid-template-columns:1fr;gap:28px}
       .ft-btm{flex-direction:column;gap:6px}
       .sp-cta{display:flex}
@@ -162,7 +149,7 @@
       <a href="technology.html">技術・設備</a>
       <a href="works.html">実績</a>
       <a href="company.html">会社概要</a>
-      <a href="company.html#contact" class="hd-cta">お問い合わせ</a>
+      <a href="contact.html" class="hd-cta">お問い合わせ</a>
     </nav>
     <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
@@ -176,7 +163,7 @@
     </div>
   </section>
 
-  <!-- COMPANY INFO (White) -->
+  <!-- COMPANY INFO -->
   <section class="sec-w pad">
     <div class="co-head rv">
       <div class="lbl">Company Profile</div>
@@ -189,11 +176,11 @@
       </div>
       <div class="co-row">
         <dt>代表取締役</dt>
-        <dd>大下本淳一</dd>
+        <dd>大下本 淳一</dd>
       </div>
       <div class="co-row">
         <dt>所在地</dt>
-        <dd>鹿児島県出水市<br>拠点: 鹿児島・大阪・宮崎</dd>
+        <dd>鹿児島県出水市本町19-49<br>拠点: 鹿児島・大阪・宮崎</dd>
       </div>
       <div class="co-row">
         <dt>設立</dt>
@@ -201,7 +188,7 @@
       </div>
       <div class="co-row">
         <dt>従業員数</dt>
-        <dd>5名</dd>
+        <dd>10名</dd>
       </div>
       <div class="co-row">
         <dt>事業内容</dt>
@@ -209,17 +196,21 @@
       </div>
       <div class="co-row">
         <dt>対象産業</dt>
-        <dd>製紙・製鉄・化学プラント</dd>
+        <dd>製鉄・製紙・電力・ケミカル・水処理関係</dd>
       </div>
       <div class="co-row">
         <dt>取扱機器</dt>
         <dd>FARO Focus Series</dd>
       </div>
+      <div class="co-row">
+        <dt>パートナー</dt>
+        <dd>FARO Technologies（公式アンバサダー）</dd>
+      </div>
     </dl>
   </section>
 
-  <!-- CEO MESSAGE (Dark) -->
-  <section class="sec-d pad">
+  <!-- CEO MESSAGE -->
+  <section class="sec-sub pad">
     <div class="msg-head rv">
       <div class="lbl">Message</div>
       <h2>代表メッセージ</h2>
@@ -237,15 +228,15 @@
         <p class="msg-text">
           20代で製缶の現場に飛び込み、30代で独立。現場のことは現場で覚えました。<br><br>
           3Dスキャン技術との出会いは15年前。「これがあれば、現場の課題をもっと根本から解決できる」と確信し、以来ずっとこの技術と向き合い続けています。<br><br>
-          少数精鋭5名の小さな会社ですが、その分、お客様の現場に深く入り込んで、本当に必要なソリューションをご提案できる自信があります。<br><br>
+          10名の専門チームですが、その分、お客様の現場に深く入り込んで、本当に必要なソリューションをご提案できる自信があります。<br><br>
           図面がない。足場が組めない。手戻りをなくしたい。そんな課題を抱えている方は、ぜひ一度お声がけください。
         </p>
-        <p class="msg-author">&mdash; 株式会社JISOK 代表取締役 大下本淳一</p>
+        <p class="msg-author">&mdash; 株式会社JISOK 代表取締役 大下本 淳一</p>
       </div>
     </div>
   </section>
 
-  <!-- SNS + ACCESS (White) -->
+  <!-- SNS + ACCESS -->
   <section class="sec-w pad">
     <div class="sns-head rv">
       <div class="lbl">Social</div>
@@ -268,58 +259,7 @@
         <circle cx="24" cy="18" r="5"/>
       </svg>
       <span style="font-size:0.88rem">Google Maps 埋め込み予定エリア</span>
-      <span style="font-size:0.76rem;color:#aaa">鹿児島県出水市</span>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM (White bg with slight gray) -->
-  <section class="sec-w pad" style="background:#f8f8f8" id="contact">
-    <div class="ct-head rv">
-      <div class="lbl">Contact</div>
-      <h2>お問い合わせ</h2>
-      <p>ご質問・ご相談はお気軽にお問い合わせください</p>
-    </div>
-    <div class="ct-wrap rv">
-      <form action="#" method="post">
-        <div class="f-row">
-          <div class="fg">
-            <label for="company-name">会社名</label>
-            <input type="text" id="company-name" name="company-name" placeholder="例: 株式会社サンプル">
-          </div>
-          <div class="fg">
-            <label for="name">お名前 <span class="req">必須</span></label>
-            <input type="text" id="name" name="name" placeholder="例: 山田 太郎" required>
-          </div>
-        </div>
-        <div class="f-row">
-          <div class="fg">
-            <label for="email">メールアドレス <span class="req">必須</span></label>
-            <input type="email" id="email" name="email" placeholder="例: info@example.com" required>
-          </div>
-          <div class="fg">
-            <label for="tel">電話番号</label>
-            <input type="tel" id="tel" name="tel" placeholder="例: 03-1234-5678">
-          </div>
-        </div>
-        <div class="fg">
-          <label for="category">お問い合わせ種別</label>
-          <select id="category" name="category">
-            <option value="" disabled selected>選択してください</option>
-            <option value="3d-scan">3Dスキャンについて</option>
-            <option value="bim">BIM化について</option>
-            <option value="estimate">お見積もり</option>
-            <option value="other">その他</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください"></textarea>
-        </div>
-        <div class="f-submit">
-          <button type="submit" class="btn-f" style="padding:16px 48px;font-size:0.92rem">送信する</button>
-        </div>
-        <p class="f-note">※ このフォームはデモ用です。実際の送信は行われません。</p>
-      </form>
+      <span style="font-size:0.76rem;color:var(--text-light)">鹿児島県出水市本町19-49</span>
     </div>
   </section>
 
@@ -342,13 +282,21 @@
         <h4>会社情報</h4>
         <div class="ft-links">
           <a href="company.html">会社概要</a>
-          <a href="company.html#contact">お問い合わせ</a>
+          <a href="contact.html">お問い合わせ</a>
         </div>
       </div>
       <div>
         <h4>ソーシャル</h4>
-        <div class="ft-links">
-          <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener">Facebook</a>
+        <div class="ft-sns">
+          <a href="https://www.facebook.com/oed3d/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -359,7 +307,7 @@
   </footer>
 
   <div class="sp-cta">
-    <a href="#contact" class="btn-f">お問い合わせ</a>
+    <a href="contact.html" class="btn-f">お問い合わせ</a>
     <a href="tel:" class="btn-g">電話する</a>
   </div>
 
