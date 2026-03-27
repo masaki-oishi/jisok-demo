@@ -306,7 +306,7 @@
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(60,1,0.1,100);
   camera.position.z=3;
-  const count=1200;
+  const count=1600;
   const positions=new Float32Array(count*3);
   const colors=new Float32Array(count*3);
   const accentR=230/255,accentG=126/255,accentB=34/255;
@@ -323,7 +323,10 @@
   const geo=new THREE.BufferGeometry();
   geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
   geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
-  const mat=new THREE.PointsMaterial({size:0.018,vertexColors:true,transparent:true,opacity:0.35,sizeAttenuation:true});
+  const c2d=document.createElement('canvas');c2d.width=64;c2d.height=64;
+  const ctx=c2d.getContext('2d');ctx.beginPath();ctx.arc(32,32,30,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
+  const sprite=new THREE.CanvasTexture(c2d);
+  const mat=new THREE.PointsMaterial({size:0.05,map:sprite,vertexColors:true,transparent:true,opacity:0.45,sizeAttenuation:true,depthWrite:false});
   const points=new THREE.Points(geo,mat);
   scene.add(points);
   function resize(){const w=hero.clientWidth,h=hero.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
