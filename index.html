@@ -73,8 +73,8 @@
     .prob-item:hover{padding-left:12px}
     .prob-item .num{font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1}
     .prob-item h3{font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)}
-    .prob-item p{font-size:0.88rem;color:var(--text-light);line-height:1.9}
-    .prob-item .solve{margin-top:12px;font-size:0.82rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px}
+    .prob-item p{font-size:1rem;color:var(--text-light);line-height:1.9}
+    .prob-item .solve{margin-top:12px;font-size:0.92rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px}
     .prob-img{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:3/4}
     .prob-img img{width:100%;height:100%;object-fit:cover}
 
@@ -444,7 +444,7 @@
             <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg>
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
       </div>
@@ -483,15 +483,90 @@
 
       const count=2000;
       const positions=new Float32Array(count*3);
+      const targets=new Float32Array(count*3);
+      const origins=new Float32Array(count*3);
       const colors=new Float32Array(count*3);
       const accentR=230/255,accentG=126/255,accentB=34/255;
+
+      function makeSphere(arr){
+        for(let i=0;i<count;i++){
+          const theta=Math.random()*Math.PI*2;
+          const phi=Math.acos(2*Math.random()-1);
+          const r=Math.pow(Math.random(),0.33)*2.5;
+          arr[i*3]=r*Math.sin(phi)*Math.cos(theta);
+          arr[i*3+1]=r*Math.sin(phi)*Math.sin(theta);
+          arr[i*3+2]=r*Math.cos(phi);
+        }
+      }
+
+      function makePlant(arr){
+        for(let i=0;i<count;i++){
+          const r=Math.random();
+          if(r<0.35){
+            const a=Math.random()*Math.PI*2;
+            const rad=0.15+Math.random()*0.1;
+            arr[i*3]=Math.cos(a)*rad;
+            arr[i*3+1]=(Math.random()-0.3)*3;
+            arr[i*3+2]=Math.sin(a)*rad;
+          }else if(r<0.55){
+            const y=-1+Math.random()*2.5;
+            const len=(Math.random()-0.5)*2;
+            arr[i*3]=len;
+            arr[i*3+1]=y;
+            arr[i*3+2]=(Math.random()-0.5)*0.3;
+          }else if(r<0.7){
+            const a=Math.random()*Math.PI*2;
+            const rad=0.12+Math.random()*0.08;
+            arr[i*3]=0.8+Math.cos(a)*rad;
+            arr[i*3+1]=(Math.random()-0.5)*2;
+            arr[i*3+2]=Math.sin(a)*rad;
+          }else if(r<0.85){
+            const y=-0.5+Math.floor(Math.random()*4)*0.6;
+            arr[i*3]=(Math.random()-0.5)*1.5;
+            arr[i*3+1]=y;
+            arr[i*3+2]=(Math.random()-0.5)*0.5;
+          }else{
+            arr[i*3]=(Math.random()-0.5)*2;
+            arr[i*3+1]=(Math.random()-0.5)*3;
+            arr[i*3+2]=(Math.random()-0.5)*1;
+          }
+        }
+      }
+
+      function makeScanDome(arr){
+        for(let i=0;i<count;i++){
+          const r=Math.random();
+          if(r<0.6){
+            const theta=Math.random()*Math.PI*2;
+            const phi=Math.random()*Math.PI*0.5;
+            const rad=1.5+Math.random()*0.3;
+            arr[i*3]=rad*Math.sin(phi)*Math.cos(theta);
+            arr[i*3+1]=rad*Math.cos(phi)-0.5;
+            arr[i*3+2]=rad*Math.sin(phi)*Math.sin(theta);
+          }else if(r<0.8){
+            const angle=Math.floor(Math.random()*12)*(Math.PI*2/12);
+            const dist=Math.random()*2;
+            arr[i*3]=Math.cos(angle)*dist;
+            arr[i*3+1]=Math.random()*0.3;
+            arr[i*3+2]=Math.sin(angle)*dist;
+          }else{
+            const a=Math.random()*Math.PI*2;
+            const rad=Math.random()*0.15;
+            arr[i*3]=Math.cos(a)*rad;
+            arr[i*3+1]=-0.5+Math.random()*0.4;
+            arr[i*3+2]=Math.sin(a)*rad;
+          }
+        }
+      }
+
+      makeSphere(positions);
+      for(let i=0;i<count*3;i++) origins[i]=positions[i];
+
       for(let i=0;i<count;i++){
-        positions[i*3]=(Math.random()-0.5)*6;
-        positions[i*3+1]=(Math.random()-0.5)*4;
-        positions[i*3+2]=(Math.random()-0.5)*3;
         if(Math.random()<0.25){colors[i*3]=accentR;colors[i*3+1]=accentG;colors[i*3+2]=accentB}
         else{const g=0.55+Math.random()*0.2;colors[i*3]=g;colors[i*3+1]=g;colors[i*3+2]=g}
       }
+
       const geo=new THREE.BufferGeometry();
       geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
       geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
@@ -510,12 +585,55 @@
       let mouse={x:0,y:0};
       window.addEventListener('mousemove',e=>{mouse.x=(e.clientX/innerWidth-0.5)*2;mouse.y=-(e.clientY/innerHeight-0.5)*2});
 
+      let phase='idle';
+      let morphT=0;
+      let shapeIdx=0;
+      const shapes=[makePlant,makeScanDome];
+
+      function startMorph(){
+        if(phase!=='idle')return;
+        shapes[shapeIdx](targets);
+        shapeIdx=(shapeIdx+1)%shapes.length;
+        for(let i=0;i<count*3;i++) origins[i]=positions[i];
+        phase='morphIn';
+        morphT=0;
+      }
+
+      function startReturn(){
+        makeSphere(targets);
+        for(let i=0;i<count*3;i++) origins[i]=positions[i];
+        phase='morphOut';
+        morphT=0;
+      }
+
+      setInterval(startMorph,8000);
+
+      function ease(t){return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+
       function loop(t){
         requestAnimationFrame(loop);
         points.rotation.y=t*0.00005+mouse.x*0.15;
         points.rotation.x=t*0.00003+mouse.y*0.1;
+
         const pos=geo.attributes.position.array;
-        for(let i=0;i<count;i++){pos[i*3+1]+=Math.sin(t*0.001+i*0.1)*0.0003}
+
+        if(phase==='morphIn'||phase==='morphOut'){
+          morphT+=0.012;
+          if(morphT>=1)morphT=1;
+          const e=ease(morphT);
+          for(let i=0;i<count*3;i++) pos[i]=origins[i]+(targets[i]-origins[i])*e;
+          if(morphT>=1){
+            if(phase==='morphIn'){
+              phase='hold';
+              setTimeout(startReturn,3000);
+            }else{
+              phase='idle';
+            }
+          }
+        }else{
+          for(let i=0;i<count;i++){pos[i*3+1]+=Math.sin(t*0.001+i*0.1)*0.0003}
+        }
+
         geo.attributes.position.needsUpdate=true;
         renderer.render(scene,camera);
       }

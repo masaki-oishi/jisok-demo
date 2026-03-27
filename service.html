@@ -34,16 +34,19 @@
     .sec-sub{background:var(--bg-sub);color:var(--text)}
     .pad{padding:140px 48px}
 
+    /* BREADCRUMB */
+    .breadcrumb{font-family:'Outfit';font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);padding:80px 48px 0;background:var(--bg-sub)}
+    .breadcrumb a{color:var(--text-light);transition:0.3s}
+    .breadcrumb a:hover{color:var(--accent)}
+
     /* PAGE HERO */
-    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
+    .pg-hero{position:relative;min-height:auto;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
     .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(230,126,34,0.04) 0%,transparent 60%)}
-    .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
-    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
-    .pg-hero .bc a{color:var(--text-light);transition:0.3s}
-    .pg-hero .bc a:hover{color:var(--accent)}
+    .pg-hero .inner{position:relative;z-index:2;padding-top:80px}
     .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--text)}
     .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
     .pg-hero .lead{font-size:0.95rem;color:var(--text-light);max-width:520px;line-height:2}
+    .pg-hero canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
 
     /* SERVICE GRID */
     .svc-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:100px}
@@ -66,13 +69,13 @@
     .wf-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
     .wf-row{display:grid;grid-template-columns:64px 1fr 1fr;gap:0;border-top:1px solid var(--border)}
     .wf-row:last-child{border-bottom:1px solid var(--border)}
-    .wf-num{font-family:'Outfit';font-size:3.2rem;font-weight:200;color:#ddd;padding:48px 0}
-    .wf-text{padding:48px 32px}
+    .wf-num{font-family:'Outfit';font-size:3.2rem;font-weight:200;color:#ddd;padding:36px 0}
+    .wf-text{padding:36px 32px 24px}
     .wf-text .tool{font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-    .wf-text h3{font-family:'Outfit';font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)}
-    .wf-text p{font-size:0.88rem;color:var(--text-light);line-height:1.9}
+    .wf-text h3{font-family:'Outfit';font-size:1.35rem;font-weight:700;margin-bottom:12px;color:var(--text)}
+    .wf-text p{font-size:1rem;color:var(--text-light);line-height:1.9}
     .wf-img{padding:48px 0 48px 24px;display:flex;align-items:center;justify-content:center}
-    .wf-img .placeholder{width:100%;aspect-ratio:16/10;background:var(--bg-sub);border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+    .wf-img .placeholder{width:100%;height:auto;min-height:200px;background:var(--bg-sub);border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
     .wf-img .placeholder svg{width:48px;height:48px;stroke:#ccc;stroke-width:1;fill:none}
 
     /* ROI TABLE */
@@ -141,6 +144,7 @@
       .hd,.pad,.cta,.ft{padding-left:24px;padding-right:24px}
       .hd-nav{display:none}
       .burger{display:flex}
+      .breadcrumb{padding-left:24px;padding-right:24px}
       .pg-hero{padding:0 24px 60px;min-height:50vh}
       .pg-hero .inner{padding-top:120px}
       .svc-head{grid-template-columns:1fr}
@@ -171,10 +175,13 @@
     <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
 
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb"><a href="index.html">Top</a> &mdash; Service</div>
+
   <!-- PAGE HERO -->
-  <section class="pg-hero">
+  <section class="pg-hero" id="pg-hero">
+    <canvas id="pc"></canvas>
     <div class="inner rv">
-      <div class="bc"><a href="index.html">Top</a> &mdash; Service</div>
       <h1><small>What We Do</small>サービス</h1>
       <p class="lead">プラントの計測から設計・施工検証まで。3Dスキャンを起点に、ワンストップでお手伝いします。</p>
     </div>
@@ -338,14 +345,14 @@
           <tr>
             <th>比較項目</th>
             <th>従来手法</th>
-            <th>JISOK 3Dスキャン</th>
+            <th>JISOKのソリューション</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>安全性</td>
             <td>足場設置・高所作業が必要<br>作業員の落下リスクあり</td>
-            <td class="hl">非接触計測で足場不要<br>安全性を大幅に向上</td>
+            <td class="hl">非接触レーザースキャンで足場不要<br>安全性を大幅に向上</td>
           </tr>
           <tr>
             <td>計測時間</td>
@@ -360,12 +367,12 @@
           <tr>
             <td>可視性</td>
             <td>2D図面ベース<br>空間把握が困難</td>
-            <td class="hl">3Dモデルで直感的に把握<br>関係者間の合意形成が容易</td>
+            <td class="hl">3Dモデル＋BIMで直感的に把握<br>Scan to BIMで関係者間の合意形成が容易</td>
           </tr>
           <tr>
             <td>手戻り</td>
             <td>施工後に干渉が発覚<br>高コストな修正工事</td>
-            <td class="hl">事前の干渉チェックで<br>手戻りを大幅削減</td>
+            <td class="hl">Navisworksで事前に干渉チェック<br>3Dモデリングで手戻りを大幅削減</td>
           </tr>
         </tbody>
       </table>
@@ -414,7 +421,7 @@
             <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg>
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
       </div>
@@ -435,6 +442,44 @@
     document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
     window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas=document.getElementById('pc');
+  if(!canvas)return;
+  const hero=document.getElementById('pg-hero');
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(60,1,0.1,100);
+  camera.position.z=3;
+  const count=1200;
+  const positions=new Float32Array(count*3);
+  const colors=new Float32Array(count*3);
+  const accentR=230/255,accentG=126/255,accentB=34/255;
+  for(let i=0;i<count;i++){
+    const theta=Math.random()*Math.PI*2;
+    const phi=Math.acos(2*Math.random()-1);
+    const r=Math.pow(Math.random(),0.33)*2;
+    positions[i*3]=r*Math.sin(phi)*Math.cos(theta);
+    positions[i*3+1]=r*Math.sin(phi)*Math.sin(theta);
+    positions[i*3+2]=r*Math.cos(phi);
+    if(Math.random()<0.2){colors[i*3]=accentR;colors[i*3+1]=accentG;colors[i*3+2]=accentB}
+    else{const g=0.65+Math.random()*0.15;colors[i*3]=g;colors[i*3+1]=g;colors[i*3+2]=g}
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  const mat=new THREE.PointsMaterial({size:0.018,vertexColors:true,transparent:true,opacity:0.35,sizeAttenuation:true});
+  const points=new THREE.Points(geo,mat);
+  scene.add(points);
+  function resize(){const w=hero.clientWidth,h=hero.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
+  resize();window.addEventListener('resize',resize);
+  function loop(t){requestAnimationFrame(loop);points.rotation.y=t*0.00004;points.rotation.x=t*0.00002;renderer.render(scene,camera)}
+  loop(0);
+})();
+</script>
 
 </body>
 </html>

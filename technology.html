@@ -34,16 +34,19 @@
     .sec-sub{background:var(--bg-sub);color:var(--text)}
     .pad{padding:140px 48px}
 
+    /* BREADCRUMB */
+    .breadcrumb{font-family:'Outfit';font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);padding:80px 48px 0;background:var(--bg-sub)}
+    .breadcrumb a{color:var(--text-light);transition:0.3s}
+    .breadcrumb a:hover{color:var(--accent)}
+
     /* PAGE HERO */
-    .pg-hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
+    .pg-hero{position:relative;min-height:auto;display:flex;align-items:flex-end;padding:0 48px 80px;overflow:hidden;background:var(--bg-sub)}
     .pg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%,rgba(230,126,34,0.04) 0%,transparent 60%)}
-    .pg-hero .inner{position:relative;z-index:2;padding-top:160px}
-    .pg-hero .bc{font-family:'Outfit';font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
-    .pg-hero .bc a{color:var(--text-light);transition:0.3s}
-    .pg-hero .bc a:hover{color:var(--accent)}
+    .pg-hero .inner{position:relative;z-index:2;padding-top:80px}
     .pg-hero h1{font-family:'Outfit';font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;color:var(--text)}
     .pg-hero h1 small{display:block;font-size:0.16em;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
     .pg-hero .lead{font-size:0.95rem;color:var(--text-light);max-width:560px;line-height:2}
+    .pg-hero canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
 
     /* STATS */
     .stats{padding:100px 48px;background:var(--bg-sub);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -79,33 +82,14 @@
     .lu-feats li:last-child{border-bottom:none}
     .lu-feats li::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}
 
-    /* SPEC LIST */
-    .spec-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:80px}
-    .spec-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .spec-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
-    .spec-head .desc{font-size:0.9rem;color:var(--text-light);line-height:2;max-width:420px;align-self:end}
-    .spec-list{display:flex;flex-direction:column}
-    .spec-item{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-bottom:1px solid var(--border)}
-    .spec-item:first-child{border-top:1px solid var(--border)}
-    .spec-item .num{font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1}
-    .spec-item .val{font-family:'Outfit';font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:4px}
-    .spec-item p{font-size:0.88rem;color:var(--text-light);line-height:1.8}
+    /* SPEC COMPARISON */
+    .spec-cmp-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 
-    /* PIPELINE TIMELINE */
+    /* PIPELINE */
     .pl-head{text-align:center;margin-bottom:64px}
     .pl-head .lbl{font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
     .pl-head h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)}
     .pl-head p{font-size:0.9rem;color:var(--text-light);margin-top:12px}
-    .pl-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-    .pl-step{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:32px 16px;text-align:center;position:relative;transition:0.3s}
-    .pl-step:hover{box-shadow:0 8px 24px rgba(0,0,0,0.05)}
-    .pl-step::after{content:'';position:absolute;top:50%;right:-12px;width:8px;height:8px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:translateY(-50%) rotate(45deg)}
-    .pl-step:last-child::after{display:none}
-    .pl-step .sn{font-family:'Outfit';font-size:0.68rem;font-weight:700;color:var(--accent);letter-spacing:1.5px;margin-bottom:12px}
-    .pl-step .ico{width:52px;height:52px;background:var(--text);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-    .pl-step .ico svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .pl-step h4{font-family:'Outfit';font-size:0.92rem;font-weight:700;margin-bottom:4px;color:var(--text)}
-    .pl-step .tl{font-size:0.72rem;color:var(--accent);font-weight:600}
 
     /* VIDEO PLACEHOLDER */
     .vid-wrap{max-width:880px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.06)}
@@ -161,26 +145,20 @@
       .stat:last-child{border-bottom:none}
       .lu-grid{grid-template-columns:1fr}
       .lu-card{border-right:none!important}
-      .pl-flow{grid-template-columns:repeat(3,1fr)}
-      .pl-step:nth-child(3)::after{display:none}
     }
     @media(max-width:768px){
       .hd,.pad,.stats,.cta,.ft{padding-left:24px;padding-right:24px}
+      .breadcrumb{padding-left:24px;padding-right:24px}
       .hd-nav{display:none}
       .burger{display:flex}
-      .pg-hero{padding:0 24px 60px;min-height:50vh}
-      .pg-hero .inner{padding-top:120px}
-      .stats-head,.spec-head{grid-template-columns:1fr}
-      .pl-flow{grid-template-columns:1fr 1fr;gap:12px}
-      .pl-step::after{display:none}
+      .pg-hero{padding:0 24px 60px}
+      .pg-hero .inner{padding-top:60px}
+      .stats-head{grid-template-columns:1fr}
       .ft-grid{grid-template-columns:1fr;gap:28px}
       .ft-btm{flex-direction:column;gap:6px}
       .sp-cta{display:flex}
       .ft{padding-bottom:72px}
       .cta{padding:100px 24px}
-    }
-    @media(max-width:480px){
-      .pl-flow{grid-template-columns:1fr;max-width:260px;margin:0 auto}
     }
   </style>
 </head>
@@ -199,10 +177,13 @@
     <div class="burger" onclick="this.classList.toggle('active')"><span></span><span></span></div>
   </header>
 
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb"><a href="index.html">Top</a> — Technology</div>
+
   <!-- PAGE HERO -->
-  <section class="pg-hero">
+  <section class="pg-hero" id="pg-hero">
+    <canvas id="pc"></canvas>
     <div class="inner rv">
-      <div class="bc"><a href="index.html">Top</a> &mdash; Technology</div>
       <h1><small>Equipment &amp; Workflow</small>技術・設備</h1>
       <p class="lead">JISOKが使っている計測機材とソフトウェア、そしてスキャンから納品までの技術フローをご紹介します。</p>
     </div>
@@ -277,51 +258,74 @@
     </div>
   </section>
 
-  <!-- SPEC DETAIL -->
+  <!-- SPEC COMPARISON -->
   <section class="sec-sub pad">
-    <div class="spec-head">
-      <div class="rv">
-        <div class="lbl">Specifications</div>
-        <h2>スペック詳細</h2>
-      </div>
-      <p class="desc rv" data-d="1">過酷な現場環境にも対応する堅牢な設計と高い計測性能</p>
+    <div class="spec-cmp-head rv" style="text-align:center;margin-bottom:64px">
+      <div class="lbl" style="font-family:'Outfit';font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px">Specifications</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;line-height:1.25;letter-spacing:-0.02em;color:var(--text)">3機種スペック比較</h2>
+      <p style="font-size:0.9rem;color:var(--text-light);margin-top:12px">現場の規模や用途に合わせて最適な機種をご提案します</p>
     </div>
-    <div class="spec-list rv">
-      <div class="spec-item">
-        <div class="num">01</div>
-        <div>
-          <div class="val">1550nm</div>
-          <p>レーザー波長 — クラス1（人体に安全）</p>
-        </div>
-      </div>
-      <div class="spec-item">
-        <div class="num">02</div>
-        <div>
-          <div class="val">IP54</div>
-          <p>防塵・防水等級 — 屋外現場でも安心</p>
-        </div>
-      </div>
-      <div class="spec-item">
-        <div class="num">03</div>
-        <div>
-          <div class="val">165MP</div>
-          <p>HDRカメラ解像度 — 高精細テクスチャ取得</p>
-        </div>
-      </div>
-      <div class="spec-item">
-        <div class="num">04</div>
-        <div>
-          <div class="val">-20~55&deg;C</div>
-          <p>動作温度範囲 — 極端な環境下にも対応</p>
-        </div>
-      </div>
-      <div class="spec-item">
-        <div class="num">05</div>
-        <div>
-          <div class="val">On-Site</div>
-          <p>オンサイト補正機能 — 現場で即座にデータ検証</p>
-        </div>
-      </div>
+    <div class="rv" style="max-width:960px;margin:0 auto;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.88rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+        <thead>
+          <tr>
+            <th style="padding:18px 24px;text-align:left;background:var(--bg-sub);color:var(--text-light);font-weight:700;border-bottom:2px solid var(--border);width:22%">スペック</th>
+            <th style="padding:18px 24px;text-align:center;background:var(--text);color:#fff;font-weight:700;border-bottom:2px solid var(--border)">Premium Max</th>
+            <th style="padding:18px 24px;text-align:center;background:var(--bg-sub);color:var(--text);font-weight:700;border-bottom:2px solid var(--border)">Premium</th>
+            <th style="padding:18px 24px;text-align:center;background:var(--bg-sub);color:var(--text);font-weight:700;border-bottom:2px solid var(--border)">Core</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">最大計測距離</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--accent);font-weight:700;font-family:'Outfit';font-size:1.1rem">400m</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text);font-family:'Outfit';font-size:1.1rem">200m</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text);font-family:'Outfit';font-size:1.1rem">100m</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">スキャン速度</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--accent);font-weight:700">976,000点/秒</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">976,000点/秒</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">976,000点/秒</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">計測精度</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">&plusmn;1mm</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">&plusmn;1mm</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">&plusmn;2mm</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">レーザー波長</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">1550nm</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">1550nm</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">1550nm</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">防塵防水</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">IP54</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">IP54</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">IP54</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">HDRカメラ</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">165MP</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">165MP</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">—</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);font-weight:700;color:var(--text)">動作温度</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">-20〜55℃</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">-20〜55℃</td>
+            <td style="padding:16px 24px;border-bottom:1px solid var(--border);text-align:center;color:var(--text-light)">-20〜55℃</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 24px;font-weight:700;color:var(--text)">おすすめ用途</td>
+            <td style="padding:16px 24px;text-align:center;color:var(--text-light);font-size:0.82rem">大型石油化学プラント<br>橋梁・トンネル等インフラ</td>
+            <td style="padding:16px 24px;text-align:center;color:var(--text-light);font-size:0.82rem">中規模プラント<br>建築・AEC分野</td>
+            <td style="padding:16px 24px;text-align:center;color:var(--text-light);font-size:0.82rem">小〜中規模現場<br>室内設備の3D化</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -330,48 +334,48 @@
     <div class="pl-head rv">
       <div class="lbl">Data Pipeline</div>
       <h2>スキャンから納品までの技術フロー</h2>
-      <p>現場計測から運用まで、一気通貫のワークフロー</p>
+      <p>各工程で最適なツールを使い、高品質データを効率的に構築します</p>
     </div>
-    <div class="pl-flow rv">
-      <div class="pl-step">
-        <span class="sn">STEP 01</span>
-        <div class="ico">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    <div class="pl-detail rv">
+      <div class="pld-item" style="display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--border)">
+        <div style="font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1">01</div>
+        <div>
+          <div style="font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Survey — FARO Focus</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)">現場スキャン</h3>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:2">FARO Focusレーザースキャナーを現場に持ち込み、プラント全体を点群データとして取得します。三脚を設置してスタートボタンを押すだけのシンプルな操作で、最大97.6万点/秒の超高速スキャンが可能。足場不要・非接触で、1エリアあたり約1時間で完了します。HDR写真オーバーレイにより、カラー情報付きの点群データも同時に取得できます。</p>
         </div>
-        <h4>Survey</h4>
-        <span class="tl">FARO Focus</span>
       </div>
-      <div class="pl-step">
-        <span class="sn">STEP 02</span>
-        <div class="ico">
-          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      <div class="pld-item" style="display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--border)">
+        <div style="font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1">02</div>
+        <div>
+          <div style="font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Process — Autodesk ReCap</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)">データ統合・処理</h3>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:2">複数のスキャンポイントから取得した膨大な点群データを、Autodesk ReCapで統合・構造化します。自動位置合わせ・ノイズ除去・座標統合を行い、設計にそのまま使える高品質なデータセットを構築。ReCapを使う理由は、Autodesk製品群との高い互換性にあり、後工程のPlant 3DやRevitへのスムーズなデータ連携を実現します。</p>
         </div>
-        <h4>Process</h4>
-        <span class="tl">ReCap</span>
       </div>
-      <div class="pl-step">
-        <span class="sn">STEP 03</span>
-        <div class="ico">
-          <svg viewBox="0 0 24 24"><path d="M2 20V8l10-6 10 6v12"/><path d="M6 20V10"/><path d="M18 20V10"/><path d="M2 8l10 6 10-6"/></svg>
+      <div class="pld-item" style="display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--border)">
+        <div style="font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1">03</div>
+        <div>
+          <div style="font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Design — Plant 3D / Revit</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)">3Dモデリング・BIM化</h3>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:2">点群データを下地に、AutoCAD Plant 3DまたはRevitで配管・ダクト・構造体の精密な3Dモデルを構築します。既存図面がなくても、スキャンデータから現況のBIMモデルを新規作成可能。P&IDとの統合設計にも対応し、設計段階で既設との整合性を逐一チェックすることで、後工程での手戻りを防ぎます。</p>
         </div>
-        <h4>Design</h4>
-        <span class="tl">Plant 3D</span>
       </div>
-      <div class="pl-step">
-        <span class="sn">STEP 04</span>
-        <div class="ico">
-          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4"/><path d="M15 3h4a2 2 0 012 2v4"/><path d="M9 21H5a2 2 0 01-2-2v-4"/><path d="M15 21h4a2 2 0 002-2v-4"/><circle cx="12" cy="12" r="4"/></svg>
+      <div class="pld-item" style="display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--border)">
+        <div style="font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1">04</div>
+        <div>
+          <div style="font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Execute — Navisworks</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)">干渉チェック・施工検証</h3>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:2">Navisworksのクラッシュ検出機能を使い、新設配管と既設設備の干渉を施工前にPC上で完全検証します。ウォークスルー機能で施工手順のシミュレーションも可能で、現場に行く前に"予行演習"ができます。これにより内作率が向上し、「現場で入らない」という事態を未然に防ぎます。</p>
         </div>
-        <h4>Execute</h4>
-        <span class="tl">Navisworks</span>
       </div>
-      <div class="pl-step">
-        <span class="sn">STEP 05</span>
-        <div class="ico" style="background:rgba(230,126,34,0.15)">
-          <svg viewBox="0 0 24 24" style="stroke:var(--accent)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div class="pld-item" style="display:grid;grid-template-columns:56px 1fr;gap:24px;padding:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+        <div style="font-family:'Outfit';font-size:2rem;font-weight:200;color:#ddd;line-height:1">05</div>
+        <div>
+          <div style="font-family:'Outfit';font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Operate — LDAR Compliance</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;color:var(--text)">維持管理・デジタルツイン</h3>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:2">完工後のスキャンデータをデジタルツインとして維持管理に活用。定期スキャンで設備の経年変化を可視化し、改修の優先度判断をデータに基づいて行えます。LDAR（漏洩検知・修理）コンプライアンスにも対応し、設備台帳との連携で属性情報を持ったスマートな3Dデータとしてプラント資産を管理できます。</p>
         </div>
-        <h4>Operate</h4>
-        <span class="tl">LDAR</span>
       </div>
     </div>
   </section>
@@ -437,7 +441,7 @@
             <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg>
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
       </div>
@@ -458,6 +462,44 @@
     document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
     window.addEventListener('scroll',()=>{document.getElementById('hd').classList.toggle('scrolled',scrollY>60)});
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas=document.getElementById('pc');
+  if(!canvas)return;
+  const hero=document.getElementById('pg-hero');
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(60,1,0.1,100);
+  camera.position.z=3;
+  const count=1200;
+  const positions=new Float32Array(count*3);
+  const colors=new Float32Array(count*3);
+  const accentR=230/255,accentG=126/255,accentB=34/255;
+  for(let i=0;i<count;i++){
+    const theta=Math.random()*Math.PI*2;
+    const phi=Math.acos(2*Math.random()-1);
+    const r=Math.pow(Math.random(),0.33)*2;
+    positions[i*3]=r*Math.sin(phi)*Math.cos(theta);
+    positions[i*3+1]=r*Math.sin(phi)*Math.sin(theta);
+    positions[i*3+2]=r*Math.cos(phi);
+    if(Math.random()<0.2){colors[i*3]=accentR;colors[i*3+1]=accentG;colors[i*3+2]=accentB}
+    else{const g=0.65+Math.random()*0.15;colors[i*3]=g;colors[i*3+1]=g;colors[i*3+2]=g}
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  const mat=new THREE.PointsMaterial({size:0.018,vertexColors:true,transparent:true,opacity:0.35,sizeAttenuation:true});
+  const points=new THREE.Points(geo,mat);
+  scene.add(points);
+  function resize(){const w=hero.clientWidth,h=hero.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
+  resize();window.addEventListener('resize',resize);
+  function loop(t){requestAnimationFrame(loop);points.rotation.y=t*0.00004;points.rotation.x=t*0.00002;renderer.render(scene,camera)}
+  loop(0);
+})();
+</script>
 
 </body>
 </html>
